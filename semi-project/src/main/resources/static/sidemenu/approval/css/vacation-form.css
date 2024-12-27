@@ -1,0 +1,274 @@
+.change-screen-vacationForm{
+    width: 1850px;
+    height: 800px;
+    background-color: white;
+    border-radius: 10px;
+    margin-bottom: 3%;
+    color: black;
+}
+
+.form-title {
+    text-align: center; /* h2 제목을 가운데 정렬 */
+    height: 100px;
+    display: flex;
+    justify-content: space-between; /* 자식 요소들 사이에 공간을 배분 */
+    align-items: center; /* 수직 중앙 정렬 */
+}
+
+h2 {
+    margin-left: 44%;
+}
+
+.form-box {
+    width: 200px;
+    height: 100px;
+    margin-right: 25px;
+    margin-top: 40px;
+}
+
+.data-table {
+    width: 100%;
+    height: 100%; /* 테이블 높이를 부모 요소에 맞춤 */
+    border-collapse: collapse; /* 테이블 경계선 겹침 방지 */
+    text-align: center; /* 텍스트 가운데 정렬 */
+    table-layout: fixed; /* 고정 레이아웃 사용 */
+}
+
+.data-table th, .data-table td {
+    border: 1px solid black; /* 테이블 셀 경계선 */
+    text-align: center; /* 텍스트 가운데 정렬 */
+    padding: 10px; /* 셀 안쪽 여백 */
+}
+
+.data-table th {
+    background-color: #f2f2f2; /* 헤더 배경색 */
+}
+
+/* 수정된 스타일 */
+.special-table td {
+    width: 40%; /* 기안자와 기안일자의 셀 너비를 조정 */
+    height: 50px; /* 기안일자의 셀 높이를 조정 */
+}
+
+.special-table tr:first-child td {
+    height: 50px; /* 기안자 셀의 높이도 동일하게 설정 */
+}
+
+
+.form2 {
+    width: 600px;
+    margin-left: 23px;
+    margin-top: 20px;
+    display: flex;
+}
+
+.employeeList-button {
+    width: 70px;
+    height: 50px;
+    margin-top: 77px;
+    margin-left: 5px;
+    cursor: pointer;
+    background-color: #5b6eff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    font-weight: bold;
+}
+
+.employeeList-button:hover {
+    background-color: #0079ff; /* 호버 시 배경색 */
+    transform: scale(1.05); /* 호버 시 약간 확대 */
+}
+
+
+.form2 .data-table {
+    width: 100%; /* 테이블 너비를 100%로 설정 */
+    border-collapse: collapse; /* 테두리 겹침 방지 */
+}
+
+.form2 .data-table td {
+    height: 40px; /* 모든 셀의 높이를 동일하게 설정 */
+    padding: 10px; /* 셀 안쪽 여백 추가 */
+    border: 1px solid black; /* 셀 테두리를 검은색으로 설정 */
+    vertical-align: middle; /* 셀 내용 수직 정렬 */
+    background-color: white; /* 기본 셀 배경색을 흰색으로 설정 */
+}
+
+.form2 .data-table tr:nth-child(odd) td {
+    background-color: white; /* 홀수 행 배경색 */
+}
+
+.form2 .data-table tr:nth-child(even) td {
+    background-color: white; /* 짝수 행 배경색 */
+}
+
+
+.form3{
+    width: 1800px;
+    height: 430px;
+    margin-left: 23px;
+    margin-top: 20px;
+}
+
+.form4 {
+    width: 250px;
+    height: 50px;
+    margin-left: 43%;
+    margin-top: 20px;
+    display: flex; /* 버튼을 가로로 정렬하기 위해 flexbox 사용 */
+    justify-content: space-between; /* 버튼 사이에 공간을 균등하게 배분 */
+    align-items: center; /* 버튼을 수직으로 가운데 정렬 */
+    padding: 5px; /* 내부 여백 추가 */
+    border-radius: 5px; /* 모서리 둥글게 */
+}
+
+.form4 button {
+    width: 100px;
+    height: 40px;
+    background-color: #4CAF50; /* 버튼 배경색 */
+    color: white; /* 버튼 텍스트 색상 */
+    border: none; /* 기본 테두리 제거 */
+    border-radius: 5px; /* 버튼 모서리 둥글게 */
+    padding: 10px 15px; /* 버튼 안쪽 여백 */
+    cursor: pointer; /* 마우스 커서 변경 */
+    transition: background-color 0.3s; /* 배경색 변화에 애니메이션 추가 */
+    font-weight: bold;
+}
+
+.form4 button:hover {
+    background-color: #45a049; /* 마우스 오버 시 배경색 변화 */
+}
+
+.form4 input[type="button"] {
+    width: 100px;
+    height: 40px;
+    background-color: #f44336; /* 취소 버튼 배경색 */
+    color: white; /* 버튼 텍스트 색상 */
+    border: none; /* 기본 테두리 제거 */
+    border-radius: 5px; /* 버튼 모서리 둥글게 */
+    padding: 10px 15px; /* 버튼 안쪽 여백 */
+    cursor: pointer; /* 마우스 커서 변경 */
+    transition: background-color 0.3s; /* 배경색 변화에 애니메이션 추가 */
+    font-weight: bold;
+}
+
+.form4 input[type="button"]:hover {
+    background-color: #e53935; /* 마우스 오버 시 배경색 변화 */
+}
+
+.modal {
+    display: none; /* 기본적으로 숨김 */
+    position: fixed; /* 화면에 고정 */
+    z-index: 1; /* 최상위 레이어 */
+    left: 0;
+    top: 0;
+    width: 100%; /* 전체 화면 */
+    height: 100%; /* 전체 화면 */
+    overflow: auto; /* 스크롤 가능 */
+    background-color: rgba(0, 0, 0, 0.4); /* 투명도 */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 11% auto; /* 중앙 정렬 */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 38%; /* 너비 */
+    max-height: 80%; /* 최대 높이 설정 */
+    overflow-y: auto; /* 세로 스크롤 가능 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 그림자 추가 */
+    border-radius: 8px; /* 모서리 둥글게 */
+}
+
+
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#employeeListModal {
+    max-height: 400px; /* 최대 높이 설정 */
+    overflow-y: auto; /* 스크롤 가능 */
+}
+
+#employeeListModal li {
+    display: flex; /* Flexbox 사용 */
+    justify-content: space-between; /* 항목 간격 조정 */
+    padding: 10px; /* 패딩 추가 */
+    border-bottom: 1px solid #ccc; /* 구분선 추가 */
+    cursor: pointer; /* 마우스 포인터 변경 */
+    transition: background-color 0.3s; /* 배경색 변화에 부드러운 전환 효과 추가 */
+}
+
+#employeeListModal li:hover {
+    background-color: #e0e0e0; /* 호버 시 배경색 변경 */
+}
+
+#employeeListModal li span {
+    flex: 1; /* 각 항목이 동일한 비율로 공간을 차지하도록 설정 */
+    text-align: center; /* 텍스트 중앙 정렬 */
+}
+
+.filter{
+    display: flex;
+    flex-direction: column;
+}
+
+.deptName{
+    width: 300px;
+    margin-left: 53%;
+}
+
+.date{
+    margin-right: 64%;
+}
+
+input[type="date"], input[type="text"], textarea {
+    border: 1px solid #ccc; /* 기본 테두리 설정 */
+    border-radius: 4px; /* 둥근 모서리 */
+    padding: 5px; /* 패딩 추가 */
+    outline: none; /* 포커스 시 기본 테두리 제거 */
+}
+
+textarea {
+    height: 100%; /* 부모 요소의 높이에 맞춤 */
+}
+
+#adminStampImage, #ownerStampImage {
+    max-width: 100%; /* 이미지 크기를 조정 */
+    height: auto; /* 비율 유지 */
+    display: block; /* 블록 요소로 설정하여 여백 제거 */
+    margin: 0 auto; /* 중앙 정렬 */
+}
+
+.countInfo{
+    margin-right: 17%;
+}
+
+.delete{
+    width: 150px;
+    background-color: #ff4141;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    height: 35px;
+    font-weight: bold;
+    margin-left: 19%;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.delete:hover{
+    background-color: #e53935; /* 마우스 오버 시 배경색 변화 */
+}

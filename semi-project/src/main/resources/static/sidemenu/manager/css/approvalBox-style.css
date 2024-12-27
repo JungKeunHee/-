@@ -1,0 +1,184 @@
+.change-screen-approvalBox{
+    width: 1850px;
+    height: 800px;
+    background-color: white;
+    border-radius: 10px;
+    margin-bottom: 3%;
+}
+
+.title {
+    margin-left: 25px;
+    font-size: 24px; /* 제목 크기 조정 */
+    font-weight: bold; /* 제목 두껍게 */
+    color: #333; /* 어두운 색상 */
+}
+
+.payment-form {
+    display: flex;
+    justify-content: space-between; /* 요소 간의 균등한 간격 */
+    width: 100%; /* 전체 너비 사용 */
+    height: 300px;
+    margin: 0 auto; /* 중앙 정렬 */
+}
+
+.form1, .form2, .form3, .form4 {
+    width: 450px;
+    height: 300px;
+    border-radius: 10px;
+    margin: 0 25px; /* 각 요소 간의 간격 */
+    background-color: white; /* 흰 배경 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 그림자 */
+    transition: transform 0.2s, box-shadow 0.2s; /* 부드러운 전환 효과 */
+    text-align: center; /* 텍스트를 가운데 정렬 */
+}
+
+.form-title {
+    margin-top: 10px; /* 이미지와 제목 사이의 간격 조정 */
+    font-size: 18px; /* 제목 크기 조정 */
+    color: #555; /* 중간 색상 */
+}
+
+.form1 img,
+.form2 img,
+.form3 img,
+.form4 img {
+    width: 90px; /* 원하는 너비로 조정 */
+    height: auto; /* 비율을 유지하면서 높이를 자동으로 조정 */
+    margin-top: 10%;
+}
+
+.create-from {
+    width: 150px;
+    font-weight: bold;
+    background-color: #007bff; /* 버튼 배경색 */
+    color: white; /* 버튼 텍스트 색상 */
+    border: none; /* 테두리 제거 */
+    border-radius: 5px; /* 둥근 모서리 */
+    padding: 10px 20px; /* 내부 여백 */
+    font-size: 16px; /* 버튼 텍스트 크기 */
+    cursor: pointer; /* 커서 포인터로 변경 */
+    transition: background-color 0.3s; /* 배경색 전환 효과 */
+}
+
+.create-from:hover {
+    background-color: #0056b3; /* 마우스 오버 시 색상 변경 */
+}
+
+.form1:hover, .form2:hover, .form3:hover, .form4:hover {
+    transform: translateY(-5px); /* 살짝 위로 올라오는 효과 */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* 그림자 강하게 */
+}
+
+.select-approval{
+    margin-left: 20px;
+}
+
+.approval-list {
+    width: 1800px;
+    height: 375px;
+    border: 1px solid #ccc; /* 연한 회색 테두리 */
+    margin-top: 10px;
+    margin-left: 24px;
+    border-radius: 10px; /* 둥근 모서리 */
+    background-color: white; /* 흰 배경 */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* 부드러운 그림자 */
+    overflow-y: auto; /* 세로 스크롤 추가 */
+}
+
+.approval {
+    list-style-type: none; /* 기본 리스트 스타일 제거 */
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column; /* 세로 방향으로 정렬 */
+}
+
+.header-title {
+    display: flex; /* 가로 방향으로 정렬 */
+    font-weight: bold; /* 헤드라인 두껍게 */
+    background-color: #0079ff; /* 헤드라인 배경색 */
+    padding: 10px; /* 패딩 추가 */
+    border-bottom: 2px solid #ccc; /* 아래쪽 경계선 */
+    position: sticky; /* 스크롤 시 고정 */
+    top: 0; /* 상단에 고정 */
+    z-index: 10; /* 다른 요소 위에 표시 */
+    color: white;
+}
+
+.header-title span {
+    flex: 1; /* 각 항목이 동일한 너비를 가지도록 설정 */
+    text-align: center; /* 텍스트 중앙 정렬 */
+    margin: 0 10px; /* 좌우 간격 조정 */
+}
+
+.approval li {
+    display: flex; /* 가로 방향으로 정렬 */
+    padding: 10px; /* 패딩 추가 */
+    border-bottom: 1px solid #eee; /* 각 항목 아래 경계선 */
+    transition: background-color 0.3s; /* 배경색 변화에 애니메이션 추가 */
+    cursor: pointer;
+}
+
+.approval li:hover {
+    background-color: #e0e0e0; /* 호버 시 배경색 변경 */
+}
+
+.approval li span {
+    flex: 1; /* 각 항목이 동일한 너비를 가지도록 설정 */
+    text-align: center; /* 텍스트 중앙 정렬 */
+}
+
+.approval li:hover {
+    background-color: #e0e0e0; /* 호버 시 배경색 변경 */
+}
+
+.filter-box {
+    display: flex;
+}
+
+.filters {
+    display: flex;
+    flex-direction: row;
+    gap: 40px; /* 각 필터 세트 간의 간격 */
+    align-items: center; /* 세트의 수직 정렬 */
+    margin-left: 47%; /* 전체 필터 박스의 왼쪽 여백 */
+}
+
+.filter-set {
+    display: flex;
+    flex-direction: row; /* 각 세트 내에서 레이블과 인풋을 가로로 배치 */
+    align-items: center; /* 레이블과 인풋을 수직으로 중앙 정렬 */
+}
+
+label {
+    font-weight: bold;
+    margin-right: 10px;
+    margin-top: 0;
+    width: 64px;
+    text-align: center;
+}
+
+input[type="date"],
+select {
+    padding: 10px; /* 내부 여백 */
+    border: 1px solid #ccc; /* 테두리 색상 */
+    border-radius: 5px; /* 모서리 둥글게 */
+    font-size: 14px; /* 글자 크기 */
+    transition: border-color 0.3s; /* 포커스 시 테두리 색상 변화 애니메이션 */
+}
+
+input[type="date"]:focus,
+select:focus {
+    border-color: #007bff; /* 포커스 시 테두리 색상 */
+    outline: none; /* 기본 포커스 아웃라인 제거 */
+}
+
+/* 추가된 스타일 */
+.date-range {
+    display: flex;
+    align-items: center; /* 날짜 입력 필드와 ~ 기호를 수직으로 중앙 정렬 */
+}
+
+.date-range span {
+    margin: 0 10px; /* ~ 기호의 좌우 여백 */
+}

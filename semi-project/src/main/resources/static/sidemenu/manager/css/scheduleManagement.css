@@ -1,0 +1,356 @@
+.container {
+    width: 1800px;
+    height: 650px;
+    display: flex;
+    justify-content: center; /* 수평 가운데 정렬 */
+    align-items: center; /* 수직 가운데 정렬 */
+    gap: 20px;
+}
+
+.attendance-box {
+    width: 350px;
+    height: 650px;
+    background-color: white;
+    box-shadow: 0 5px 5px 1px rgba(0, 0, 0, 0.1);
+    display: flex; /* Flexbox 사용 */
+    flex-direction: column; /* 세로 방향으로 정렬 */
+    justify-content: flex-start; /* 상단 정렬 */
+    align-items: center; /* 수평 가운데 정렬 */
+    text-align: center; /* 텍스트 가운데 정렬 */
+    border-radius: 10px;
+}
+
+.attendance-box h3 {
+    margin: 0; /* 기본 마진 제거 */
+    padding: 16px 0; /* 상하 패딩 추가 (필요에 따라 조정) */
+}
+
+.attendance-select{
+    width: 330px;
+    height: 550px;
+    overflow: auto;
+}
+
+.manager {
+    width: 1440px;
+    height: 650px;
+    background-color: white;
+    box-shadow: 0 5px 5px 1px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.attendance-select ul {
+    list-style-type: none; /* 기본 리스트 스타일 제거 */
+    padding: 0;
+}
+
+.attendance-select li {
+    border: 1px solid #ccc; /* 테두리 */
+    padding: 10px; /* 내부 여백 */
+    margin: 5px; /* 외부 여백 */
+    cursor: pointer; /* 클릭 가능하다는 표시 */
+    transition: background-color 0.3s; /* 배경색 변화 효과 */
+}
+
+.attendance-select li:hover {
+    background-color: #f0f0f0; /* 마우스 오버 시 배경색 변화 */
+}
+
+
+#attendance-list {
+    list-style-type: none; /* 기본 리스트 스타일 제거 */
+    padding: 0; /* 패딩 제거 */
+}
+
+#attendance-list li {
+    border: 1px solid #ccc; /* 테두리 추가 */
+    border-radius: 5px; /* 모서리 둥글게 */
+    margin: 10px 0; /* 항목 간 간격 */
+    padding: 10px; /* 패딩 추가 */
+    cursor: pointer; /* 마우스 커서 변경 */
+    transition: background-color 0.3s; /* 배경색 변화 애니메이션 */
+}
+
+#attendance-list li:hover {
+    background-color: #f0f0f0; /* 마우스 오버 시 배경색 변경 */
+}
+
+.employee-info {
+    display: flex; /* 플렉스 박스 사용 */
+    justify-content: center; /* 가운데 정렬 */
+    align-items: center; /* 수직 가운데 정렬 */
+    font-weight: bold; /* 글씨 두껍게 */
+}
+
+.employee-info span {
+    margin: 0 4px; /* 각 요소 간 간격 */
+}
+
+.request-info {
+    text-align: center; /* 가운데 정렬 */
+    margin-top: 5px; /* 위쪽 여백 */
+    font-size: 0.9em; /* 글씨 크기 조정 */
+    color: #555; /* 글씨 색상 조정 */
+    align-items: center; /* 수직 정렬 */
+    margin-left: 20px; /* 원하는 만큼 오른쪽으로 이동 */
+}
+
+.label {
+    display: inline-block; /* 인라인 블록으로 설정 */
+    padding: 5px 10px; /* 패딩 추가 */
+    border-radius: 5px; /* 모서리 둥글게 */
+    color: white; /* 글씨 색상 */
+    font-weight: bold; /* 글씨 두껍게 */
+    text-align: center; /* 가운데 정렬 */
+    margin-top: 13px;
+    margin-right: 5%;
+    width: 100px;
+}
+
+.label.waiting {
+    background-color: #d3d3d3; /* 연한 회색 */
+}
+
+.label.checking {
+    background-color: #007bff; /* 파란색 */
+}
+
+.label.approved {
+    background-color: #28a745; /* 초록색 */
+}
+
+.label.rejected {
+    background-color: #dc3545; /* 빨간색 */
+}
+
+.label.unknown {
+    background-color: #6c757d; /* 회색 */
+}
+
+.space{
+    margin-left: 20%;
+}
+
+.space2 {
+    display: inline; /* 또는 block */
+    width: 20px; /* 원하는 간격 */
+    margin-left: 47px;
+    margin-right: 46px;
+}
+
+.space3{
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.attendance-header {
+    display: flex; /* Flexbox 사용 */
+    justify-content: space-between; /* 항목 간의 간격을 동일하게 */
+    list-style-type: none; /* 기본 리스트 스타일 제거 */
+    padding: 0; /* 기본 패딩 제거 */
+    margin: 0; /* 기본 마진 제거 */
+    font-weight: bold; /* 헤더 텍스트를 굵게 */
+}
+
+.attendance-header li {
+    flex: 1; /* 각 항목이 동일한 비율로 공간을 차지하도록 설정 */
+    text-align: center; /* 텍스트 중앙 정렬 */
+}
+
+.attendance-details {
+    display: flex; /* Flexbox 사용 */
+    justify-content: space-between; /* 항목 간의 간격을 동일하게 */
+    list-style-type: none; /* 기본 리스트 스타일 제거 */
+    padding: 0; /* 기본 패딩 제거 */
+    margin: 0; /* 기본 마진 제거 */
+    font-weight: normal; /* 일반 텍스트 스타일 */
+}
+
+.attendance-details {
+    list-style-type: none; /* 기본 리스트 스타일 제거 */
+    padding: 0; /* 기본 패딩 제거 */
+    margin: 0; /* 기본 마진 제거 */
+    position: relative; /* 자식 요소의 절대 위치를 설정하기 위해 relative로 설정 */
+}
+
+.attendance-details li {
+    flex: 1; /* 각 항목이 동일한 비율로 공간을 차지하도록 설정 */
+    text-align: center; /* 텍스트 중앙 정렬 */
+    position: relative; /* 자식 요소의 절대 위치를 설정하기 위해 relative로 설정 */
+    padding: 15px 0; /* 위아래 패딩 추가 */
+    margin-top: 10px;
+}
+
+.attendance-details li::before,
+.attendance-details li::after {
+    content: ""; /* 가상의 요소 생성 */
+    position: absolute; /* 절대 위치 설정 */
+    left: 0; /* 왼쪽 정렬 */
+    right: 0; /* 오른쪽 정렬 */
+    height: 1px; /* 밑줄 두께 */
+    background-color: #000; /* 밑줄 색상 */
+}
+
+.attendance-details li::before {
+    top: 0; /* 위쪽 밑줄 위치 */
+}
+
+.attendance-details li::after {
+    bottom: 0; /* 아래쪽 밑줄 위치 */
+}
+
+/* ul이 비어 있을 때도 밑줄을 표시 */
+.attendance-details:empty::before,
+.attendance-details:empty::after {
+    content: ""; /* 가상의 요소 생성 */
+    position: absolute; /* 절대 위치 설정 */
+    left: 0; /* 왼쪽 정렬 */
+    right: 0; /* 오른쪽 정렬 */
+    height: 1px; /* 밑줄 두께 */
+    background-color: #000; /* 밑줄 색상 */
+}
+
+.attendance-details:empty::before {
+    top: 0; /* 위쪽 밑줄 위치 */
+}
+
+.attendance-details:empty::after {
+    bottom: 0; /* 아래쪽 밑줄 위치 */
+}
+
+
+.user-reason{
+    width: 1400px; /* 텍스트 영역의 너비를 100%로 설정 */
+    height: 120px; /* 높이 설정 */
+    border: 1px solid #ccc; /* 테두리 */
+    border-radius: 5px; /* 모서리 둥글게 */
+    font-size: 16px; /* 글자 크기 */
+    resize: none; /* 크기 조절 비활성화 */
+    margin-left: 12px;
+}
+
+.admin-reason {
+    width: 1400px; /* 텍스트 영역의 너비를 100%로 설정 */
+    height: 120px; /* 높이 설정 */
+    border: 1px solid #ccc; /* 테두리 */
+    border-radius: 5px; /* 모서리 둥글게 */
+    font-size: 16px; /* 글자 크기 */
+    resize: none; /* 크기 조절 비활성화 */
+    margin-left: 12px;
+}
+
+.button-container {
+    margin-top: 20px; /* 텍스트 영역과 버튼 사이의 여백 */
+    display: flex; /* 버튼을 가로로 배치 */
+    gap: 20px; /* 버튼 간의 간격 */
+    justify-content: center;
+}
+
+.styled-button {
+    padding: 10px 20px; /* 버튼 내부 여백 */
+    border: none; /* 테두리 제거 */
+    border-radius: 5px; /* 모서리 둥글게 */
+    font-size: 16px; /* 글자 크기 */
+    cursor: pointer; /* 커서 모양 변경 */
+    transition: background-color 0.3s, transform 0.2s; /* 애니메이션 효과 */
+    width: 100px;
+}
+
+.approve-button {
+    background-color: #4CAF50; /* 승인 버튼 색상 */
+    color: white; /* 글자 색상 */
+}
+
+.reject-button {
+    background-color: #f44336; /* 반려 버튼 색상 */
+    color: white; /* 글자 색상 */
+}
+
+.styled-button:hover {
+    opacity: 0.9; /* 마우스 오버 시 투명도 변경 */
+}
+
+.styled-button:active {
+    transform: scale(0.95); /* 클릭 시 버튼 크기 축소 */
+}
+
+
+.request-time-container {
+    display: flex;
+    align-items: center; /* 수직 정렬 */
+    margin-top: 10px; /* 위쪽 여백 */
+    margin-left: 18px;
+    margin-right: 18px;
+    justify-content: space-between; /* 요소 간의 간격을 균등하게 분배 */
+    position: relative; /* 상대 위치 설정 */
+    top: 0; /* 필요에 따라 조정 */
+    left: 0; /* 필요에 따라 조정 */
+}
+
+
+.request-time {
+    /*font-weight: bold; !* 수정 요청 시간 강조 *!*/
+}
+
+.radio-buttons {
+    display: flex; /* 라디오 버튼을 한 줄로 나열 */
+    gap: 15px; /* 라디오 버튼 간의 간격 */
+}
+
+.radio-buttons label {
+    display: flex; /* 라벨을 flex로 설정하여 정렬 */
+    align-items: center; /* 라디오 버튼과 텍스트 수직 정렬 */
+}
+
+.filter-container {
+    display: flex; /* 필터 박스를 가로로 배치 */
+    gap: 20px; /* 필터 박스 간의 간격 */
+    margin: 20px; /* 전체 여백 */
+}
+
+.filter-box {
+    flex: 1; /* 각 필터 박스가 동일한 너비를 가지도록 설정 */
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.custom-select {
+    width: 100px; /* 필터 박스의 너비에 맞춤 */
+    padding: 10px; /* 안쪽 여백 */
+    border: 1px solid #ccc; /* 테두리 색상 */
+    border-radius: 5px; /* 모서리 둥글게 */
+    background-color: #f9f9f9; /* 배경 색상 */
+    font-size: 13px; /* 글자 크기 */
+    appearance: none; /* 기본 화살표 제거 */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10"><polygon points="0,0 10,0 5,5" fill="%23333"/></svg>'); /* 커스텀 화살표 */
+    background-repeat: no-repeat;
+    background-position: right 10px center; /* 화살표 위치 */
+    background-size: 10px; /* 화살표 크기 */
+    cursor: pointer; /* 커서 모양 */
+}
+
+.custom-select:focus {
+    border-color: #007bff; /* 포커스 시 테두리 색상 */
+    outline: none; /* 기본 아웃라인 제거 */
+}
+
+.tab-button {
+    position: relative; /* 상대 위치 설정 */
+}
+
+.tab-button.active::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -2px; /* 밑줄 위치 조정 */
+    height: 2px; /* 밑줄 두께 */
+    background-color: blue; /* 밑줄 색상 */
+}
+
+
+

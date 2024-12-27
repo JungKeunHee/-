@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>동물 상세페이지</title>
+    <link rel="stylesheet" href="/main/css/main-style.css"> <!-- 메인 스타일 연결 -->
+    <script src="/main/js/main.js"></script> <!-- 메인 자바스크립트 연결 -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=keyboard_arrow_down" />
+    <link rel="stylesheet" href="/sidemenu/animals/css/adoptionDetailAnimal-style.css">
+</head>
+<body>
+<header>
+    <div class="side-menu-bar">
+        <ul>
+            <li><a href="/main">🐶PetHarmony🐶</a></li>
+            <li><a href="http://localhost:9595/sidemenu/schedule">근태관리</a></li>
+            <li><a href="http://localhost:9595/sidemenu/messenger">메신저(채팅)</a></li>
+            <li><a href="http://localhost:9595/sidemenu/mail">이메일</a></li>
+            <li><a href="http://localhost:9595/sidemenu/adoption">입양</a></li>
+            <li class="animal-menu">
+                <div class="menu-wrapper">
+                    <a href="http://localhost:9595/sidemenu/animals">동물
+                        <span class="material-symbols-outlined">keyboard_arrow_down</span>
+                    </a>
+                </div>
+                <ul class="sub-menu">
+                    <li><a href="http://localhost:9595/sidemenu/animals">구조동물</a></li>
+                    <li><a href="http://localhost:9595/sidemenu/adoptionComplete">입양완료</a></li>
+                    <li><a href="http://localhost:9595/sidemenu/stock">재고관리</a></li>
+                </ul>
+            </li>
+            <li><a href="http://localhost:9595/sidemenu/facilities">시설관리</a></li>
+            <li><a href="http://localhost:9595/sidemenu/board">전사게시판</a></li>
+            <li><a href="http://localhost:9595/sidemenu/employee">직원정보</a></li>
+            <li><a href="http://localhost:9595/sidemenu/mypage">마이페이지</a></li>
+            <li><a href="http://localhost:9595/sidemenu/approval">결재</a></li>
+            <li class="admin-menu">
+                <div class="admin-menu-wrapper">
+                    <a href="http://localhost:9595/sidemenu/manager">관리자전용
+                        <span class="material-symbols-outlined">keyboard_arrow_down</span>
+                    </a>
+                </div>
+                <ul class="sub-menu">
+                    <li><a href="http://localhost:9595/sidemenu/manager">관리자페이지</a></li>
+                    <li><a href="http://localhost:9595/sidemenu/employeeRegister">사원등록</a></li>
+                    <li><a href="http://localhost:9595/sidemenu/employeeManagement">직원관리</a></li>
+                    <li><a href="http://localhost:9595/sidemenu/approvalBox">결재함</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</header>
+<div class="change-screen-animalDetail">
+    <div class="change-screen-animalDetail">
+        <h2>동물 상세 페이지</h2>
+        <img th:src="@{${detail.animalImage != null and detail.animalImage != '' ? '/img/animals/' + detail.animalImage : '/img/animals/defaultAnimal.jpg'}}"
+             alt="Animal Image" width="200px" height="200px"/>
+        <table class="animal-details-table">
+            <thead>
+            <tr>
+                <th>항목</th>
+                <th>상세 내용</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>동물 등록번호</td>
+                <td th:text="${detail.animalCode}"></td>
+            </tr>
+            <tr>
+                <td>분류 & 품종</td>
+                <td>
+                    <span th:text="${detail.typeDTO.typeName}"></span> /
+                    <span th:text="${detail.breedDTO.breedName}"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>나이 & 성별</td>
+                <td>
+                    <span th:text="${detail.age}"></span> /
+                    <span th:text="${detail.gender}"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>건강검진 & 접종 상태</td>
+                <td>
+                    <ul>
+                        <li th:each="healthCheck : ${health.healthChecks}" th:text="${healthCheck.healthcheckName}"></li>
+                    </ul>
+                    <ul>
+                        <li th:each="inoculation : ${inoculate.inoculations}" th:text="${inoculation.inoculationName}"></li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td>구조장소 & 구조 날짜</td>
+                <td>
+                    <span th:text="${detail.rescueLocation}"></span> /
+                    <span th:text="${#dates.format(detail.rescueDate, 'yyyy-MM-dd')}"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>상태</td>
+                <td th:text="${detail.animalStatus}"></td>
+            </tr>
+            <tr>
+                <td>입양자 & 입양자 폰번호</td>
+                <td>
+                    <span th:text="${detail.adoptDTO != null ? detail.adoptDTO.adoptName : ''}"></span> /
+                    <span th:text="${detail.adoptDTO != null ? detail.adoptDTO.adoptPhone : ''}"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>입양 시작 & 완료 날짜</td>
+                <td>
+                    <span th:text="${detail.adoptDTO != null && detail.adoptDTO.adoptStartDate != null ? #dates.format(detail.adoptDTO.adoptStartDate, 'yyyy-MM-dd') : ''}"></span> /
+                    <span th:text="${detail.adoptDTO != null && detail.adoptDTO.adoptEndDate != null ? #dates.format(detail.adoptDTO.adoptEndDate, 'yyyy-MM-dd') : ''}"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>기타 사항</td>
+                <td th:text="${detail.etc}"></td>
+            </tr>
+            <tr>
+                <td>담당자 & 담당자 폰번호</td>
+                <td>
+                    <span th:text="${detail.empDTO.empName}"></span> /
+                    <span th:text="${detail.empDTO.empPhone}"></span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

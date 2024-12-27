@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>이메일</title>
+  <link rel="stylesheet" href="/main/css/main-style.css"> <!-- 메인 스타일 연결 -->
+  <script src="/main/js/main.js"></script> <!-- 메인 자바스크립트 연결 -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=keyboard_arrow_down" />
+  <link rel="stylesheet" href="/sidemenu/mail/css/mailDetail.css">
+</head>
+<body>
+<header>
+  <div class="side-menu-bar">
+    <ul>
+      <li><a href="/main">🐶PetHarmony🐶</a></li>
+      <li><a href="http://localhost:9595/sidemenu/schedule">근태관리</a></li>
+      <li><a href="http://localhost:9595/sidemenu/messenger">메신저(채팅)</a></li>
+      <li><a href="http://localhost:9595/sidemenu/mail">이메일</a></li>
+      <li><a href="http://localhost:9595/sidemenu/adoption">입양</a></li>
+      <li class="animal-menu">
+        <div class="menu-wrapper">
+          <a href="http://localhost:9595/sidemenu/animals">동물
+            <span class="material-symbols-outlined">keyboard_arrow_down</span>
+          </a>
+        </div>
+        <ul class="sub-menu">
+          <li><a href="http://localhost:9595/sidemenu/animals">구조동물</a></li>
+          <li><a href="http://localhost:9595/sidemenu/adoptionComplete">입양완료</a></li>
+          <li><a href="http://localhost:9595/sidemenu/stock">재고관리</a></li>
+        </ul>
+      </li>
+      <li><a href="http://localhost:9595/sidemenu/facilities">시설관리</a></li>
+      <li><a href="http://localhost:9595/sidemenu/board">전사게시판</a></li>
+      <li><a href="http://localhost:9595/sidemenu/employee">직원정보</a></li>
+      <li><a href="http://localhost:9595/sidemenu/mypage">마이페이지</a></li>
+      <li><a href="http://localhost:9595/sidemenu/approval">결재</a></li>
+      <li class="admin-menu">
+        <div class="admin-menu-wrapper">
+          <a href="http://localhost:9595/sidemenu/manager">관리자전용
+            <span class="material-symbols-outlined">keyboard_arrow_down</span>
+          </a>
+        </div>
+        <ul class="sub-menu">
+          <li><a href="http://localhost:9595/sidemenu/manager">관리자페이지</a></li>
+          <li><a href="http://localhost:9595/sidemenu/employeeRegister">사원등록</a></li>
+          <li><a href="http://localhost:9595/sidemenu/employeeManagement">직원관리</a></li>
+          <li><a href="http://localhost:9595/sidemenu/approvalBox">결재함</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</header>
+<div class="change-screen-mailDetail">
+  <div id="change-screen-content">
+    <div class="form">
+      <div class="navigation">
+        <nav>
+          <ul>
+            <li style="font-size: 20px;">
+              <a th:href="@{/sidemenu/mail}" style="text-decoration: none;">
+                <b>📥&nbsp;&nbsp;&nbsp;&nbsp;받은쪽지함</b>
+              </a>
+            </li><br><br><br>
+
+            <li style="font-size: 20px;">
+              <a th:href="@{/mail/sent}" style="text-decoration: none;">
+                <b>📤&nbsp;&nbsp;&nbsp;&nbsp;보낸쪽지함</b>
+              </a>
+            </li><br><br><br>
+
+            <li style="font-size: 20px;">
+              <a href="/mail/important" style="text-decoration: none;">
+                <b>⭐&nbsp;&nbsp;&nbsp;&nbsp;중요쪽지함</b>
+              </a>
+            </li><br><br><br>
+
+            <li style="font-size: 20px;">
+              <a href="/mail/trash" style="text-decoration: none;">
+                <b>❌&nbsp;&nbsp;&nbsp;&nbsp;휴지통</b>
+              </a>
+            </li><br><br><br>
+
+            <li style="font-size: 20px;">
+              <a href="/mail/archived" style="text-decoration: none;">
+                <b>📦&nbsp;&nbsp;&nbsp;&nbsp;보관함</b>
+              </a>
+              <br><br>
+            </li>
+          </ul>
+          <button id="messageModalBtn" class="styled-button">🖍 쪽지 쓰기</button>
+        </nav>
+      </div>
+      <div class="form1">
+        <div class="main-button">
+        </div>
+        <div class="form-main">
+          <h1 th:text="${mail.title}"></h1>
+          <small th:text="'직급 : ' + ${mail.jobDTO.jobName}"></small><br>
+          <small th:text="'이름 : ' + ${mail.employeeDTO.empName}"></small><br>
+          <small th:text="'날짜 : ' + ${#dates.format(mail.sendDate, 'yyyy-MM-dd')}"></small>
+        </div>
+          <br>
+          <div class="content-box" th:text="${mail.content}"></div>
+        <div id="messageModal" class="modal">
+          <div class="modal-content">
+            <form class=modal2-form id="messageForm" action="/sidemenu/mail/regist" method="post">
+              <span class="close-btn" id="closeModalBtn">&times;</span>
+              <h2>쪽지 보내기</h2>
+              <button id="openModalBtn" class="styled-button2"><b>🔎 찾기</b></button>
+              <div class="form-group">
+                <label for="recipient">받는 사람</label>
+                <input class="textbox" type="text" id="recipient" name="recipient" placeholder="받는 사람을 입력하세요" required readonly>
+              </div>
+              <div class="form-name">
+                <label>제목</label>
+                <input class="textbox1-1" type="text" id="title" name="title" placeholder="제목을 입력하세요" required>
+              </div>
+              <div class="form-group2">
+                <label for="message">쪽지 내용</label>
+                <textarea id="message" name="content" placeholder="내용을 입력하세요" required></textarea>
+              </div>
+              <button type="submit" id="sendMessageBtn" class="submit">보내기</button>
+              <input type="hidden" id="recipient_id" name="recipientId">
+              <input type="hidden" id="recipient_name" name="recipientName">
+            </form>
+          </div>
+        </div>
+        <div id="addressBookModal" class="modal2">
+          <div class="modal-content2">
+            <span class="close-btn" id="closeModalBtn2">&times;</span>
+            <h2>주소록</h2>
+            <div class="search-bar">
+              <input class="textbox2" type="text" id="searchInput2" placeholder="직원 검색..." oninput="filterEmployees()">
+            </div>
+            <div id="addressBookContainer2">
+              <div class="department-group">
+                <h3>📂 경영부</h3>
+                <ul class="employee-list" id="managementDept"></ul>
+              </div>
+              <div class="department-group">
+                <h3>📂 애견담당부</h3>
+                <ul class="employee-list" id="dogDept"></ul>
+              </div>
+              <div class="department-group">
+                <h3>📂 마케팅부</h3>
+                <ul class="employee-list" id="marketingDept"></ul>
+              </div>
+              <div class="department-group">
+                <h3>📂 영업부</h3>
+                <ul class="employee-list" id="salesDept"></ul>
+              </div>
+              <div class="department-group">
+                <h3>📂 물류부</h3>
+                <ul class="employee-list" id="logisticsDept"></ul>
+              </div>
+              <div class="department-group">
+                <h3>📂 고객업무부</h3>
+                <ul class="employee-list" id="customerDept"></ul>
+              </div>
+            </div>
+            <button id="submitSelection2" onclick="submitSelections()" class="styled-button3">선택 완료</button>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+</div>
+</body>
+<script>
+// 모달 열기
+document.getElementById('messageModalBtn').addEventListener('click', function() {
+document.getElementById('messageModal').style.display = 'block';
+});
+
+// 모달 닫기
+document.getElementById('closeModalBtn').addEventListener('click', function() {
+document.getElementById('messageModal').style.display = 'none';
+});
+
+// 주소록 모달 열기
+document.getElementById('openModalBtn').addEventListener('click', function() {
+document.getElementById('addressBookModal').style.display = 'block';
+});
+
+// 주소록 모달 닫기
+document.getElementById('closeModalBtn2').addEventListener('click', function() {
+document.getElementById('addressBookModal').style.display = 'none';
+});
+
+function submitSelections() {
+updateRecipientField();  // 이름을 실시간으로 업데이트
+
+// 주소록 모달 닫기
+const addressBookModal = document.getElementById('addressBookModal');
+if (addressBookModal) {
+addressBookModal.style.display = 'none';
+}
+
+// recipient_id 값이 비어있는지 확인 후 폼 제출 방지
+const recipientIdsField = document.getElementById('recipient_id');
+const recipientNameField = document.getElementById('recipient_name');  // recipient_name 필드 추가 확인
+
+if (!recipientIdsField || !recipientIdsField.value || !recipientNameField || !recipientNameField.value) {
+alert("받는 사람을 선택해 주세요!");
+return;  // 선택된 받는 사람이 없으면 실행을 중단
+}
+
+// 여기서 폼 제출 등의 후속 처리를 진행할 수 있습니다.
+}
+
+// 직원 목록을 가져오기 위한 API 호출
+function fetchEmployees() {
+// 부서별 목록을 담을 DOM 요소들
+const departments = {
+'경영부': document.getElementById('managementDept'),
+'애견담당부': document.getElementById('dogDept'),
+'마케팅부': document.getElementById('marketingDept'),
+'영업부': document.getElementById('salesDept'),
+'물류부': document.getElementById('logisticsDept'),
+'고객CS업무부': document.getElementById('customerDept')
+};
+
+fetch('/api/employees')
+.then(response => {
+if (!response.ok) {
+throw new Error('네트워크 응답이 좋지 않습니다.');
+}
+return response.json();
+})
+.then(data => {
+data.forEach(employee => {
+const empName = employee.empName || 'N/A';
+const jobName = employee.jobDTO ? employee.jobDTO.jobName : 'N/A';
+const deptName = employee.deptDTO ? employee.deptDTO.deptName : 'N/A';
+
+if (departments[deptName]) {
+const li = document.createElement('li');
+li.innerHTML = `${empName} (${jobName})`;
+li.setAttribute('data-name', empName);
+li.onclick = () => selectEmployee(employee);
+departments[deptName].appendChild(li);
+}
+});
+})
+.catch(error => {
+console.error('직원 목록을 가져오는 중 오류 발생:', error);
+});
+}
+
+// 직원 선택 시 처리
+function selectEmployee(employee) {
+const recipientField = document.getElementById('recipient');
+const recipientIdField = document.getElementById('recipient_id');
+const recipientNameField = document.getElementById('recipient_name');  // recipient_name 필드 추가
+
+recipientField.value = employee.empName;
+recipientIdField.value = employee.empCode;
+recipientNameField.value = employee.empName;  // 선택된 직원의 이름을 recipient_name에 설정
+
+document.getElementById('addressBookModal').style.display = 'none';
+}
+
+// 직원 검색 필터
+function filterEmployees() {
+const searchInput = document.getElementById('searchInput2').value.toLowerCase();
+const employeeListItems = document.querySelectorAll('#addressBookContainer2 .employee-list li');
+
+employeeListItems.forEach(item => {
+const name = item.getAttribute('data-name').toLowerCase();
+if (name.includes(searchInput)) {
+item.style.display = '';
+} else {
+item.style.display = 'none';
+}
+});
+}
+
+// 페이지 로드 시 직원 목록 가져오기
+window.onload = function() {
+fetchEmployees();
+};
+
+// 전체 선택 체크박스 처리
+function toggleSelectAll(source) {
+const checkboxes = document.querySelectorAll('.select-item');
+checkboxes.forEach(function(checkbox) {
+checkbox.checked = source.checked;
+});
+}
+
+// 별표 선택 전체 처리
+function toggleStarSelectAll(source) {
+const checkboxes = document.querySelectorAll('.star-check');
+checkboxes.forEach(function(checkbox) {
+checkbox.checked = source.checked;
+});
+}
+
+// 직원 목록을 가져오고 필터링하는 함수 호출
+function updateRecipientField() {
+const selectedEmployees = [];
+const selectedNames = [];
+const checkboxes = document.querySelectorAll('.employee-check:checked');
+
+checkboxes.forEach(cb => {
+const employeeId = cb.getAttribute('data-emp-id');  // 사원의 사번을 가져옴
+const employeeName = cb.getAttribute('data-emp-name');  // 사원의 이름을 가져옴
+selectedEmployees.push(employeeId);
+selectedNames.push(employeeName);  // 이름도 함께 추가
+});
+
+const recipientIdField = document.getElementById('recipient_id');
+const recipientNameField = document.getElementById('recipient_name'); // 이름을 담을 hidden 필드
+
+if (recipientIdField && recipientNameField) {
+recipientIdField.value = selectedEmployees.join(',');  // 여러 명 선택 시 ,로 구분
+recipientNameField.value = selectedNames.join(', ');  // 선택된 이름들을 ,로 구분하여 설정
+}
+}
+</script>
+</html>

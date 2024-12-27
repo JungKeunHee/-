@@ -1,0 +1,278 @@
+.change-screen-myPage {
+    width: 1850px;
+    height: 800px;
+    background-color: white;
+    border-radius: 10px;
+    margin-bottom: 3%;
+    display: flex;
+    justify-content: center;
+}
+
+#change-screen-content {
+    display: flex;
+    align-items: stretch; /* 자식 요소들이 같은 높이를 가지도록 설정 */
+    width: 100%;
+}
+
+.navigation {
+    width: 300px;
+    height: 700px;
+    border-radius: 10px;
+    background: white;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    margin: 23px 0 15px 23px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding-top: 50px;
+}
+
+h1 {
+    position: sticky;
+    top: 0;
+    background-color: white;
+    padding: 10px;
+    font-size: 40px;
+    color: #333;
+    width: 90%;
+    text-align: center;
+    z-index: 100;
+}
+
+.content-container {
+    width: 1500px;
+    height: 710px; /* 고정된 높이 */
+    border-radius: 10px;
+    background: white;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    margin: 23px 23px 15px 30px;
+    padding: 20px;
+    overflow-y: auto; /* 내용이 넘칠 경우 스크롤바가 생기도록 설정 */
+}
+
+h3 {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #007bff;
+}
+
+.main-line {
+    border: 0; /* 기본 테두리 제거 */
+    height: 1px; /* 선의 두께 */
+    background-color: #ccc; /* 선의 색상 */
+    margin-top: 10px; /* 상단 간격 추가 */
+    margin-bottom: 30px; /* 하단 간격 추가 */
+}
+
+/* 기본 스타일 */
+.dropdown {
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.dropdown-title {
+    color: #007bff;
+    padding: 10px;
+    cursor: pointer;
+    text-align: left;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    transition: color 0.3s ease;
+    width: 100%;
+}
+
+.dropdown-menu {
+    display: block;
+    position: relative;
+    background-color: transparent;
+    width: 100%;
+    padding: 0;
+    list-style: none;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.3s ease, opacity 0.3s ease;
+}
+
+.dropdown-menu.open {
+    max-height: 300px;
+    opacity: 1;
+}
+
+.dropdown-menu li {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.dropdown-menu li a {
+    display: block;
+    color: #333;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: normal; /* 기본 폰트 굵기 */
+}
+
+.dropdown-menu li a.active {
+    font-weight: bold !important; /* 활성화된 항목의 폰트 굵기 */
+    color: #007bff !important; /* 선택된 항목의 텍스트 색상 */
+}
+
+.dropdown-menu li a:hover {
+    background-color: #f1f1f1;
+}
+
+.dropdown-menu li:last-child {
+    border-bottom: none;
+}
+
+.dropdown-menu.open li a:hover {
+    background-color: #e0e0e0;
+}
+
+/* 테이블 영역 */
+.table_container {
+    width: 75%; /* 테이블 컨테이너의 가로 크기를 조정 */
+    margin-left: 45px;
+}
+
+.table_container h3 {
+    margin-left: 0; /* 왼쪽 여백 제거 */
+    text-align: left; /* 텍스트를 왼쪽 정렬 */
+    font-size: 16px; /* 제목 크기 조정 */
+    font-weight: bold;
+    color: #007bff;
+    margin-bottom: 10px; /* 아래 여백 추가 */
+}
+
+.info-table, .dept-job-table {
+    width: 100%; /* 컨테이너 너비에 맞게 조정 */
+    max-width: 100%; /* 테이블 최대 너비 제한 제거 */
+    margin: 0 auto; /* 테이블을 센터 정렬 */
+    border-collapse: collapse;
+    margin-bottom: 30px;
+    table-layout: fixed; /* 고정된 테이블 레이아웃 */
+}
+
+.info-table th, .dept-job-table th {
+    width: 120px;
+    background-color: #f7f7f7;
+    border: 1px solid #ddd;
+    font-weight: bold;
+    padding: 10px;
+    text-align: left;
+    color: #555;
+}
+
+.info-table td, .dept-job-table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+    color: #555;
+}
+
+.info-table td.image img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 100%;
+    border: 1px solid #555;
+}
+
+/* 프로필 사진과 텍스트/버튼 컨테이너 */
+.image-container {
+    display: flex;
+    align-items: center; /* 이미지와 텍스트/버튼이 세로로 가운데 정렬 */
+    gap: 20px; /* 이미지와 텍스트 사이 간격 */
+}
+
+/* 텍스트와 버튼 정렬 */
+.image-info-actions {
+    display: flex;
+    flex-direction: column; /* 텍스트와 버튼을 세로로 정렬 */
+    gap: 10px; /* 텍스트와 버튼 사이 간격 */
+}
+
+.image-info-actions p {
+    font-size: 14px;
+    color: #555;
+    margin: 0;
+}
+
+.image-actions {
+    display: flex;
+    gap: 10px; /* 버튼 간격 */
+    height: 25px;
+}
+
+.image-actions .btn {
+    display: inline-block;
+    padding: 2px 12px;
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.image-actions .btn-register {
+    background-color: #007bff;
+    border: 1px solid #0056b3;
+}
+
+.image-actions .btn-register:hover {
+    background-color: #0056b3;
+}
+
+.image-actions .btn-cancel {
+    background-color: #dc3545;
+    border: 1px solid #a71d2a;
+}
+
+.image-actions .btn-cancel:hover {
+    background-color: #a71d2a;
+}
+
+/* 프로필 사진 영역 텍스트와 버튼 */
+.image-info {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #555;
+    line-height: 1.5;
+}
+
+.image-info p {
+    margin: 5px 0;
+}
+
+/* 공통 버튼 스타일 */
+.btn {
+    display: inline-block;
+    padding: 2px 12px;
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    text-align: center;
+    line-height: normal;
+    cursor: pointer;
+}
+
+/* 버튼 색상 - 변경 버튼 */
+.btn-change {
+    background-color: #007bff;
+    border: 1px solid #0056b3;
+    margin-left: 10px; /* 텍스트와 버튼 사이 여백 */
+}
+
+.btn-change:hover {
+    background-color: #0056b3;
+}
+
+.file-input {
+    margin-bottom: 10px;
+}

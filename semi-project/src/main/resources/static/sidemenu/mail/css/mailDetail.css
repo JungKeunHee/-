@@ -1,0 +1,417 @@
+.change-screen-mailDetail{
+    width: 1850px;
+    height: 800px;
+    background-color: white;
+    border-radius: 10px;
+    margin-bottom: 3%;
+    border: solid 1px;
+}
+
+.form{
+    width: 1850px;
+    height: 800px;
+    display: flex;
+}
+
+.navigation {
+    width: 300px;
+    height: 750px;
+    border-radius: 10px;
+    background: white;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    margin-top: 23px;
+    margin-bottom: 15px;
+    margin-left: 23px;
+}
+
+.form1{
+    width: 1500px;
+    height: 750px;
+    border-radius: 10px;
+    background: white;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    margin-top: 23px;
+    margin-bottom: 15px;
+    margin-right: 30px;
+    margin-left: 40px;
+}
+
+ul li {
+    list-style-type: none;
+}
+
+.styled-button {
+    background-color: #006a38;
+    border: none; /* 테두리 없음 */
+    color: white; /* 글자색 흰색 */
+    padding: 10px 20px; /* 패딩 */
+    text-align: center; /* 텍스트 중앙 정렬 */
+    text-decoration: none; /* 밑줄 없음 */
+    display: inline-block; /* 인라인 블록 */
+    font-size: 18px; /* 글자 크기 */
+    font-weight: bold;
+    cursor: pointer; /* 커서 포인터 */
+    border-radius: 12px; /* 둥근 모서리 */
+    margin-left: 50px;
+    margin-top: 50px;
+    height: 80px;
+    width: 150px;
+}
+
+.styled-button:hover {
+    background-color: #00532d;
+}
+
+.modal {
+    display: none; /* 기본적으로 숨김 */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4); /* 반투명 배경 */
+    overflow: auto;
+    padding-top: 60px;
+}
+
+/* 모달 내용 */
+.modal-content {
+    background-color: #fff;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 1425px;
+    height: 600px;
+    border-radius: 10px;
+}
+
+/* 닫기 버튼 */
+.close-btn {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    margin-top: -30px;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* 폼 스타일 */
+.form-group {
+    margin-bottom: 33px;
+    margin-top: 30px;
+;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.textbox {
+    height: 30px;
+    width: 1400px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+textarea {
+    height: 200px;
+    width: 1400px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.submit {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.submit:hover {
+    background-color: #45a049;
+}
+
+/* 모달 배경 */
+.modal2 {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* 모달 콘텐츠 */
+.modal-content2 {
+    background-color: #fff;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    width: 430px;
+    border-radius: 8px;
+    font-family: Arial, sans-serif;
+    position: relative;
+    max-height: 50%; /* 최대 높이 설정 */
+    overflow-y: auto; /* 콘텐츠가 넘칠 때 세로 스크롤바 */
+    overflow-x: hidden; /* 가로 스크롤바 숨기기 */
+}
+
+/* 닫기 버튼 */
+.close-btn2 {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #aaa;
+}
+
+.close-btn2:hover {
+    color: #000;
+}
+
+/* 검색창 */
+.search-bar {
+    margin-bottom: 20px;
+}
+
+#searchInput {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* 부서별 그룹 */
+.department-group {
+    margin-bottom: 20px;
+}
+
+.department-group h3 {
+    margin: 10px 0;
+    font-size: 18px;
+    color: #333;
+}
+
+/* 직원 리스트 */
+.employee-list label {
+    display: block;
+    margin: 5px 0;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.employee-list input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+/* 완료 버튼 */
+#submitSelection {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    display: block;
+    margin: 0 auto;
+}
+
+#submitSelection:hover {
+    background-color: #45a049;
+}
+
+/* 모달 열기 버튼 */
+#openModalBtn {
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+#openModalBtn:hover {
+    background-color: #0056b3;
+}
+
+.textbox2 {
+    width: 360px;
+    height: 30px;
+    border-radius: 10px;
+}
+.styled-button2 {
+    background-color: #006a38;
+    border: none; /* 테두리 없음 */
+    color: white; /* 글자색 흰색 */
+    padding: 10px 20px; /* 패딩 */
+    text-align: right; /* 텍스트 중앙 정렬 */
+    text-decoration: none; /* 밑줄 없음 */
+    display: inline-block; /* 인라인 블록 */
+    font-size: 18px; /* 글자 크기 */
+    font-weight: bold;
+    cursor: pointer; /* 커서 포인터 */
+    border-radius: 12px; /* 둥근 모서리 */
+    float: right;
+    margin-right: 5px;
+    margin-top: -25px;
+    margin-bottom: 25px;
+}
+
+.styled-button2:hover {
+    background-color: #00532d;
+}
+
+.styled-button3 {
+    background-color: #006a38;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: right;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 12px;
+    float: right;
+    margin-right: 175px;
+    margin-top: 15px;
+    margin-bottom: 25px;
+}
+
+.select-all {
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+.select-all input {
+    margin-right: 10px;
+}
+
+.main-button {
+    margin-left: 50px;
+    margin-top: 15px;
+    margin-bottom: -35px;
+}
+
+.main-button1 {
+    font-size: 13px;
+    padding: 0;
+    text-decoration: none;
+    color: black;
+    background: none;
+    border: none;
+    display: inline;
+    cursor: pointer;
+}
+
+.main-button2 {
+    font-size: 13px;
+    padding: 0;
+    text-decoration: none;
+    color: black;
+    background: none;
+    border: none;
+    display: inline;
+    cursor: pointer;
+}
+
+.main-button3 {
+    font-size: 13px;
+    padding: 0;
+    text-decoration: none;
+    color: black;
+    background: none;
+    border: none;
+    display: inline;
+    cursor: pointer;
+}
+
+.textbox1-1 {
+    height: 30px;
+    width: 1400px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.form-group {
+
+}
+
+.form-name {
+    margin-top: -20px;
+}
+
+.form-group2 {
+    margin-top: 20px;
+    margin-bottom: 15px;
+}
+
+.form-main {
+    margin-left: 48px;
+    max-width: 1327px;
+    margin-top: 50px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-right: 0px;
+    padding: 17px;
+}
+
+.content-box {
+    border: none;
+    width: 1317px;
+    height: 350px;
+    border-radius: 20px;
+    margin-left: 50px;
+    margin-top: 20px;
+    padding: 27px;
+    background: #fbfbfb;
+}
+
+.form-main h1 {
+    font-size: 22px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.form-main small {
+    font-size: 14px;
+    color: #555;
+}
+
+.content-box {
+    padding: 15px;
+    background-color: #f7f7f7;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    line-height: 1.6;
+    height: 320px;
+}
+

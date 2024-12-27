@@ -1,0 +1,192 @@
+.change-screen-myComments {
+    width: 1850px;
+    height: 800px;
+    background-color: white;
+    border-radius: 10px;
+    margin-bottom: 3%;
+    display: flex;
+    justify-content: center;
+}
+
+#change-screen-content {
+    display: flex;
+    align-items: stretch; /* 자식 요소들이 같은 높이를 가지도록 설정 */
+    width: 100%;
+}
+
+.navigation {
+    width: 300px;
+    height: 700px;
+    border-radius: 10px;
+    background: white;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    margin: 23px 0 15px 23px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding-top: 50px;
+}
+
+h1 {
+    position: sticky;
+    top: 0;
+    background-color: white;
+    padding: 10px;
+    font-size: 40px;
+    color: #333;
+    width: 90%;
+    text-align: center;
+    z-index: 100;
+}
+
+.content-container {
+    width: 1500px;
+    height: 710px; /* 고정된 높이 */
+    border-radius: 10px;
+    background: white;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    margin: 23px 23px 15px 30px;
+    padding: 20px;
+    overflow-y: auto; /* 내용이 넘칠 경우 스크롤바가 생기도록 설정 */
+}
+
+h3 {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #007bff;
+}
+
+.comment-list {
+    list-style: none;
+    padding: 0;
+}
+
+.comment-item {
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: #f9f9f9;  /* 배경 색상 추가 */
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);  /* 섬세한 그림자 추가 */
+    transition: all 0.3s ease;
+}
+
+.comment-item:hover {
+    background-color: #e6f7ff;  /* 마우스를 올렸을 때 배경 색상 변화 */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);  /* 마우스를 올렸을 때 그림자 강화 */
+}
+
+.comment-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.comment-date {
+    font-size: 14px;
+    color: #888;
+}
+
+.main-line {
+    border: 0; /* 기본 테두리 제거 */
+    height: 1px; /* 선의 두께 */
+    background-color: #ccc; /* 선의 색상 */
+    margin-top: 10px; /* 상단 간격 추가 */
+    margin-bottom: 30px; /* 하단 간격 추가 */
+}
+
+/* 기본 스타일 */
+.dropdown {
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.dropdown-title {
+    color: #007bff;
+    padding: 10px;
+    cursor: pointer;
+    text-align: left;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    transition: color 0.3s ease;
+    width: 100%;
+}
+
+.dropdown-menu {
+    display: block;
+    position: relative;
+    background-color: transparent;
+    width: 100%;
+    padding: 0;
+    list-style: none;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.3s ease, opacity 0.3s ease;
+}
+
+.dropdown-menu.open {
+    max-height: 300px;
+    opacity: 1;
+}
+
+.dropdown-menu li {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.dropdown-menu li a {
+    display: block;
+    color: #333;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: normal; /* 기본 폰트 굵기 */
+}
+
+.dropdown-menu li a.active {
+    font-weight: bold !important; /* 활성화된 항목의 폰트 굵기 */
+    color: #007bff !important; /* 선택된 항목의 텍스트 색상 */
+}
+
+.dropdown-menu li a:hover {
+    background-color: #f1f1f1;
+}
+
+.dropdown-menu li:last-child {
+    border-bottom: none;
+}
+
+.dropdown-menu.open li a:hover {
+    background-color: #e0e0e0;
+}
+
+/* 기본 a 태그 스타일 */
+a {
+    text-decoration: none; /* 밑줄 제거 */
+    color: #007bff; /* 기본 색상 */
+    font-weight: bold; /* 글씨 두께 */
+    transition: color 0.3s ease, transform 0.3s ease; /* 색상 변화 및 애니메이션 */
+}
+
+/* 마우스를 올렸을 때 색상 변화 */
+a:hover {
+    color: #0056b3; /* 어두운 색상으로 변화 */
+    transform: scale(1.05); /* 살짝 확대 */
+}
+
+/* a 태그 클릭 시 스타일 */
+a:active {
+    color: #004085; /* 클릭 시 색상 */
+    transform: scale(0.98); /* 클릭 시 살짝 축소 */
+}
+
+/* 링크 내 텍스트 강조 효과 */
+a span {
+    transition: text-shadow 0.3s ease; /* 텍스트 그림자 효과 */
+}
+
+a:hover span {
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3); /* 마우스 오버 시 텍스트 그림자 */
+}

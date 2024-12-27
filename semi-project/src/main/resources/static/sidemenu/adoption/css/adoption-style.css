@@ -1,0 +1,122 @@
+.change-screen-adoption {
+    width: 1850px;
+    height: 800px;
+    background-color: white;
+    border-radius: 10px;
+    margin-bottom: 3%;
+    color: black;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.hidden {
+    display: none;
+}
+
+.tab-container {
+    display: flex;
+    border-bottom: 1.5px solid #ccc;
+    margin-bottom: 20px;
+    overflow-x: auto; /* 수평 스크롤바 추가 */
+}
+
+.tab-button {
+    flex: 1;
+    background-color: transparent;
+    border: none;
+    padding: 10px 0;
+    text-align: center;
+    cursor: pointer;
+    font-size: 18px;
+    color: #2c384e;
+    list-style: none;
+    white-space: nowrap; /* 텍스트가 줄바꿈되지 않도록 설정 */
+}
+
+.tab-button:hover {
+    color: #0d6efd;
+}
+
+.tab-button.active {
+    border-bottom: 3px solid #0a58ca;
+    font-weight: bold;
+}
+
+.adopterList-container {
+    max-height: 640px; /* 콘텐츠 영역의 최대 높이 설정 */
+    overflow-y: auto; /* 세로 스크롤바 추가 */
+    padding-right: 10px; /* 스크롤바와 내용 간의 간격 추가 */
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 한 줄에 4개의 카드 */
+    gap: 20px; /* 카드 간 간격 */
+    margin-top: 20px;
+}
+
+.card {
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    max-width: 100%;
+    margin: 20px;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.adoptStatus {
+    font-size: 18px;
+    font-weight: bold;
+    color: #052d59;
+    margin-bottom: 10px;
+}
+
+.body {
+    margin-bottom: 15px;
+}
+
+.body-text {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: flex-end; /* 오른쪽 정렬 */
+    gap: 10px; /* 버튼 간 간격 */
+    margin-top: 10px;
+}
+
+.detail-adopter {
+    display: inline-block;
+    padding: 8px 15px;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.delete-adopter{
+    display: inline-block;
+    padding: 8px 15px;
+    background-color: #fb1b1b;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.detail-adopter:hover {
+    background-color: #0056b3;
+}
+
+.delete-adopter:hover {
+    background-color: #bc1616;
+}

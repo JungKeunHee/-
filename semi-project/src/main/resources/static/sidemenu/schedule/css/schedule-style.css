@@ -1,0 +1,219 @@
+.change-screen-schedule {
+    width: 1850px;
+    height: 800px;
+    background-color: white;
+    border-radius: 10px;
+    margin-bottom: 3%;
+}
+
+.box {
+    width: 1850px;
+    height: 800px;
+    display: flex;
+}
+
+.user-info {
+    width: 500px;
+    height: 780px;
+    border-radius: 10px;
+    margin: 10px;
+    background-color: white; /* 흰 배경 추가 */
+    box-shadow: 0 5px 5px 4px rgba(0, 0, 0, 0.1); /* 그림자 아래로 연하게 조정 */
+}
+
+.calendar {
+    width: 1300px;
+    height: 780px;
+    margin: 10px;
+    background-color: white; /* 흰 배경 추가 */
+    box-shadow: 0 5px 5px 4px rgba(0, 0, 0, 0.1); /* 그림자 아래로 연하게 조정 */
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.modal {
+    display: none; /* 기본적으로 모달을 숨김 */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    height: 200px;
+    border-radius: 10px; /* 모달의 모서리 둥글게 */
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* 추가 스타일: 모달 내용의 텍스트 스타일 */
+.modal-content h2 {
+    margin: 0 0 10px; /* 제목과 내용 간의 여백 조정 */
+    font-size: 24px; /* 제목 크기 조정 */
+}
+
+.text-box {
+    margin-top: 20px; /* 텍스트 박스를 위에서 아래로 내리기 위한 여백 */
+    padding: 10px; /* 텍스트 박스 내부 여백 */
+    background-color: #f9f9f9; /* 텍스트 박스 배경색 (선택 사항) */
+    border-radius: 5px; /* 텍스트 박스 모서리 둥글게 (선택 사항) */
+}
+
+.modal-content p {
+    margin: 10px 0; /* 각 문단 간의 여백을 위아래로 더 벌림 */
+    font-size: 16px; /* 문단 크기 조정 */
+    line-height: 3; /* 줄 간격 조정 */
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* 수직 가운데 정렬 */
+    text-align: center; /* 텍스트 가운데 정렬 */
+}
+
+.profile-picture {
+    width: 180px; /* 프로필 사진 너비 */
+    height: 180px; /* 프로필 사진 높이 */
+    border-radius: 50%; /* 원형으로 만들기 */
+    object-fit: cover; /* 이미지 비율 유지 */
+    margin-bottom: 20px; /* 사진과 텍스트 사이 여백 증가 */
+    margin-top: 20%;
+}
+
+.user-details {
+    margin-bottom: 25px; /* 텍스트와 버튼 사이 여백 증가 */
+}
+
+.name {
+    font-size: 24px; /* 이름 글자 크기 증가 */
+    font-weight: bold; /* 이름 글씨 굵게 */
+}
+
+.container { /* 부모 요소에 대한 클래스 추가 */
+    display: flex; /* Flexbox 사용 */
+    align-items: center; /* 수직 정렬 */
+    justify-content: center;
+    position: relative;
+}
+
+.department-info,
+.position-info {
+    font-weight: bold; /* 부서 및 직급 글씨 굵게 */
+    font-size: 18px; /* 부서 및 직급 글자 크기 */
+    margin: 5px 0; /* 부서 및 직급 사이 여백 */
+    color: #818080;
+    display: flex; /* Flexbox 사용 */
+    flex-direction: row; /* 수평 방향으로 정렬 */
+}
+
+.position-info {
+    margin-left: 10px; /* 부서와 직급 사이의 간격 조정 */
+}
+
+.attendance-request-button {
+    padding: 12px 24px; /* 버튼 패딩 증가 */
+    background-color: #007bff; /* 버튼 배경색 */
+    color: white; /* 버튼 글자색 */
+    border: none; /* 테두리 제거 */
+    border-radius: 10px; /* 모서리 둥글게 */
+    cursor: pointer; /* 커서 포인터로 변경 */
+    font-size: 16px; /* 글자 크기 */
+    transition: background-color 0.3s ease; /* 배경색 변화에 부드러운 전환 추가 */
+    font-weight: bold;
+}
+
+.attendance-request-button:hover {
+    background-color: #ff4141; /* 버튼 호버 시 색상 변경 */
+}
+
+/* 시간 표시 스타일 */
+#time-display {
+    font-size: 50px; /* 글자 크기 */
+    font-weight: bold; /* 글자 두껍게 */
+    color: #333; /* 글자 색상 */
+    text-align: center; /* 중앙 정렬 */
+    margin: 10px 0; /* 위아래 여백 */
+}
+
+.box-container {
+    display: flex;
+    gap: 20px;
+}
+
+/* 박스 스타일 */
+.box2, .box3 {
+    width: 220px;
+    height: 240px;
+    border-radius: 10px;
+    background-color: white; /* 흰 배경 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 그림자 추가 */
+    transition: transform 0.3s, box-shadow 0.3s; /* 부드러운 전환 효과 */
+    display: flex; /* 내부 요소를 flex로 설정 */
+    flex-direction: column; /* 세로 방향으로 정렬 */
+    align-items: center; /* 내부 요소 가운데 정렬 */
+    justify-content: center; /* 내부 요소 수직 가운데 정렬 */
+}
+
+/* 제목 스타일 */
+.box2 h4, .box3 h4 {
+    margin: 10px 0; /* 제목 간의 간격 */
+}
+
+/* 연차 및 휴가 숫자 스타일 */
+#annualLeave, #vacation {
+    font-size: 4em; /* 숫자 크기 키우기 */
+    font-weight: bold; /* 굵게 */
+    color: #333; /* 글자 색상 */
+    margin: 20px 0; /* 숫자 간의 간격 */
+}
+
+/* 호버 효과 (선택 사항) */
+.box2:hover, .box3:hover {
+    transform: translateY(-5px); /* 위로 살짝 이동 */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* 그림자 강도 증가 */
+}
+
+.time-container {
+    justify-content: space-between; /* 양쪽 끝으로 배치 */
+    align-items: center; /* 수직 중앙 정렬 */
+    font-weight: bold; /* 글씨를 굵게 */
+    padding: 10px; /* 여백 추가 */
+    width: 250px;
+    margin-top: -2%;
+    margin-bottom: 10px;
+}
+
+.check-in, .check-out {
+    display: flex; /* Flexbox를 사용하여 자식 요소를 가로로 배치 */
+    justify-content: space-between; /* 자식 요소 간의 공간을 균등하게 배치 */
+    flex: 1; /* 각 요소가 동일한 비율로 공간을 차지하도록 설정 */
+}
+
+.check-in span, .check-out span {
+    margin-left: auto; /* 시간 표시를 오른쪽으로 붙이기 위해 자동 여백 추가 */
+}
+

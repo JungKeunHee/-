@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>재고관리</title>
+    <link rel="stylesheet" href="/main/css/main-style.css"> <!-- 메인 스타일 연결 -->
+    <script src="/main/js/main.js"></script> <!-- 메인 자바스크립트 연결 -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=keyboard_arrow_down" />
+    <link rel="stylesheet" href="/sidemenu/animals/css/stock-style.css">
+</head>
+<body>
+<header>
+    <div class="side-menu-bar">
+        <ul>
+            <li><a href="/main">🐶PetHarmony🐶</a></li>
+            <li><a href="http://localhost:9595/sidemenu/schedule">근태관리</a></li>
+            <li><a href="http://localhost:9595/sidemenu/messenger">메신저(채팅)</a></li>
+            <li><a href="http://localhost:9595/sidemenu/mail">이메일</a></li>
+            <li><a href="http://localhost:9595/sidemenu/adoption">입양</a></li>
+            <li class="animal-menu">
+                <div class="menu-wrapper">
+                    <a href="http://localhost:9595/sidemenu/animals">동물
+                        <span class="material-symbols-outlined">keyboard_arrow_down</span>
+                    </a>
+                </div>
+                <ul class="sub-menu">
+                    <li><a href="http://localhost:9595/sidemenu/animals">구조동물</a></li>
+                    <li><a href="http://localhost:9595/sidemenu/adoptionComplete">입양완료</a></li>
+                    <li><a href="http://localhost:9595/sidemenu/stock">재고관리</a></li>
+                </ul>
+            </li>
+            <li><a href="http://localhost:9595/sidemenu/facilities">시설관리</a></li>
+            <li><a href="http://localhost:9595/sidemenu/board">전사게시판</a></li>
+            <li><a href="http://localhost:9595/sidemenu/employee">직원정보</a></li>
+            <li><a href="http://localhost:9595/sidemenu/mypage">마이페이지</a></li>
+            <li><a href="http://localhost:9595/sidemenu/approval">결재</a></li>
+            <li class="admin-menu">
+                <div class="admin-menu-wrapper">
+                    <a href="http://localhost:9595/sidemenu/manager">관리자전용
+                        <span class="material-symbols-outlined">keyboard_arrow_down</span>
+                    </a>
+                </div>
+                <ul class="sub-menu">
+                    <li><a href="http://localhost:9595/sidemenu/manager">관리자페이지</a></li>
+                    <li><a href="http://localhost:9595/sidemenu/employeeRegister">사원등록</a></li>
+                    <li><a href="http://localhost:9595/sidemenu/employeeManagement">직원관리</a></li>
+                    <li><a href="http://localhost:9595/sidemenu/approvalBox">결재함</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</header>
+<div class="change-screen-stock">
+    <div id="change-screen-content">
+
+        <table border="1px" style="text-align: center">
+            <thead>
+            <tr>
+                <th style="width: 80px;">품목코드</th>
+                <th style="width: 80px;">대분류</th>
+                <th style="width: 100px;">품목구분</th>
+                <th style="width: 100px;">품목그룹</th>
+                <th style="width: 120px;">거래처명</th>
+                <th style="width: 60px;">구매</th>
+                <th style="width: 130px;">거래일자</th>
+                <th style="width: 300px;">품목명</th>
+                <th style="width: 200px;">재고수량</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="inventory : ${inventoryList}">
+                <td th:text="${inventory.itemCode}"></td>
+                <td th:text="${inventory.typeDTO.typeName}"></td>
+                <td th:text="${inventory.itemType}"></td>
+                <td th:text="${inventory.itemGroup}"></td>
+                <td th:text="${inventory.dealName}"></td>
+                <td>
+                    <button th:attr="onclick=|window.open('${inventory.dealUrl}', '_blank')|"
+                            class="btn-dealName">
+                        구매
+                    </button>
+                </td>
+                <td th:text="${#dates.format(inventory.dealDate, 'yyyy-MM-dd')}"></td>
+                <td th:text="${inventory.itemName}"></td>
+                <td>
+                    <form action="/inventory/update" method="post">
+                        <input type="hidden" name="itemCode" th:value="${inventory.itemCode}" />
+                        <input type="number" name="itemNum" th:value="${inventory.itemNum}" min="0" max="100" step="10" />
+                        <button type="submit">수정</button>
+                    </form>
+                </td>
+                <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        // 쿼리 파라미터에서 updateSuccess 값을 가져오기
+                        var urlParams = new URLSearchParams(window.location.search);
+                        var updateSuccess = urlParams.get('updateSuccess');
+
+                        if (updateSuccess === 'true') {
+                            alert("재고 수정이 완료되었습니다!");
+
+                            // 쿼리 파라미터에서 updateSuccess를 제거
+                            history.replaceState(null, '', window.location.pathname);  // 쿼리 파라미터 제거
+                        }
+                    });
+                </script>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
+

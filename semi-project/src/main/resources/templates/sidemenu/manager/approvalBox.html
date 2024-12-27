@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>관리자결재함</title>
+    <link rel="stylesheet" href="/main/css/main-style.css"> <!-- 메인 스타일 연결 -->
+    <script src="/main/js/main.js"></script> <!-- 메인 자바스크립트 연결 -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=keyboard_arrow_down" />
+    <link rel="stylesheet" href="/sidemenu/manager/css/approvalBox-style.css">
+    <script src="/sidemenu/manager/js/approval-list.js"></script>
+</head>
+<body>
+<header>
+    <div class="side-menu-bar">
+        <ul>
+            <li><a href="/main">🐶PetHarmony🐶</a></li>
+            <li><a href="http://localhost:9595/sidemenu/schedule">근태관리</a></li>
+            <li><a href="http://localhost:9595/sidemenu/messenger">메신저(채팅)</a></li>
+            <li><a href="http://localhost:9595/sidemenu/mail">이메일</a></li>
+            <li><a href="http://localhost:9595/sidemenu/adoption">입양</a></li>
+            <li class="animal-menu">
+                <div class="menu-wrapper">
+                    <a href="http://localhost:9595/sidemenu/animals">동물
+                        <span class="material-symbols-outlined">keyboard_arrow_down</span>
+                    </a>
+                </div>
+                <ul class="sub-menu">
+                    <li><a href="http://localhost:9595/sidemenu/animals">구조동물</a></li>
+                    <li><a href="http://localhost:9595/sidemenu/adoptionComplete">입양완료</a></li>
+                    <li><a href="http://localhost:9595/sidemenu/stock">재고관리</a></li>
+                </ul>
+            </li>
+            <li><a href="http://localhost:9595/sidemenu/facilities">시설관리</a></li>
+            <li><a href="http://localhost:9595/sidemenu/board">전사게시판</a></li>
+            <li><a href="http://localhost:9595/sidemenu/employee">직원정보</a></li>
+            <li><a href="http://localhost:9595/sidemenu/mypage">마이페이지</a></li>
+            <li><a href="http://localhost:9595/sidemenu/approval">결재</a></li>
+            <li class="admin-menu">
+                <div class="admin-menu-wrapper">
+                    <a href="http://localhost:9595/sidemenu/manager">관리자전용
+                        <span class="material-symbols-outlined">keyboard_arrow_down</span>
+                    </a>
+                </div>
+                <ul class="sub-menu">
+                    <li><a href="http://localhost:9595/sidemenu/manager">관리자페이지</a></li>
+                    <li><a href="http://localhost:9595/sidemenu/employeeRegister">사원등록</a></li>
+                    <li><a href="http://localhost:9595/sidemenu/employeeManagement">직원관리</a></li>
+                    <li><a href="http://localhost:9595/sidemenu/approvalBox">결재함</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</header>
+<div class="change-screen-approvalBox">
+    <div id="change-screen-content">
+        <div class="title">
+            <h4>✏️관리자 전자 결재함</h4>
+        </div>
+        <div class="payment-form">
+            <div class="form1">
+                <img src="/img/icon/document.png" alt="">
+                <div class="form-title"><h3>연차 휴가 신청서</h3></div>
+                <input type="button" class="create-from" onclick="location.href='/approval/vacation-form'" value="신청하기">
+            </div>
+            <div class="form2">
+                <img src="/img/icon/document.png" alt="">
+                <div class="form-title"><h3>경조사 신청서</h3></div>
+                <input type="button" class="create-from" onclick="location.href='/approval/cac-form'" value="신청하기">
+            </div>
+            <div class="form3">
+                <img src="/img/icon/document.png" alt="">
+                <div class="form-title"><h3>연장 근무 신청서</h3></div>
+                <input type="button" class="create-from" onclick="location.href='/approval/overtime-form'" value="신청하기">
+            </div>
+            <div class="form4">
+                <img src="/img/icon/document.png" alt="">
+                <div class="form-title"><h3>퇴직원 신청서</h3></div>
+                <input type="button" class="create-from" onclick="location.href='/approval/retirement-form'" value="신청하기">
+            </div>
+        </div>
+        <div class="approval-list">
+            <div class="filter-box">
+                <h2 class="select-approval">🗒️결재 목록</h2>
+
+                <div class="filters">
+                    <div class="filter-set">
+                        <label class="red-text">기간</label>
+                        <div class="date-range">
+                            <input type="date" id="startDate" />
+                            <span>~</span>
+                            <input type="date" id="endDate" />
+                        </div>
+                    </div>
+
+                    <div class="filter-set">
+                        <label for="typeFilter">문서종류</label>
+                        <select id="typeFilter">
+                            <option value="">모두</option>
+                            <option value="연차">연차</option>
+                            <option value="휴가">휴가</option>
+                            <option value="결혼">결혼</option>
+                            <option value="조사">조사</option>
+                            <option value="연장근무">연장근무</option>
+                            <option value="퇴직">퇴직</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-set">
+                        <label for="statusFilter">진행상태</label>
+                        <select id="statusFilter">
+                            <option value="">모두</option>
+                            <option value="대기중">대기중</option>
+                            <option value="진행중">진행중</option>
+                            <option value="승인">승인</option>
+                            <option value="반려">승인</option>
+                        </select>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="header-title">
+                <span>사원코드</span>
+                <span>작성일자</span>
+                <span>문서종류</span>
+                <span>관리자 승인여부</span>
+                <span>대표 승인여부</span>
+                <span>진행상태</span>
+            </div>
+            <ul class="approval">
+                <!-- 데이터 항목이 여기에 추가됩니다. -->
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+</html>

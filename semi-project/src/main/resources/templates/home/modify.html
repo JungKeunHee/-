@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>첫 로그인 페이지</title>
+  <link rel="stylesheet" href="/home/css/modify-style.css">
+</head>
+<body>
+
+<div class="login">
+  <div class="title">
+    <p>🎉PetHarmony 입사를 축하드립니다🎉<br>첫 로그인 시 발급받은 비밀번호를 변경해주세요</p>
+  </div>
+
+  <div class="home-body">
+    <label class="">비밀번호 </label>
+    <input type="password" class="empPass" placeholder="변경할 비밀번호를 입력해주세요"><br>
+    <label>비밀번호 확인</label>
+    <input type="password" class="empPassCheck" placeholder="변경할 비밀번호를 다시 한 번 입력해주세요" id="confirmPassword"><br>
+    <span id="error-message">🚫비밀번호가 일치하지 않습니다🚫</span>
+
+    <div class="button-container">
+      <form action="" method="post">
+        <button class="success">수정</button>
+      </form>
+
+      <input type="button" class="cancel" value="취소" onclick="location.href='/home';">
+    </div>
+  </div>
+</div>
+<div class="dogImg">
+  <img src="/img/dog/dog.png" style="width: 900px; height: auto;">
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const passwordInput = document.querySelector('.empPass');
+    const confirmPasswordInput = document.getElementById('confirmPassword');
+    const errorMessage = document.getElementById('error-message');
+
+    // 비밀번호 입력란과 비밀번호 확인 입력란의 값이 변경될 때마다 확인
+    confirmPasswordInput.addEventListener('input', function() {
+      if (passwordInput.value !== confirmPasswordInput.value) {
+        errorMessage.style.display = 'block'; // 에러 메시지 표시
+      } else {
+        errorMessage.style.display = 'none'; // 에러 메시지 숨김
+      }
+    });
+
+    passwordInput.addEventListener('input', function() {
+      if (passwordInput.value !== confirmPasswordInput.value) {
+        errorMessage.style.display = 'block'; // 에러 메시지 표시
+      } else {
+        errorMessage.style.display = 'none'; // 에러 메시지 숨김
+      }
+    });
+  });
+</script>
+
+
+</body>
+</html>

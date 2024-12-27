@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ohgiraffers.semiproject.manager.model.dao.ManagerScheduleMapper">
+
+    <resultMap id="managerScheduleResultMap" type="com.ohgiraffers.semiproject.manager.model.dto.ManagerScheduleDTO">
+        <id property="workCode" column="work_code"/>
+        <result property="empCode" column="emp_code"/>
+        <result property="workType" column="work_type"/>
+        <result property="workStartTime" column="workstart_time"/>
+        <result property="workEndTime" column="workend_time"/>
+        <result property="workDate" column="work_date"/>
+        <result property="modifyTime" column="modify_time"/>
+        <result property="division" column="division"/>
+        <result property="workModifyReason" column="workmodify_reason"/>
+        <result property="managerIdea" column="manager_idea"/>
+        <result property="progressCode" column="progress_code"/>
+        <result property="adminCode" column="admin_code"/>
+        <association property="employeeJoinListDTO" javaType="com.ohgiraffers.semiproject.employee.model.dto.EmployeeJoinListDTO">
+            <id property="empCode" column="emp_code"/>
+            <result property="empPass" column="emp_pass"/>
+            <result property="empName" column="emp_name"/>
+            <result property="empEmail" column="emp_email"/>
+            <result property="empPhone" column="emp_phone"/>
+            <result property="hireDate" column="hire_date"/>
+            <result property="entDate" column="ent_date"/>
+            <result property="empGender" column="emp_gender"/>
+            <result property="empAddress" column="emp_address"/>
+            <result property="jobCode" column="job_code"/>
+            <result property="deptCode" column="dept_code"/>
+            <result property="authority" column="authority"/>
+            <result property="profile_image" column="profile_image"/>
+            <association property="deptDTO" javaType="com.ohgiraffers.semiproject.employee.model.dto.DeptDTO">
+                <id property="deptCode" column="dept_code"/>
+                <result property="deptName" column="dept_name"/>
+            </association>
+            <association property="jobDTO" javaType="com.ohgiraffers.semiproject.employee.model.dto.JobDTO">
+                <id property="jobCode" column="job_code"/>
+                <result property="jobName" column="job_name"/>
+            </association>
+        </association>
+    </resultMap>
+
+    <select id="getAttendanceRequest" resultMap="managerScheduleResultMap">
+        select
+            a.work_code,
+            a.emp_code,
+            a.work_type,
+            a.workstart_time,
+            a.workend_time,
+            a.work_date,
+            a.modify_time,
+            a.division,
+            a.workmodify_reason,
+            a.admin_code,
+            a.manager_idea,
+            a.progress_code,
+            b.emp_name,
+            c.dept_name,
+            d.job_name
+        from
+            tbl_work a
+        join tbl_emp b on (a.emp_code = b.emp_code)
+        join tbl_dept c on (b.dept_code = c.dept_code)
+        join tbl_job d on (b.job_code = d.job_code)
+
+        where
+            admin_code = #{code}
+    </select>
+
+    <update id="modifyStartTime" parameterType="com.ohgiraffers.semiproject.manager.model.dto.ManagerScheduleDTO">
+        update
+            tbl_work
+        set
+            workstart_time = #{modifyTime}, work_type = #{workType}, manager_idea = #{managerIdea}, progress_code = #{progressCode}
+        where
+            work_code = #{workCode}
+    </update>
+
+    <update id="modifyEndTime" parameterType="com.ohgiraffers.semiproject.manager.model.dto.ManagerScheduleDTO">
+        update
+            tbl_work
+        set
+            workend_time = #{modifyTime}, work_type = #{workType}, manager_idea = #{managerIdea}, progress_code = #{progressCode}
+        where
+            work_code = #{workCode}
+    </update>
+
+    <update id="modifyProgressCode" parameterType="com.ohgiraffers.semiproject.manager.model.dto.ManagerScheduleDTO">
+        update
+            tbl_work
+        set
+            manager_idea = #{managerIdea}, progress_code = #{progressCode}
+        where
+            work_code = #{workCode}
+    </update>
+</mapper>

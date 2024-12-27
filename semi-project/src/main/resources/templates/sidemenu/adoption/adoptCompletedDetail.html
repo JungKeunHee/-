@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>입양완료(상세페이지)</title>
+    <link rel="stylesheet" href="/main/css/main-style.css"> <!-- 메인 스타일 연결 -->
+    <script src="/main/js/main.js"></script> <!-- 메인 자바스크립트 연결 -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=keyboard_arrow_down" />
+    <link rel="stylesheet" href="/sidemenu/adoption/css/adoptCompletedDetail-style.css">
+</head>
+<body>
+<header>
+    <div class="side-menu-bar">
+        <ul>
+            <li><a href="/main">🐶PetHarmony🐶</a></li>
+            <li><a href="http://localhost:9595/sidemenu/schedule">근태관리</a></li>
+            <li><a href="http://localhost:9595/sidemenu/messenger">메신저(채팅)</a></li>
+            <li><a href="http://localhost:9595/sidemenu/mail">이메일</a></li>
+            <li><a href="http://localhost:9595/sidemenu/adoption">입양</a></li>
+            <li class="animal-menu">
+                <div class="menu-wrapper">
+                    <a href="http://localhost:9595/sidemenu/animals">동물
+                        <span class="material-symbols-outlined">keyboard_arrow_down</span>
+                    </a>
+                </div>
+                <ul class="sub-menu">
+                    <li><a href="http://localhost:9595/sidemenu/animals">구조동물</a></li>
+                    <li><a href="http://localhost:9595/sidemenu/adoptionComplete">입양완료</a></li>
+                    <li><a href="http://localhost:9595/sidemenu/stock">재고관리</a></li>
+                </ul>
+            </li>
+            <li><a href="http://localhost:9595/sidemenu/facilities">시설관리</a></li>
+            <li><a href="http://localhost:9595/sidemenu/board">전사게시판</a></li>
+            <li><a href="http://localhost:9595/sidemenu/employee">직원정보</a></li>
+            <li><a href="http://localhost:9595/sidemenu/mypage">마이페이지</a></li>
+            <li><a href="http://localhost:9595/sidemenu/approval">결재</a></li>
+            <li class="admin-menu">
+                <div class="admin-menu-wrapper">
+                    <a href="http://localhost:9595/sidemenu/manager">관리자전용
+                        <span class="material-symbols-outlined">keyboard_arrow_down</span>
+                    </a>
+                </div>
+                <ul class="sub-menu">
+                    <li><a href="http://localhost:9595/sidemenu/manager">관리자페이지</a></li>
+                    <li><a href="http://localhost:9595/sidemenu/employeeRegister">사원등록</a></li>
+                    <li><a href="http://localhost:9595/sidemenu/employeeManagement">직원관리</a></li>
+                    <li><a href="http://localhost:9595/sidemenu/approvalBox">결재함</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</header>
+<div class="change-screen-adoptCompletedDetail">
+    <div id="change-screen-content">
+
+        <div class="container">
+            <!-- 입양 정보 섹션 -->
+            <section class="adoption-section">
+                <h2>입양 정보</h2>
+                <div class="adoption-card">
+                    <div class="btn-adoptCompleted">
+                        <h1><span th:text="${completedDetail.adoptStatus}"></span></h1>
+                        <a th:href="@{/giveUp/{adoptNo}(adoptNo=${completedDetail.adoptNo})}" class="complete-button" onclick="return confirmCompleted()">파양</a>
+                    </div>
+                    <p><strong>입양번호 : </strong> <span th:text="${completedDetail.adoptNo}"></span></p>
+                    <p><strong>이름 : </strong> <span th:text="${completedDetail.adoptName}"></span></p>
+                    <p><strong>나이 : </strong> <span th:text="${completedDetail.adoptAge}"></span></p>
+                    <p><strong>성별 : </strong> <span th:text="${completedDetail.adoptGender}"></span></p>
+                    <p><strong>핸드폰 번호 : </strong> <span th:text="${completedDetail.adoptPhone}"></span></p>
+                    <p><strong>이메일 : </strong> <span th:text="${completedDetail.adoptPhone}"></span></p>
+                    <p><strong>입양시작날짜 : </strong> <span th:text="${completedDetail.adoptStartDate}"></span></p>
+                    <p><strong>입양완료날짜 : </strong> <span th:text="${completedDetail.adoptEndDate}"></span></p>
+                </div>
+            </section>
+
+            <div class="right-sections">
+                <!-- 동물 정보 섹션 -->
+                <section class="animal-section">
+                    <h2>동물 정보</h2>
+                    <div class="animal-card">
+                        <img th:src="@{${'/img/animals/' + completedDetail.animalDTO.animalImage}}" alt="Animal Image" />
+                        <div class="animal-details">
+                            <p><strong>동물등록번호 : </strong> <span th:text="${completedDetail.animalDTO.animalCode}"></span></p>
+                            <p><strong>구조 된 날짜 : </strong> <span th:text="${#dates.format(completedDetail.animalDTO.rescueDate, 'yyyy-MM-dd')}"></span></p>
+                            <p><strong>구조 된 장소 : </strong> <span th:text="${completedDetail.animalDTO.rescueLocation}"></span></p>
+                            <p><strong>나이 : </strong> <span th:text="${completedDetail.animalDTO.age}"></span></p>
+                            <p><strong>성별 : </strong> <span th:text="${completedDetail.animalDTO.gender}"></span></p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 담당자 정보 섹션 -->
+                <section class="staff-section">
+                    <h2>담당자 정보</h2>
+                    <div class="staff-card">
+                        <img th:src="@{${'/img/profile/' + completedDetail.empDTO.profileImage}}" alt="profile Image" />
+                        <div class="staff-details">
+                            <p><strong>담당자 : </strong> <span th:text="${completedDetail.empDTO.empName}"></span></p>
+                            <p><strong>핸드폰번호 : </strong> <span th:text="${completedDetail.empDTO.empPhone}"></span></p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function confirmCompleted() {
+        const userConfirmed = confirm("파양 하시겠습니까?");
+        if (!userConfirmed) {
+            return false; // 사용자가 취소하면 아무 일도 일어나지 않음
+        }
+        return true; // 사용자가 확인하면 계속해서 링크가 실행됨
+    }
+</script>
+</body>
+</html>

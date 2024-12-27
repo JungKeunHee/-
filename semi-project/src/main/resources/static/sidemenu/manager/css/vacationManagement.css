@@ -1,0 +1,241 @@
+.filter-container {
+    display: flex;
+    justify-content: space-between; /* 양쪽 끝 정렬 */
+    align-items: center;
+    margin: 20px 0; /* 위아래 여백 추가 */
+}
+
+.left-buttons {
+    display: flex; /* 버튼들을 수평으로 정렬 */
+}
+
+.right-controls {
+    display: flex; /* 셀렉트 박스와 입력 박스를 수평으로 정렬 */
+    align-items: center; /* 수직 중앙 정렬 */
+    margin-right: 10px;
+}
+
+.filter-button {
+    margin-left: 10px; /* 버튼 간격 조정 */
+    padding: 10px;
+    border: 1px solid #007bff;
+    background-color: #fff;
+    color: #007bff;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.filter-button:hover {
+    background-color: #007bff;
+    color: #fff;
+}
+
+#department-select,
+#name-search {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 10px; /* 검색어 입력 박스와의 간격 */
+}
+
+.header-list {
+    display: flex; /* 수평 정렬 */
+    justify-content: space-between; /* 항목 간격을 균등하게 */
+    list-style-type: none; /* 기본 리스트 스타일 제거 */
+    padding: 10px 20px; /* 패딩 추가 */
+    margin: 0; /* 기본 마진 제거 */
+    background-color: #f8f9fa; /* 배경색 추가 */
+    border: 1px solid #dee2e6; /* 테두리 추가 */
+    border-radius: 5px; /* 모서리 둥글게 */
+    width: 1800px; /* 가로 크기 설정 */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
+    margin-left: 4px; /* 왼쪽 여백 */
+    margin-bottom: 0; /* 아래 여백 제거 */
+}
+
+.header-list li {
+    flex: 0 0 180px; /* 각 항목의 너비를 180px로 설정 */
+    text-align: center; /* 텍스트 중앙 정렬 */
+    font-weight: bold; /* 글씨 두껍게 */
+    color: #343a40; /* 글씨 색상 */
+}
+
+.header-list li:not(:last-child) {
+    border-right: 1px solid #dee2e6; /* 항목 간 구분선 추가 */
+}
+
+
+.data-list {
+    margin: 0; /* 기본 마진 제거 */
+    padding: 0; /* 기본 패딩 제거 */
+}
+
+.data-list ul {
+    list-style-type: none; /* 기본 리스트 스타일 제거 */
+    padding: 0; /* 패딩 제거 */
+    margin: 0; /* 마진 제거 */
+    border: 1px solid #dee2e6; /* 테두리 추가 */
+    border-radius: 5px; /* 모서리 둥글게 */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
+}
+
+.data-list li {
+    display: flex; /* 수평 정렬 */
+    padding: 13px 0; /* 위아래 패딩 추가 */
+    border-bottom: 1px solid #dee2e6; /* 항목 간 구분선 추가 */
+    color: #495057; /* 글씨 색상 */
+    transition: background-color 0.3s; /* 배경색 변화 효과 */
+    text-align: center; /* 텍스트 중앙 정렬 */
+    padding-left: 7px;
+}
+
+.data-list li span {
+    flex: 0 0 181px; /* 각 스팬의 너비를 181px로 설정 */
+    text-align: center; /* 텍스트 가운데 정렬 */
+}
+
+
+.data-list li:hover {
+    background-color: #f1f1f1; /* 마우스 오버 시 배경색 변화 */
+}
+
+.data-list li:last-child {
+    border-bottom: none; /* 마지막 항목의 구분선 제거 */
+}
+
+body {
+    overflow: hidden; /* 스크롤을 숨김 */
+}
+
+.pagination-container {
+    display: flex;
+    justify-content: center; /* 가운데 정렬 */
+    align-items: center; /* 수직 정렬 */
+    position: fixed; /* 스크롤 시 고정 */
+    bottom: 20px; /* 하단에서 20px 위에 위치 */
+    padding: 10px; /* 패딩 추가 */
+    z-index: 1000; /* 다른 요소 위에 표시되도록 설정 */
+    width: 1800px; /* 전체 너비로 설정 */
+    max-width: 1800px; /* 최대 너비 설정 */
+    margin-bottom: 30px;
+    border-radius: 8px; /* 모서리 둥글게 */
+}
+
+.pagination {
+    display: flex;
+    gap: 10px; /* 페이지 버튼 간격 */
+    margin-left: 45%;
+}
+
+.button-box {
+    margin-left: 28%;
+}
+
+button{
+    padding: 8px 15px; /* 버튼 패딩 */
+    cursor: pointer; /* 커서 포인터 */
+    background-color: #007bff; /* 버튼 배경색 */
+    color: white; /* 버튼 글자색 */
+    border: none; /* 테두리 제거 */
+    border-radius: 5px; /* 모서리 둥글게 */
+    transition: background-color 0.3s, transform 0.2s; /* 부드러운 전환 효과 */
+}
+
+button:hover {
+    background-color: #0056b3; /* 호버 시 배경색 변경 */
+    transform: scale(1.05); /* 호버 시 크기 증가 */
+}
+
+button:disabled {
+    background-color: #cccccc; /* 비활성화된 버튼 색상 */
+    cursor: not-allowed; /* 비활성화된 버튼 커서 */
+}
+
+.deductLeave{
+    padding: 8px 15px; /* 버튼 패딩 */
+    cursor: pointer; /* 커서 포인터 */
+    background-color: #ff4141; /* 버튼 배경색 */
+    color: white; /* 버튼 글자색 */
+    border: none; /* 테두리 제거 */
+    border-radius: 5px; /* 모서리 둥글게 */
+    transition: background-color 0.3s, transform 0.2s; /* 부드러운 전환 효과 */
+}
+
+.deductLeave:hover {
+    background-color: #ff0000; /* 호버 시 배경색 변경 */
+    transform: scale(1.05); /* 호버 시 크기 증가 */
+}
+
+.modal {
+    display: none; /* 기본적으로 숨김 */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4); /* 검은색 배경 */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 500px; /* 모달 너비 */
+}
+
+.leave-type-container {
+    display: flex; /* Flexbox를 사용하여 가로로 배치 */
+    margin: 10px 0; /* 위아래 간격 조정 */
+}
+
+.leave-type-container label {
+    margin-right: 20px; /* 라디오 버튼 간격 조정 */
+}
+
+
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.form-box{
+    margin-top: 20px;
+    margin-left: 28%;
+}
+
+.createButton{
+    width: 100px;
+    height: 30px;
+    color: #ffffff;
+    background-color: #0079ff;
+}
+
+.createButton:hover{
+    color: #ffffff;
+    background-color: blue;
+}
+
+.cancelButton{
+    width: 100px;
+    height: 30px;
+    color: #ffffff;
+    background-color: #ff4141;
+}
+
+.cancelButton:hover{
+    color: #ffffff;
+    background-color: #ff0000;
+}

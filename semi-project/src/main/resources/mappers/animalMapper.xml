@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ohgiraffers.semiproject.animals.model.dao.AnimalsMapper">
+
+    <resultMap id="AllListResultMap" type="com.ohgiraffers.semiproject.animals.model.dto.AnimalDTO">
+        <id property="animalCode" column="animal_code"/>
+
+        <result property="rescueDate" column="rescue_date"/>
+        <result property="rescueLocation" column="rescue_location"/>
+        <result property="animalImage" column="animal_image"/>
+        <result property="age" column="animal_age"/>
+        <result property="gender" column="animal_gender"/>
+        <result property="animalStatus" column="animal_status"/>
+        <result property="etc" column="etc"/>
+
+        <association property="typeDTO" javaType="com.ohgiraffers.semiproject.animals.model.dto.TypeDTO">
+            <id property="typeCode" column="type_code"/>
+            <result property="typeName" column="type_name"/>
+        </association>
+        <association property="breedDTO" javaType="com.ohgiraffers.semiproject.animals.model.dto.BreedDTO">
+            <id property="breedCode" column="breed_code"/>
+            <result property="breedName" column="breed_name"/>
+        </association>
+        <association property="empDTO" javaType="com.ohgiraffers.semiproject.animals.model.dto.EmpDTO">
+            <id property="empCode" column="emp_code"/>
+            <result property="empName" column="emp_name"/>
+            <result property="empPhone" column="emp_phone"/>
+
+        </association>
+        <association property="adoptDTO" javaType="com.ohgiraffers.semiproject.animals.model.dto.AdoptDTO">
+            <id property="adoptNo" column="adopt_no"/>
+            <result property="adoptName" column="adopt_name"/>
+            <result property="adoptPhone" column="adopt_phone"/>
+            <result property="adoptStartDate" column="adopt_start_date"/>
+            <result property="adoptEndDate" column="adopt_end_date"/>
+        </association>
+
+        <collection property="healthChecks" ofType="com.ohgiraffers.semiproject.animals.model.dto.HealthCheckDTO">
+            <id property="healthcheckCode" column="healthcheck_code"/>
+            <result property="healthcheckName" column="healthcheck_name"/>
+        </collection>
+
+        <collection property="inoculations" ofType="com.ohgiraffers.semiproject.animals.model.dto.InoculationDTO">
+            <id property="inoculationCode" column="inoculation_code"/>
+            <result property="inoculationName" column="inoculation_name"/>
+        </collection>
+    </resultMap>
+
+    <resultMap id="BreedResultMap" type="com.ohgiraffers.semiproject.animals.model.dto.BreedDTO">
+        <id property="breedCode" column="breed_code"/>
+        <result property="breedName" column="breed_name"/>
+    </resultMap>
+
+<!-- ********************************* 구조동물 페이지 ************************************* -->
+<!-- 카테고리 검색 동물등록번호 비동기처리를 위한 select 문 -->
+    <select id="findAnimalCode" resultMap="AllListResultMap">
+        select
+        *
+        from
+        tbl_animal
+    </select>
+
+<!-- 전체 조회 -->
+    <select id="AllAnimalAndSearchAnimals" resultMap="AllListResultMap">
+        SELECT
+        *
+        FROM
+        TBL_ANIMAL A
+        JOIN
+        TBL_EMP E ON A.EMP_CODE = E.EMP_CODE
+        JOIN
+        TBL_ANI_BREED B ON A.BREED_CODE = B.BREED_CODE
+        JOIN
+        TBL_ANI_TYPE T ON A.TYPE_CODE = T.TYPE_CODE
+        WHERE
+        A.animal_status IN ('공고중', '보호중', '파양/보호중')
+        <if test="animalCode != null and animalCode != ''">
+            AND A.animal_code = #{animalCode}
+        </if>
+        <if test="typeCode != null and typeCode != ''">
+            AND A.type_code = #{typeCode}
+        </if>
+        <if test="breedCode != null and breedCode != ''">
+            AND A.breed_code = #{breedCode}
+        </if>
+        <if test="gender != null and gender != ''">
+            AND A.animal_gender = #{gender}
+        </if>
+        <if test="rescueDate != null">
+            AND A.rescue_date = #{rescueDate}
+        </if>
+        ORDER BY
+        A.rescue_date DESC, A.animal_code DESC
+        LIMIT #{offset}, #{limit}
+    </select>
+
+    <select id="getTotalAnimalCount" resultType="int">
+        SELECT COUNT(*)
+        FROM tbl_animal
+        WHERE animal_status IN ('공고중', '보호중', '파양/보호중')
+        <if test="animalCode != null and animalCode != ''">
+            AND animal_code = #{animalCode}
+        </if>
+        <if test="typeCode != null and typeCode != ''">
+            AND type_code = #{typeCode}
+        </if>
+        <if test="breedCode != null and breedCode != ''">
+            AND breed_code = #{breedCode}
+        </if>
+        <if test="gender != null and gender != ''">
+            AND animal_gender = #{gender}
+        </if>
+        <if test="rescueDate != null">
+            AND rescue_date = #{rescueDate}
+        </if>
+    </select>
+
+<!--  구조동물 상세페이지  -->
+    <select id="detailAnimal" resultMap="AllListResultMap">
+        SELECT
+        *
+        FROM
+        TBL_ANIMAL A
+        JOIN
+        TBL_EMP E ON A.EMP_CODE = E.EMP_CODE
+        JOIN
+        TBL_ANI_BREED B ON A.BREED_CODE = B.BREED_CODE
+        JOIN
+        TBL_ANI_TYPE T ON A.TYPE_CODE = T.TYPE_CODE
+        LEFT JOIN
+        TBL_ANI_ADOPT AD ON A.ANIMAL_CODE = AD.ANIMAL_CODE
+        WHERE
+        A.ANIMAL_CODE = #{animalCode}
+    </select>
+
+    <select id="healthAnimal" resultMap="AllListResultMap">
+        SELECT
+        *
+        FROM
+        TBL_ANIMAL A
+        JOIN
+        TBL_ANI_HEL_CHECK HC ON A.ANIMAL_CODE = HC.ANIMAL_CODE
+        JOIN
+        TBL_ANI_HEALTH H ON HC.HEALTHCHECK_CODE = H.HEALTHCHECK_CODE
+
+        WHERE
+        A.ANIMAL_CODE = #{animalCode}
+    </select>
+
+    <select id="inoculationAnimal" resultMap="AllListResultMap">
+        SELECT
+        *
+        FROM
+        TBL_ANIMAL A
+        JOIN
+        tbl_ani_ino_check IC ON A.ANIMAL_CODE = IC.ANIMAL_CODE
+        JOIN
+        tbl_ani_inoculation I ON IC.inoculation_code = I.inoculation_code
+
+        WHERE
+        A.ANIMAL_CODE = #{animalCode}
+    </select>
+
+<!-- 구조동물 등록 -->
+    <insert id="newAnimal" parameterType="com.ohgiraffers.semiproject.animals.model.dto.AnimalDTO">
+        INSERT INTO tbl_animal
+        (
+        animal_code,
+        rescue_date,
+        rescue_location,
+        animal_image,
+        animal_age,
+        animal_gender,
+        animal_status,
+        type_code,
+        breed_code,
+        emp_code
+        )
+        VALUES
+        (
+        #{animalCode},
+        #{rescueDate},
+        #{rescueLocation},
+        #{animalImage},
+        #{age},
+        #{gender},
+        #{animalStatus},
+        #{typeDTO.typeCode},
+        #{breedDTO.breedCode},
+        #{empDTO.empCode}
+        )
+    </insert>
+
+    <insert id="insertHealthChecks" parameterType="java.util.List">
+        INSERT INTO tbl_ani_hel_check (animal_code, healthcheck_code)
+        VALUES
+        <foreach collection="healthChecks" item="healthCheck" separator=",">
+            (#{animalCode}, #{healthCheck.healthcheckCode})
+        </foreach>
+    </insert>
+
+    <insert id="insertInoculations" parameterType="java.util.List">
+        INSERT INTO tbl_ani_ino_check (animal_code, inoculation_code)
+        VALUES
+        <foreach collection="inoculations" item="inoculation" separator=",">
+            (#{animalCode}, #{inoculation.inoculationCode})
+        </foreach>
+    </insert>
+
+<!-- 등록 - 품종 비동기처리 -->
+    <select id="findBreed" resultMap="BreedResultMap">
+        select
+        *
+        from
+        tbl_ani_breed
+    </select>
+<!-- 등록 - 동물등록번호 자동 부여 -->
+    <select id="findLastAnimalCode">
+        SELECT animal_code
+        FROM tbl_animal
+        ORDER BY animal_code DESC
+        LIMIT 1
+    </select>
+
+<!-- 체크박스 선택 후 삭제 -->
+    <delete id="deleteBoard">
+        delete
+        from
+        tbl_animal
+        Where
+        animal_code = #{id}
+    </delete>
+
+<!-- ********************************* 입양완료 페이지 ************************************* -->
+<!-- 입양완료 된 동물 조회 -->
+    <select id="adoptAnimalList" resultMap="AllListResultMap">
+        SELECT
+            *
+        FROM
+            TBL_ANIMAL A
+        JOIN
+            TBL_EMP E
+        ON
+            A.EMP_CODE = E.EMP_CODE
+        JOIN
+            TBL_ANI_BREED B
+        ON
+            A.BREED_CODE = B.BREED_CODE
+        JOIN
+            TBL_ANI_TYPE T
+        ON
+            A.TYPE_CODE = T.TYPE_CODE
+        WHERE
+            A.animal_status in ('입양완료')
+        ORDER BY
+            A.RESCUE_DATE desc , ANIMAL_CODE desc
+
+        LIMIT #{limit} OFFSET #{offset}
+    </select>
+
+    <select id="getTotalAdoptAnimalCount" resultType="int">
+        SELECT COUNT(*)
+        FROM TBL_ANIMAL
+        WHERE animal_status = '입양완료'
+    </select>
+
+<!-- 입양완료 된 구조동물 상세페이지  -->
+    <select id="adoptionDetailAnimal" resultMap="AllListResultMap">
+        SELECT
+        *
+        FROM
+        TBL_ANIMAL A
+        JOIN
+        TBL_EMP E ON A.EMP_CODE = E.EMP_CODE
+        JOIN
+        TBL_ANI_BREED B ON A.BREED_CODE = B.BREED_CODE
+        JOIN
+        TBL_ANI_TYPE T ON A.TYPE_CODE = T.TYPE_CODE
+        LEFT JOIN
+        TBL_ANI_ADOPT AD ON A.ANIMAL_CODE = AD.ANIMAL_CODE
+        WHERE
+        A.ANIMAL_CODE = #{animalCode}
+    </select>
+
+    <select id="adoptionHealthAnimal" resultMap="AllListResultMap">
+        SELECT
+        *
+        FROM
+        TBL_ANIMAL A
+        JOIN
+        TBL_ANI_HEL_CHECK HC ON A.ANIMAL_CODE = HC.ANIMAL_CODE
+        JOIN
+        TBL_ANI_HEALTH H ON HC.HEALTHCHECK_CODE = H.HEALTHCHECK_CODE
+
+        WHERE
+        A.ANIMAL_CODE = #{animalCode}
+    </select>
+
+    <select id="adoptionInoculationAnimal" resultMap="AllListResultMap">
+        SELECT
+        *
+        FROM
+        TBL_ANIMAL A
+        JOIN
+        tbl_ani_ino_check IC ON A.ANIMAL_CODE = IC.ANIMAL_CODE
+        JOIN
+        tbl_ani_inoculation I ON IC.inoculation_code = I.inoculation_code
+
+        WHERE
+        A.ANIMAL_CODE = #{animalCode}
+    </select>
+
+    <!-- ********************************* 재고관리 페이지 ************************************* -->
+    <resultMap id="stockResultMap" type="com.ohgiraffers.semiproject.animals.model.dto.InventoryDTO">
+        <id property="itemCode" column="item_code"/>
+        <result property="itemType" column="item_type"/>
+        <result property="itemGroup" column="item_group"/>
+        <result property="dealName" column="deal_name"/>
+        <result property="dealUrl" column="deal_url"/>
+        <result property="dealDate" column="deal_date"/>
+        <result property="itemName" column="item_name"/>
+        <result property="itemNum" column="item_number"/>
+        <result property="typeCode" column="type_code"/>
+
+        <association property="typeDTO" javaType="com.ohgiraffers.semiproject.animals.model.dto.TypeDTO">
+            <id property="typeCode" column="type_code"/>
+            <result property="typeName" column="type_name"/>
+        </association>
+    </resultMap>
+<!-- 재고관리 조회 -->
+    <select id="stock" resultMap="stockResultMap">
+        SELECT
+        *
+        FROM
+        TBL_ANI_INVENTORY I
+        JOIN
+        TBL_ANI_TYPE T ON I.TYPE_CODE = T.TYPE_CODE
+    </select>
+<!-- 재고수량 수정 -->
+    <update id="inventoryUpdate" parameterType="map">
+        UPDATE tbl_ani_inventory
+        SET item_number = #{itemNum}
+        WHERE item_code = #{itemCode}
+    </update>
+
+<!-- 마이페이지(게시물내역) -->
+    <select id="getUserPosts" resultMap="AllListResultMap">
+        select
+        *
+        from
+        tbl_animal
+        Where
+        emp_code = #{code}
+    </select>
+
+    <!-- 보유중인 품종수 가져오기 -->
+    <select id="getBreed" resultMap="AllListResultMap">
+        SELECT
+        *
+        FROM
+        TBL_ANIMAL A
+        JOIN
+        TBL_EMP E ON A.EMP_CODE = E.EMP_CODE
+        JOIN
+        TBL_ANI_BREED B ON A.BREED_CODE = B.BREED_CODE
+        JOIN
+        TBL_ANI_TYPE T ON A.TYPE_CODE = T.TYPE_CODE
+        WHERE
+        A.animal_status IN ('공고중', '보호중', '파양/보호중')
+    </select>
+</mapper>

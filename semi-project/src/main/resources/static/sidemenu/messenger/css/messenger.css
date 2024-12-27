@@ -1,0 +1,189 @@
+.change-screen-messenger{
+    width: 1850px;
+    height: 800px;
+    background-color: white;
+    border-radius: 10px;
+    margin-bottom: 3%;
+    color: yellowgreen;
+}
+/* 전체 스타일 */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #181818; /* Dark background */
+    color: #e0e0e0;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 채팅 컨테이너 */
+.chat-container {
+    display: flex;
+    width: 90%;
+    height: 90%;
+    margin: 20px auto;
+    background-color: #242424;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.6);
+    transition: transform 0.3s ease-in-out;
+}
+
+.chat-container:hover {
+    transform: translateY(-10px); /* Hover effect to lift the chat container */
+}
+
+/* 사용자 목록 */
+.users {
+    width: 30%;
+    background-color: #2d2d2d;
+    padding: 25px;
+    border-right: 1px solid #333;
+    border-top-left-radius: 14px;
+    border-bottom-left-radius: 14px;
+    overflow-y: auto;
+}
+
+.users h3 {
+    color: #fff;
+    font-size: 1.4em;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* 사용자 리스트 스타일 */
+.users ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.users li {
+    padding: 14px;
+    cursor: pointer;
+    border-radius: 8px;
+    color: #bbb;
+    font-size: 1.1em;
+    transition: background-color 0.3s, color 0.3s;
+    margin-bottom: 10px;
+}
+
+.users li:hover {
+    background-color: #444;
+    color: #fff;
+}
+
+/* 채팅 박스 */
+.chat-box {
+    width: 70%;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    background-color: #292929;
+    border-left: 1px solid #333;
+    border-top-right-radius: 14px;
+    border-bottom-right-radius: 14px;
+}
+
+/* 채팅 상대 텍스트 */
+#chatWith {
+    color: #dcdcdc;
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+/* 채팅 기록 영역 */
+.chat-history {
+    flex: 1;
+    border: 1px solid #444;
+    padding: 20px;
+    overflow-y: auto;
+    background-color: #333;
+    border-radius: 8px;
+    color: #ddd;
+    font-size: 1.1em;
+    line-height: 1.6;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+/* 메시지 스타일 */
+.chat-message {
+    margin-bottom: 20px;
+}
+
+.chat-message .sender {
+    font-weight: bold;
+    color: #0096f6; /* Instagram Blue */
+    margin-bottom: 5px;
+}
+
+/* 메시지 박스 */
+.chat-message .message {
+    background-color: #444;
+    padding: 12px;
+    border-radius: 10px;
+    word-wrap: break-word;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* 입력창 */
+#messageInput {
+    padding: 14px;
+    border: 1px solid #555;
+    border-radius: 8px;
+    background-color: #444;
+    color: #ddd;
+    font-size: 1.1em;
+    width: calc(100% - 140px); /* 너비 수정: 버튼과 맞추기 */
+    margin-right: 10px;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.4);
+}
+
+#messageInput:focus {
+    background-color: #555;
+    border-color: #0096f6; /* Focus border color */
+    outline: none;
+}
+
+/* 전송 버튼 */
+button {
+    padding: 14px 20px;
+    border: none;
+    background: linear-gradient(135deg, #0096f6, #00c6ff); /* Blue gradient button */
+    color: white;
+    font-size: 1.2em;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    width: 120px; /* 버튼 너비 고정 */
+}
+
+button:hover {
+    background: linear-gradient(135deg, #00c6ff, #0096f6);
+    transform: translateY(-4px); /* Lift the button on hover */
+}
+
+button:active {
+    transform: translateY(2px); /* Pressed effect */
+}
+
+/* 전체 채팅 화면을 더 아름답게 만들기 위한 스크롤바 스타일 */
+.chat-history::-webkit-scrollbar {
+    width: 8px;
+}
+
+.chat-history::-webkit-scrollbar-thumb {
+    background-color: #555;
+    border-radius: 5px;
+}
+
+.chat-history::-webkit-scrollbar-track {
+    background: #333;
+}

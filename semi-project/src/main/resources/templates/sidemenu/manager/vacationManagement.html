@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>연차 & 휴가 관리</title>
+    <link rel="stylesheet" href="/main/css/main-style.css"> <!-- 메인 스타일 연결 -->
+    <script src="/main/js/main.js"></script> <!-- 메인 자바스크립트 연결 -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=keyboard_arrow_down" />
+    <link rel="stylesheet" href="/sidemenu/manager/css/employeeManagement-style.css">
+    <link rel="stylesheet" href="/sidemenu/manager/css/scheduleManagement.css">
+    <link rel="stylesheet" href="/sidemenu/manager/css/vacationManagement.css">
+</head>
+<body>
+<header>
+    <div class="side-menu-bar">
+        <ul>
+            <li><a href="/main">🐶PetHarmony🐶</a></li>
+            <li><a href="http://localhost:9595/sidemenu/schedule">근태관리</a></li>
+            <li><a href="http://localhost:9595/sidemenu/messenger">메신저(채팅)</a></li>
+            <li><a href="http://localhost:9595/sidemenu/mail">이메일</a></li>
+            <li><a href="http://localhost:9595/sidemenu/adoption">입양</a></li>
+            <li class="animal-menu">
+                <div class="menu-wrapper">
+                    <a href="http://localhost:9595/sidemenu/animals">동물
+                        <span class="material-symbols-outlined">keyboard_arrow_down</span>
+                    </a>
+                </div>
+                <ul class="sub-menu">
+                    <li><a href="http://localhost:9595/sidemenu/animals">구조동물</a></li>
+                    <li><a href="http://localhost:9595/sidemenu/adoptionComplete">입양완료</a></li>
+                    <li><a href="http://localhost:9595/sidemenu/stock">재고관리</a></li>
+                </ul>
+            </li>
+            <li><a href="http://localhost:9595/sidemenu/facilities">시설관리</a></li>
+            <li><a href="http://localhost:9595/sidemenu/board">전사게시판</a></li>
+            <li><a href="http://localhost:9595/sidemenu/employee">직원정보</a></li>
+            <li><a href="http://localhost:9595/sidemenu/mypage">마이페이지</a></li>
+            <li><a href="http://localhost:9595/sidemenu/approval">결재</a></li>
+            <li class="admin-menu">
+                <div class="admin-menu-wrapper">
+                    <a href="http://localhost:9595/sidemenu/manager">관리자전용
+                        <span class="material-symbols-outlined">keyboard_arrow_down</span>
+                    </a>
+                </div>
+                <ul class="sub-menu">
+                    <li><a href="http://localhost:9595/sidemenu/manager">관리자페이지</a></li>
+                    <li><a href="http://localhost:9595/sidemenu/employeeRegister">사원등록</a></li>
+                    <li><a href="http://localhost:9595/sidemenu/employeeManagement">직원관리</a></li>
+                    <li><a href="http://localhost:9595/sidemenu/approvalBox">결재함</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</header>
+<div class="change-screen-employeeManagement">
+    <div id="change-screen-content">
+        <div class="tab-header">
+            <div class="management-button">
+                <a href="/scheduleManagement" id="btn-1" class="tab-button">⏰근태수정 요청관리⏰</a>
+            </div>
+            <div class="management-button">
+                <a href="/vacationManagement" id="btn-2" class="tab-button default">🏖️연차 & 휴가 관리🏖️</a>
+            </div>
+        </div>
+
+        <!-- 필터링 요소 추가 -->
+        <div class="filter-container">
+            <div class="left-buttons">
+                <button class="filter-button" id="select-all">전체 선택</button>
+                <button class="filter-button" id="attendance-80">작년 근태 80% 이상</button>
+                <button class="filter-button" id="attendance-100">지난달 근태 100% 이상</button>
+            </div>
+            <div class="right-controls">
+                <select id="department-select">
+                    <option value="">부서명 선택</option>
+                    <option value="경영부">경영부</option>
+                    <option value="애견담당부">애견담당부</option>
+                    <option value="마케팅부">마케팅부</option>
+                    <option value="영업부">영업부</option>
+                    <option value="물류부">물류부</option>
+                    <option value="고객CS업무부">고객CS업무부</option>
+                </select>
+                <input type="text" id="name-search" placeholder="이름 검색어" />
+            </div>
+        </div>
+
+        <!-- 헤드라인 추가 -->
+        <ul class="header-list">
+            <li>사번</li>
+            <li>부서</li>
+            <li>이름</li>
+            <li>직급</li>
+            <li>입사일</li>
+            <li>근속년수</li>
+            <li>작년 근태율</li>
+            <li>지난달 근태율</li>
+            <li>잔여연차</li>
+            <li>잔여휴가</li>
+        </ul>
+
+        <div class="data-list"></div> <!-- 데이터 리스트를 위한 div -->
+        <div class="pagination-container">
+            <div class="pagination"></div>
+            <div class="button-box">
+                <button id="addLeave">연차 & 휴가 생성</button>
+                <button id="deductLeave" class="deductLeave">연차 & 휴가 차감</button>
+            </div>
+        </div>
+
+        <!-- 생성 모달 창 -->
+        <form id="createVacationForm" action="/createVacation" method="post">
+            <div id="createModal" class="modal">
+                <div class="modal-content">
+                    <span class="close-button" id="closeCreateModal">&times;</span>
+                    <h2 style="text-align: center;">연차 & 휴가 생성</h2>
+                    <label for="createEmpCode">사번 코드</label>
+                    <input type="text" id="createEmpCode" name="code" placeholder="사번 코드를 입력하세요" required style="width: 100%; height: 40px;">
+
+                    <div class="leave-type-container">
+                        <label>
+                            <input type="radio" name="createLeaveType" value="annual" checked> 연차
+                        </label>
+                        <label>
+                            <input type="radio" name="createLeaveType" value="vacation"> 휴가
+                        </label>
+                    </div>
+
+                    <label for="createLeaveDays">생성할 일수</label>
+                    <input type="number" id="createLeaveDays" min="1" placeholder="생성일 수를 숫자로 입력하세요" required style="width: 100%; height: 40px;">
+
+                    <div class="form-box">
+                        <button type="button" id="submitCreateLeave" class="createButton">생성</button>
+                        <button type="button" id="cancelCreateLeave" class="cancelButton">취소</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <!-- 차감 모달 창 -->
+        <form id="deductedVacationForm" action="/deductedVacation" method="post">
+            <div id="deductModal" class="modal">
+                <div class="modal-content">
+                    <span class="close-button" id="closeDeductModal">&times;</span>
+                    <h2 style="text-align: center;">연차 & 휴가 차감</h2>
+                    <label for="deductEmpCode">사번 코드</label>
+                    <input type="text" id="deductEmpCode" placeholder="사번 코드를 입력하세요" required style="width: 100%; height: 40px;">
+
+                    <div class="leave-type-container">
+                        <label>
+                            <input type="radio" name="deductLeaveType" value="annual" checked> 연차
+                        </label>
+                        <label>
+                            <input type="radio" name="deductLeaveType" value="vacation"> 휴가
+                        </label>
+                    </div>
+
+                    <label for="deductLeaveDays">차감할 일수</label>
+                    <input type="number" id="deductLeaveDays" min="1" placeholder="차감할 일 수를 숫자로 입력하세요" required style="width: 100%; height: 40px;">
+
+                    <div class="form-box">
+                        <button type="button" id="submitDeductLeave" class="createButton">차감</button>
+                        <button type="button" id="cancelDeductLeave" class="cancelButton">취소</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="/sidemenu/manager/js/scheduleManagement.js"></script>
+<script src="/sidemenu/manager/js/vacationManagement.js"></script>
+</body>
+</html>

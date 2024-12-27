@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>근태수정 요청관리</title>
+    <link rel="stylesheet" href="/main/css/main-style.css"> <!-- 메인 스타일 연결 -->
+    <script src="/main/js/main.js"></script> <!-- 메인 자바스크립트 연결 -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=keyboard_arrow_down" />
+    <link rel="stylesheet" href="/sidemenu/manager/css/employeeManagement-style.css">
+    <link rel="stylesheet" href="/sidemenu/manager/css/scheduleManagement.css">
+</head>
+<body>
+
+<header>
+    <div class="side-menu-bar">
+        <ul>
+            <li><a href="/main">🐶PetHarmony🐶</a></li>
+            <li><a href="http://localhost:9595/sidemenu/schedule">근태관리</a></li>
+            <li><a href="http://localhost:9595/sidemenu/messenger">메신저(채팅)</a></li>
+            <li><a href="http://localhost:9595/sidemenu/mail">이메일</a></li>
+            <li><a href="http://localhost:9595/sidemenu/adoption">입양</a></li>
+            <li class="animal-menu">
+                <div class="menu-wrapper">
+                    <a href="http://localhost:9595/sidemenu/animals">동물
+                        <span class="material-symbols-outlined">keyboard_arrow_down</span>
+                    </a>
+                </div>
+                <ul class="sub-menu">
+                    <li><a href="http://localhost:9595/sidemenu/animals">구조동물</a></li>
+                    <li><a href="http://localhost:9595/sidemenu/adoptionComplete">입양완료</a></li>
+                    <li><a href="http://localhost:9595/sidemenu/stock">재고관리</a></li>
+                </ul>
+            </li>
+            <li><a href="http://localhost:9595/sidemenu/facilities">시설관리</a></li>
+            <li><a href="http://localhost:9595/sidemenu/board">전사게시판</a></li>
+            <li><a href="http://localhost:9595/sidemenu/employee">직원정보</a></li>
+            <li><a href="http://localhost:9595/sidemenu/mypage">마이페이지</a></li>
+            <li><a href="http://localhost:9595/sidemenu/approval">결재</a></li>
+            <li class="admin-menu">
+                <div class="admin-menu-wrapper">
+                    <a href="http://localhost:9595/sidemenu/manager">관리자전용
+                        <span class="material-symbols-outlined">keyboard_arrow_down</span>
+                    </a>
+                </div>
+                <ul class="sub-menu">
+                    <li><a href="http://localhost:9595/sidemenu/manager">관리자페이지</a></li>
+                    <li><a href="http://localhost:9595/sidemenu/employeeRegister">사원등록</a></li>
+                    <li><a href="http://localhost:9595/sidemenu/employeeManagement">직원관리</a></li>
+                    <li><a href="http://localhost:9595/sidemenu/approvalBox">결재함</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</header>
+<div class="change-screen-employeeManagement">
+    <div id="change-screen-content">
+        <div class="tab-header">
+            <div class="management-button">
+                <a href="/scheduleManagement" id="btn-1" class="tab-button default">⏰근태수정 요청관리⏰</a>
+            </div>
+            <div class="management-button">
+                <a href="/vacationManagement" id="btn-2" class="tab-button">🏖️연차 & 휴가 관리🏖️</a>
+            </div>
+        </div>
+        <div id="content-area" class="content-area">
+            <form action="/adminScheduleProcess" method="post" id="attendanceForm">
+                <input type="hidden" name="workCode" id="workCode">
+                <input type="hidden" name="division" id="division">
+                <div class="container">
+                    <div class="attendance-box">
+                        <h3>🗒️근태수정 요청목록🗒️</h3>
+                        <div class="attendance-select">
+                            <ul id="attendance-list"></ul>
+                        </div>
+                        <div class="filter-container">
+                            <div class="filter-box">
+                                <label for="modify-type">수정 유형</label>
+                                <select id="modify-type" class="custom-select" onchange="filterAttendance()">
+                                    <option value="">모두 보기</option>
+                                    <option value="출근수정">출근수정</option>
+                                    <option value="퇴근수정">퇴근수정</option>
+                                </select>
+                            </div>
+                            <div class="filter-box">
+                                <label for="status-filter">진행 상태</label>
+                                <select id="status-filter" class="custom-select" onchange="filterAttendance()">
+                                    <option value="">모두 보기</option>
+                                    <option value="대기중">대기중</option>
+                                    <option value="승인됨">승인됨</option>
+                                    <option value="반려됨">반려됨</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="manager" id="manager-details">
+                        <h3 id="request-title" style="text-align: center;">근태수정 요청안</h3>
+                        <ul class="attendance-header">
+                            <li>수정요청일</li>
+                            <li>출근시간</li>
+                            <li>퇴근시간</li>
+                            <li>총 근무시간</li>
+                            <li>상태</li>
+                        </ul>
+                        <ul class="attendance-details" id="attendance-details" style="display: block;"><li></li></ul>
+                        <h3 style="text-align: center;">근태수정 사유</h3>
+                        <textarea id="user-reason" class="user-reason" readonly placeholder=""></textarea>
+                        <div class="request-time-container">
+                            <div class="request-time">
+                                수정 요청 시간: <span id="request-time"></span>
+                                <input type="hidden" id="modifyTime" name="modifyTime">
+                            </div>
+                            <div class="radio-buttons">
+                                <label><input type="radio" name="workType" value="정상"> 정상</label>
+                                <label><input type="radio" name="workType" value="지각"> 지각</label>
+                                <label><input type="radio" name="workType" value="조퇴"> 조퇴</label>
+                                <label><input type="radio" name="workType" value="결근"> 결근</label>
+                                <label><input type="radio" name="workType" value="연차"> 연차</label>
+                                <label><input type="radio" name="workType" value="휴가"> 휴가</label>
+                                <label><input type="radio" name="workType" value="연장"> 연장</label>
+                            </div>
+                        </div>
+                        <h3 style="text-align: center;">✏️관리자 의견 작성✏️</h3>
+                        <textarea class="admin-reason" name="managerIdea" placeholder="관리자 의견을 작성해주세요"></textarea>
+                        <div class="button-container">
+                            <button class="styled-button approve-button" type="button" onclick="handleSubmit('SU3')">승인</button>
+                            <button class="styled-button reject-button" type="button" onclick="handleSubmit('SU4')">반려</button>
+                        </div>
+                        <input type="hidden" id="statusValue" name="progressCode" value="">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="/sidemenu/manager/js/scheduleManagement.js"></script>
+</body>
+</html>

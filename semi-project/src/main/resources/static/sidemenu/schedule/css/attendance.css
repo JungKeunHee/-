@@ -1,0 +1,504 @@
+.change-screen-attendance {
+    width: 1850px;
+    height: 800px;
+    background-color: white;
+    border-radius: 10px;
+    margin-bottom: 3%;
+}
+
+.box{
+    width: 1850px;
+    height: 800px;
+    display: flex;
+}
+
+.select-box{
+    width: 500px;
+    height: 780px;
+    border-radius: 10px;
+    margin: 10px;
+    background-color: white; /* 흰 배경 추가 */
+    box-shadow: 0 5px 5px 4px rgba(0, 0, 0, 0.1); /* 그림자 아래로 연하게 조정 */
+    text-align: center;
+}
+
+.select-box2 {
+    width: 400px;
+    height: 630px;
+    border-radius: 10px;
+    margin-left: 9.5%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 그림자 추가 */
+    overflow-y: auto; /* 세로 스크롤 추가 */
+}
+
+
+#item-list {
+    list-style-type: none; /* 기본 리스트 스타일 제거 */
+    padding: 0; /* 패딩 제거 */
+    max-width: 600px; /* 최대 너비 설정 */
+    margin: 0 auto; /* 중앙 정렬 */
+}
+
+#item-list li {
+    padding: 20px; /* 리스트 항목 패딩 */
+    border: 1px solid #e0e0e0; /* 항목 간 구분선 */
+    border-radius: 8px; /* 모서리 둥글게 */
+    margin-bottom: 15px; /* 항목 간 여백 */
+    background-color: #ffffff; /* 배경색 */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+    transition: transform 0.2s; /* 부드러운 변환 효과 */
+    height: 200px;
+    position: relative;
+}
+
+.item-checkbox {
+    position: absolute; /* 절대 위치 설정 */
+    top: 10px; /* 상단에서 10px 떨어진 위치 */
+    right: 10px; /* 오른쪽에서 10px 떨어진 위치 */
+}
+
+#item-list li:hover {
+    transform: translateY(-2px); /* 마우스 오버 시 약간 위로 이동 */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* 그림자 효과 강화 */
+}
+
+.request-date, .division, .admin-code, .progress-status, .time-info {
+    display: flex; /* Flexbox 사용 */
+    justify-content: space-between; /* 양쪽 끝으로 정렬 */
+    margin-bottom: 10px; /* 아래 여백 */
+    font-size: 1.1em; /* 글자 크기 조정 */
+}
+
+.label {
+    font-weight: bold; /* 레이블 강조 */
+    color: #333; /* 레이블 색상 */
+    flex: 0 0 150px; /* 레이블의 너비 고정 */
+}
+
+.value {
+    flex: 1; /* 값이 오른쪽에 붙도록 설정 */
+    text-align: center; /* 값 왼쪽 정렬 */
+    color: #555; /* 값 색상 */
+}
+
+.before-time, .after-time {
+    margin-left: 10px; /* 왼쪽 여백 */
+}
+
+.space {
+    display: inline-block; /* 인라인 블록으로 설정 */
+    width: 21px; /* 원하는 간격 설정 (예: 10px) */
+}
+
+.space2 {
+    display: inline-block; /* 인라인 블록으로 설정 */
+    width: 100px; /* 원하는 간격 설정 (예: 10px) */
+}
+
+.progress-status {
+    text-align: center; /* 자식 요소를 수평 가운데 정렬 */
+    margin-left: 34%;
+    margin-top: 4%;
+}
+
+
+.label-message {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-align: center;
+    color: white; /* 텍스트 색상 */
+    font-weight: bold;
+    width: 100px;
+}
+
+.label-gray {
+    background-color: gray; /* 대기중 */
+}
+
+.label-blue {
+    background-color: blue; /* 확인중 */
+}
+
+.label-green {
+    background-color: green; /* 승인됨 */
+}
+
+.label-red {
+    background-color: red; /* 반려됨 */
+}
+
+
+/* 모달 콘텐츠 스타일 */
+.modal-attendance-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 400px;
+    height: 300px;
+    border-radius: 8px; /* 모서리 둥글게 */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* 그림자 효과 */
+}
+
+/* 닫기 버튼 스타일 */
+.modal-close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer; /* 커서 포인터로 변경 */
+}
+
+.modal-close-button:hover,
+.modal-close-button:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer; /* 커서 포인터로 변경 */
+}
+
+/* 모달 제목 스타일 */
+.modal-attendance-content h2 {
+    margin: 0; /* 기본 마진 제거 */
+    color: #333; /* 제목 색상 */
+}
+
+/* 모달 내용 스타일 */
+#modal-reason {
+    margin-top: 10%; /* 내용과 제목 간격 */
+    color: #555; /* 내용 색상 */
+    width: 400px;
+    height: 120px;
+}
+
+
+.attendance-request{
+    width: 1300px;
+    height: 770px;
+    margin: 10px;
+    background-color: white; /* 흰 배경 추가 */
+    box-shadow: 0 5px 5px 4px rgba(0, 0, 0, 0.1); /* 그림자 아래로 연하게 조정 */
+    padding: 5px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.form-row {
+    display: flex;
+    justify-content: center;
+    align-items: center; /* 수직 정렬 추가 */
+    margin-bottom: 20px; /* 각 입력 필드 간격 조정 */
+    background-color: #fff; /* 입력 필드 배경색 */
+    border-radius: 8px; /* 모서리 둥글게 */
+    padding: 15px; /* 내부 여백 추가 */
+}
+
+.form-row input[type="time"],
+.form-row input[type="text"],
+.form-row input[type="date"] {
+    margin: 0 20px; /* 입력 필드 간격 조정 (양쪽으로 20px) */
+    padding: 10px; /* 패딩 증가 */
+    width: 200px;
+    height: 20px; /* 입력 필드 높이 조정 */
+    border: 1px solid #ccc; /* 테두리 스타일 */
+    border-radius: 4px; /* 모서리 둥글게 */
+    font-size: 14px; /* 글자 크기 조정 */
+    transition: border-color 0.3s; /* 테두리 색상 변화 애니메이션 */
+}
+
+.form-row input[type="time"]:focus,
+.form-row input[type="text"]:focus,
+.form-row input[type="date"]:focus{
+    border-color: #007bff; /* 포커스 시 테두리 색상 변경 */
+    outline: none; /* 기본 아웃라인 제거 */
+}
+
+.radio-group {
+    display: flex;
+    justify-content: center;
+    align-items: center; /* 수직 정렬 추가 */
+    margin-top: 10px; /* 라디오 버튼 간격 조정 */
+}
+
+.radio-group label {
+    display: flex; /* 라벨을 flex 컨테이너로 설정 */
+    align-items: center; /* 라디오 버튼과 텍스트 수직 정렬 */
+    margin: 0 15px; /* 라디오 버튼 간격 조정 (양쪽으로 15px) */
+    font-size: 14px; /* 글자 크기 조정 */
+    color: #333; /* 글자 색상 */
+}
+
+.radio-group input[type="radio"] {
+    width: 20px; /* 라디오 버튼 크기 조정 */
+    height: 20px; /* 라디오 버튼 크기 조정 */
+    margin-right: 5px; /* 라디오 버튼과 텍스트 간격 조정 */
+    vertical-align: middle; /* 수직 정렬 추가 */
+}
+
+.radio-group input[type="radio"]:checked + label {
+    font-weight: bold; /* 선택된 라디오 버튼의 라벨을 굵게 */
+    color: #007bff; /* 선택된 라디오 버튼의 라벨 색상 변경 */
+}
+
+.input-container {
+    display: flex; /* Flexbox 사용 */
+    justify-content: center; /* 수평 가운데 정렬 */
+    margin-top: 30px;
+}
+
+.text-area {
+    width: 1040px; /* 너비 설정 */
+    height: 435px; /* 높이 설정 */
+    padding: 10px; /* 패딩 추가 (선택 사항) */
+    border: 1px solid #ccc; /* 테두리 추가 (선택 사항) */
+    border-radius: 4px; /* 모서리 둥글게 (선택 사항) */
+    font-size: 16px; /* 글자 크기 설정 (선택 사항) */
+    transition: border-color 0.3s; /* 테두리 색상 변화 애니메이션 */
+}
+
+.text-area:focus {
+    border-color: #007bff; /* 포커스 시 테두리 색상 변경 */
+    outline: none; /* 기본 아웃라인 제거 */
+}
+
+.text-area::placeholder {
+    text-align: left; /* 플레이스홀더 텍스트 왼쪽 정렬 */
+}
+
+.open-modal {
+    background-color: #0079ff; /* 초록색 배경 */
+    color: white; /* 흰색 글자 */
+    border: none; /* 테두리 없음 */
+    padding: 10px 20px; /* 위아래 10px, 좌우 20px 패딩 */
+    text-align: center; /* 텍스트 중앙 정렬 */
+    text-decoration: none; /* 텍스트 장식 없음 */
+    display: inline-block; /* 인라인 블록으로 설정 */
+    font-size: 16px; /* 글자 크기 */
+    margin: 4px 2px; /* 마진 설정 */
+    cursor: pointer; /* 커서 포인터로 변경 */
+    border-radius: 5px; /* 모서리 둥글게 */
+    transition: background-color 0.3s, transform 0.2s; /* 배경색과 변형에 대한 전환 효과 */
+}
+
+.open-modal:hover {
+    background-color: #3626ff; /* 호버 시 배경색 변경 */
+    transform: scale(1.05); /* 호버 시 약간 확대 */
+}
+
+.open-modal:active {
+    transform: scale(0.95); /* 클릭 시 약간 축소 */
+}
+
+.modal {
+    display: none; /* 기본적으로 숨김 */
+    position: fixed; /* 화면에 고정 */
+    z-index: 1000; /* 다른 요소 위에 표시 */
+    left: 0;
+    top: 0;
+    width: 100%; /* 전체 너비 */
+    height: 100%; /* 전체 높이 */
+    overflow: auto; /* 스크롤 가능 */
+    background-color: rgba(0, 0, 0, 0.5); /* 반투명 배경 */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 8% auto; /* 위쪽 여백을 주고 중앙 정렬 */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 500px;
+    max-height: 80%; /* 최대 높이 조정 */
+    overflow-y: auto; /* 세로 스크롤 가능 */
+}
+
+.employee-list-container {
+    max-height: 500px; /* 최대 높이 설정 */
+    overflow-y: auto; /* 세로 스크롤 가능 */
+    border: 1px solid #ccc; /* 테두리 추가 */
+    padding: 10px; /* 패딩 추가 */
+}
+
+#employee-list {
+    list-style-type: none; /* 기본 리스트 스타일 제거 */
+    padding: 0; /* 패딩 제거 */
+    margin: 0; /* 마진 제거 */
+}
+
+#employee-list li {
+    display: flex; /* 플렉스 박스 사용 */
+    justify-content: space-between; /* 항목 간의 간격을 균등하게 배치 */
+    padding: 10px; /* 항목 간의 패딩 */
+    border-bottom: 1px solid #ccc; /* 항목 간의 구분선 */
+    cursor: pointer; /* 마우스 포인터를 손가락 모양으로 변경 */
+}
+
+#employee-list li:hover {
+    background-color: #f0f0f0; /* 마우스 오버 시 배경색 변경 */
+}
+
+
+#employee-list li:last-child {
+    border-bottom: none; /* 마지막 항목의 구분선 제거 */
+}
+
+#employee-list li span {
+    flex: 1; /* 각 항목이 동일한 비율로 공간을 차지하도록 설정 */
+    text-align: left; /* 텍스트 왼쪽 정렬 */
+}
+
+.employee-header {
+    display: flex; /* 플렉스 박스 사용 */
+    justify-content: space-between; /* 항목 간의 간격을 균등하게 배치 */
+    font-weight: bold; /* 제목을 굵게 표시 */
+    padding-right: 30px;
+}
+
+.employee-header span,
+.employee-info p {
+    flex: 1; /* 각 항목이 동일한 비율로 공간을 차지하도록 설정 */
+    text-align: center; /* 텍스트를 중앙 정렬 */
+    padding: 5px; /* 위아래 및 좌우 패딩 추가 */
+    margin: 0; /* 기본 마진 제거 */
+    margin-right: 12%;
+}
+
+.employee-info {
+    display: flex; /* 플렉스 박스 사용 */
+    justify-content: space-between; /* 항목 간의 간격을 균등하게 배치 */
+}
+
+.move-left {
+    display: flex; /* 내부 요소들을 플렉스 박스로 정렬 */
+    margin-left: 10px; /* 왼쪽으로 10px 이동 */
+}
+
+.move-left span {
+    margin-left: 10px; /* 각 요소 간의 간격 조정 */
+}
+
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.admin-select{
+    margin-left: 5%;
+}
+
+.admin-select input[type="text"] {
+    margin: 0 20px; /* 입력 필드 간격 조정 (양쪽으로 20px) */
+    padding: 10px; /* 패딩 증가 */
+    width: 200px;
+    height: 20px; /* 입력 필드 높이 조정 */
+    border: 1px solid #ccc; /* 테두리 스타일 */
+    border-radius: 4px; /* 모서리 둥글게 */
+    font-size: 14px; /* 글자 크기 조정 */
+    transition: border-color 0.3s; /* 테두리 색상 변화 애니메이션 */
+}
+
+.admin-select input[type="text"]:focus {
+    border-color: #007bff; /* 포커스 시 테두리 색상 변경 */
+    outline: none; /* 기본 아웃라인 제거 */
+}
+
+.admin-select button {
+    padding: 10px 15px; /* 버튼 패딩 */
+    background-color: #007bff; /* 버튼 배경색 */
+    color: white; /* 글자 색상 */
+    border: none; /* 테두리 제거 */
+    border-radius: 4px; /* 모서리 둥글게 */
+    font-size: 14px; /* 글자 크기 조정 */
+    cursor: pointer; /* 커서 포인터로 변경 */
+    transition: background-color 0.3s; /* 배경색 변화 애니메이션 */
+}
+
+.admin-select button:hover {
+    background-color: #0056b3; /* 호버 시 배경색 변경 */
+}
+
+.admin-select button:focus {
+    outline: none; /* 버튼 포커스 시 아웃라인 제거 */
+}
+
+.request-button {
+    display: flex; /* 플렉스 박스 사용 */
+    justify-content: center; /* 수평 중앙 정렬 */
+    margin-top: 20px; /* 위쪽 여백 */
+}
+
+.request-button button {
+    padding: 10px 20px; /* 버튼 패딩 */
+    background-color: #28a745; /* 버튼 배경색 */
+    color: white; /* 글자 색상 */
+    border: none; /* 테두리 제거 */
+    border-radius: 4px; /* 모서리 둥글게 */
+    font-size: 16px; /* 글자 크기 조정 */
+    cursor: pointer; /* 커서 포인터로 변경 */
+    transition: background-color 0.3s; /* 배경색 변화 애니메이션 */
+}
+
+.request-button button:hover {
+    background-color: #218838; /* 호버 시 배경색 변경 */
+}
+
+.delete-attendance {
+    text-align: center; /* 버튼을 가운데 정렬 */
+    margin-top: 10px; /* 버튼과 리스트 사이의 간격 */
+}
+
+#delete-button {
+    padding: 10px 20px; /* 버튼 패딩 */
+    border: none; /* 기본 테두리 제거 */
+    border-radius: 5px; /* 모서리 둥글게 */
+    background-color: #ff4d4d; /* 배경색 */
+    color: white; /* 글자색 */
+    cursor: pointer; /* 커서 모양 변경 */
+    margin-top: 11px;
+    transition: background-color 0.3s; /* 배경색 변화 애니메이션 */
+    font-weight: bold;
+}
+
+#delete-button:hover {
+    background-color: #ff1a1a; /* 호버 시 배경색 변경 */
+}
+
+
+
+.opinion-section {
+    display: block; /* 의견 박스를 세로로 배치 */
+    margin-top: 20px; /* 상단 여백 */
+}
+
+.opinion-box {
+    border: 1px solid #ccc; /* 테두리 색상 */
+    border-radius: 5px; /* 모서리 둥글게 */
+    padding: 10px; /* 안쪽 여백 */
+    background-color: #f9f9f9; /* 배경 색상 */
+    margin-top: 20px; /* 박스 간의 간격 */
+    height: 75px;
+}
+
+.opinion-box h3 {
+    margin: 0 0 10px; /* 제목과 내용 간의 여백 */
+}
+
+textarea {
+    width: 100%; /* 텍스트 영역의 너비를 100%로 설정 */
+    border: none; /* 기본 테두리 제거 */
+    resize: none; /* 크기 조절 비활성화 */
+    font-size: 14px; /* 글자 크기 */
+}
+
+textarea:focus {
+    outline: none; /* 포커스 시 아웃라인 제거 */
+}
+

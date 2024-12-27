@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>사원등록</title>
+    <link rel="stylesheet" href="/sidemenu/manager/css/employeeRegister-style.css">
+    <link rel="stylesheet" href="/main/css/main-style.css"> <!-- 메인 스타일 연결 -->
+    <script src="/main/js/main.js"></script> <!-- 메인 자바스크립트 연결 -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=keyboard_arrow_down" />
+    <script src="/sidemenu/manager/js/employeeRegister.js"></script>
+</head>
+<body>
+<header>
+    <div class="side-menu-bar">
+        <ul>
+            <li><a href="/main">🐶PetHarmony🐶</a></li>
+            <li><a href="http://localhost:9595/sidemenu/schedule">근태관리</a></li>
+            <li><a href="http://localhost:9595/sidemenu/messenger">메신저(채팅)</a></li>
+            <li><a href="http://localhost:9595/sidemenu/mail">이메일</a></li>
+            <li><a href="http://localhost:9595/sidemenu/adoption">입양</a></li>
+            <li class="animal-menu">
+                <div class="menu-wrapper">
+                    <a href="http://localhost:9595/sidemenu/animals">동물
+                        <span class="material-symbols-outlined">keyboard_arrow_down</span>
+                    </a>
+                </div>
+                <ul class="sub-menu">
+                    <li><a href="http://localhost:9595/sidemenu/animals">구조동물</a></li>
+                    <li><a href="http://localhost:9595/sidemenu/adoptionComplete">입양완료</a></li>
+                    <li><a href="http://localhost:9595/sidemenu/stock">재고관리</a></li>
+                </ul>
+            </li>
+            <li><a href="http://localhost:9595/sidemenu/facilities">시설관리</a></li>
+            <li><a href="http://localhost:9595/sidemenu/board">전사게시판</a></li>
+            <li><a href="http://localhost:9595/sidemenu/employee">직원정보</a></li>
+            <li><a href="http://localhost:9595/sidemenu/mypage">마이페이지</a></li>
+            <li><a href="http://localhost:9595/sidemenu/approval">결재</a></li>
+            <li class="admin-menu">
+                <div class="admin-menu-wrapper">
+                    <a href="http://localhost:9595/sidemenu/manager">관리자전용
+                        <span class="material-symbols-outlined">keyboard_arrow_down</span>
+                    </a>
+                </div>
+                <ul class="sub-menu">
+                    <li><a href="http://localhost:9595/sidemenu/manager">관리자페이지</a></li>
+                    <li><a href="http://localhost:9595/sidemenu/employeeRegister">사원등록</a></li>
+                    <li><a href="http://localhost:9595/sidemenu/employeeManagement">직원관리</a></li>
+                    <li><a href="http://localhost:9595/sidemenu/approvalBox">결재함</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</header>
+
+
+<div class="container1">
+<div class="change-screen-employeeRegister">
+    <div id="change-screen-content">
+        <h1 style="text-align: center;">🗒️사원등록🗒️</h1>
+        <form action="/user/signup" method="post">
+            <!-- 프로필 사진 업로드 -->
+            <div class="container2">
+                <div class="profile-pic" id="profilePic" style="margin-bottom: 10px;">
+                    <img id="profilePreview" src="" alt="Profile Picture">
+                </div>
+                <div class="container4">
+                    <input type="file" name="image" accept="image/*" onchange="previewImage(event)">
+                </div>
+            </div>
+            <div class="container3">
+                <div class="left-column">
+                    <div class="form-group">
+                        <label for="hireDate">입사일자</label>
+                        <input type="date" id="hireDate" name="hireDate" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="gender">성별</label>
+                        <select name="gender" id="gender">
+                            <option value="남">남성</option>
+                            <option value="여">여성</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="authority">권한</label>
+                        <select name="authority" id="authority">
+                            <option value="USER">일반사원</option>
+                            <option value="ADMIN">관리자</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="middle-column">
+
+                    <div class="form-group">
+                        <label for="code">사원번호</label>
+                        <input type="text" id="code" name="code">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="name">이름</label>
+                        <input type="text" id="name" name="name" placeholder="이름을 입력해주세요">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="jobCode">직급</label>
+                        <select name="jobCode" id="jobCode">
+                            <option value="J1">대표</option>
+                            <option value="J2">부사장</option>
+                            <option value="J3">부장</option>
+                            <option value="J4">과장</option>
+                            <option value="J5">팀장</option>
+                            <option value="J6">대리</option>
+                            <option value="J7">주임</option>
+                            <option value="J8">사원</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <div class="right-column">
+
+                    <div class="form-group">
+                        <label for="pass">비밀번호</label>
+                        <input type="password" id="pass" name="pass" value="1234" readonly>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">핸드폰번호</label>
+                        <input type="text" id="phone" name="phone" placeholder="예시) 010-1234-1234">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="deptCode">부서</label>
+                        <select name="deptCode" id="deptCode">
+                            <option value="B1">경영부</option>
+                            <option value="B2">애견담당부</option>
+                            <option value="B3">마케팅부</option>
+                            <option value="B4">영업부</option>
+                            <option value="B5">물류부</option>
+                            <option value="B6">고객CS업무부</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bottom-container">
+                <div class="form-group">
+                    <label for="address">주소</label>
+                    <input type="text" id="address" name="address" class="address" placeholder="주소지를 입력해주세요">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">이메일</label>
+                    <input type="text" id="email" name="email" placeholder="'@' 포함하여 입력해주세요">
+                </div>
+            </div>
+
+            <div class="button-area">
+                <button type="submit" class="submit">사원 등록하기</button>
+                <input type="button" class="cancel" onclick="location.href='/sidemenu/manager'" value="취소">
+            </div>
+        </form>
+    </div>
+    </div>
+    </div>
+</body>
+</html>

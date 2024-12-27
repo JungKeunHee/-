@@ -1,0 +1,181 @@
+/* 전체 화면 설정 */
+.change-screen-employeeRegister {
+    width: 1850px;
+    height: 800px;
+    background-color: white;
+    border-radius: 10px;
+    margin-bottom: 3%;
+    display: flex; /* Flexbox 활성화 */
+    justify-content: center; /* 수평 가운데 정렬 */
+    align-items: center; /* 수직 가운데 정렬 */
+}
+
+/* 제목 스타일 */
+h1 {
+    margin-bottom: 30px;
+    font-size: 24px; /* 제목 크기 조정 */
+    color: #333; /* 제목 색상 조정 */
+}
+
+/* 프로필 사진 스타일 */
+.profile-pic {
+    width: 150px; /* 원하는 크기로 조정 */
+    height: 150px; /* 원하는 크기로 조정 */
+    border-radius: 50%; /* 동그라미 모양 */
+    overflow: hidden; /* 넘치는 부분 숨기기 */
+    border: 2px solid #ccc; /* 테두리 스타일 */
+    display: flex; /* Flexbox 사용 */
+    align-items: center; /* 수직 중앙 정렬 */
+    justify-content: center; /* 수평 중앙 정렬 */
+    margin-bottom: 10px; /* 아래 여백 */
+    background-color: #f9f9f9; /* 배경색 추가 */
+}
+
+#profilePreview {
+    width: 100%; /* 이미지 너비를 부모 요소에 맞춤 */
+    height: auto; /* 비율 유지 */
+    display: none;
+}
+
+/* 파일 입력 스타일 */
+input[type="file"] {
+    display: block; /* 파일 업로드 입력 필드를 블록으로 설정 */
+    margin: 0 auto; /* 가운데 정렬 */
+}
+
+/* 두 번째 컨테이너 스타일 */
+.container2 {
+    display: flex;
+    flex-direction: column; /* 세로 방향으로 정렬 */
+    align-items: center; /* 가운데 정렬 */
+    margin-bottom: 3%;
+}
+
+/* 세 번째 컨테이너 스타일 */
+.container3 {
+    display: flex; /* Flexbox 활성화 */
+    justify-content: space-between; /* 열 간의 간격 조정 */
+    width: 100%; /* 전체 너비 사용 */
+    margin-bottom: 20px; /* 아래 여백 */
+}
+
+.container4 {
+    display: flex; /* Flexbox 활성화 */
+    align-items: center; /* 세로 가운데 정렬 */
+}
+
+.container4 input[type="file"] {
+    flex: 1; /* 파일 입력 필드가 가능한 공간을 차지하도록 설정 */
+    margin-left: 50px;
+    padding-top: 20px;
+}
+
+/* 열 스타일 */
+.left-column, .middle-column, .right-column {
+    flex: 1; /* 각 열이 동일한 너비를 가지도록 설정 */
+    margin-right: 10px; /* 오른쪽 열 간의 간격 */
+    max-width: 400px; /* 최대 너비 설정 */
+}
+
+.left-column:last-child, .middle-column:last-child {
+    margin-right: 0; /* 마지막 열의 오른쪽 여백 제거 */
+}
+
+/* 하단 컨테이너 스타일 */
+.bottom-container {
+    display: flex;
+    flex-direction: row; /* 세로 방향으로 정렬 */
+    align-items: center; /* 가운데 정렬 */
+    margin-bottom: 20px; /* 아래 여백 */
+    margin-top: -2%
+}
+
+/* 폼 그룹 스타일 */
+.form-group {
+    display: flex; /* Flexbox 사용 */
+    flex-direction: column; /* 세로 방향으로 정렬 */
+    margin-bottom: 20px; /* 각 그룹 간의 간격 */
+}
+
+.form-group:first-child {
+    margin-right: 30px; /* 첫 번째 그룹의 오른쪽 여백 */
+}
+
+.form-group:last-child {
+    margin-right: 0; /* 마지막 요소의 오른쪽 여백 제거 */
+}
+
+label {
+    display: block; /* 라벨을 블록 요소로 설정 */
+    margin-bottom: 5px; /* 라벨과 입력 필드 간의 간격 */
+    color: #555;
+    font-weight: bold;
+}
+
+input[type="text"], input[type="date"], input[type="password"], select {
+    width: 300px; /* 최대 너비 설정 */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box; /* 패딩과 보더를 포함한 너비 계산 */
+    transition: border-color 0.3s;
+}
+
+.bottom-container input[type="text"] {
+    width: 477px;
+}
+
+/* 포커스 시 입력 필드 스타일 */
+input[type="text"]:focus, input[type="date"]:focus, input[type="password"]:focus, select:focus {
+    border-color: #007bff; /* 포커스 시 테두리 색상 변경 */
+    outline: none; /* 기본 아웃라인 제거 */
+}
+
+.button-area {
+    display: flex; /* Flexbox를 사용하여 수평 정렬 */
+    justify-content: center; /* 수평 가운데 정렬 */
+    gap: 40px; /* 버튼 사이의 간격 추가 */
+    margin: 0 auto;
+}
+
+/* 버튼 스타일 */
+.submit, .cancel {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 20px;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s; /* 부드러운 전환 효과 추가 */
+    margin-top: 10px; /* 버튼 위쪽 여백 추가 */
+    flex: 1; /* 버튼이 동일한 너비를 가지도록 설정 */
+    max-width: 200px; /* 버튼의 최대 너비 설정 (필요에 따라 조정 가능) */
+    height: 45px;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.submit {
+    background-color: #ff4141;
+}
+
+.submit:hover {
+    background-color: #0079ff; /* 버튼 호버 효과 */
+}
+
+.cancel {
+    background-color: #717171;
+}
+
+.cancel:hover {
+    background-color: #0079ff; /* 버튼 호버 효과 */
+}
+
+.address{
+    width: 655px;
+}
+
+#pass {
+    background-color: #f0f0f0; /* 연한 그레이 색상 */
+    border: 1px solid #ccc; /* 테두리 색상 */
+    border-radius: 4px; /* 모서리 둥글게 */
+}

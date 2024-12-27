@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ohgiraffers.semiproject.todo.model.dao.ToDoMapper">
+
+    <resultMap id="todoResultMap" type="com.ohgiraffers.semiproject.todo.model.dto.ToDoDTO">
+        <id property="toDoCode" column="todo_code"/>
+        <result property="empCode" column="emp_code"/>
+        <result property="writeDate" column="write_date"/>
+        <result property="toDoContents" column="todo_contents"/>
+    </resultMap>
+
+    <select id="getToDoList" resultMap="todoResultMap">
+        select
+            *
+        from
+            tbl_todo
+        where
+            emp_code = #{code}
+    </select>
+
+    <update id="modifyTodo" parameterType="com.ohgiraffers.semiproject.todo.model.dto.ToDoDTO">
+        update
+            tbl_todo
+        set
+            todo_contents = #{toDoContents}
+        where
+            todo_code = #{toDoCode}
+    </update>
+
+    <delete id="deleteTodo" parameterType="com.ohgiraffers.semiproject.todo.model.dto.ToDoDTO">
+        delete from tbl_todo
+        where todo_code = #{toDoCode}
+    </delete>
+
+    <insert id="insertTodo" parameterType="com.ohgiraffers.semiproject.todo.model.dto.ToDoDTO">
+        insert into tbl_todo (emp_code, write_date, todo_contents)
+        values (#{empCode}, DATE_FORMAT(#{writeDate}, '%Y-%m-%d'), #{toDoContents})
+    </insert>
+</mapper>

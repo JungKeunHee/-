@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>임시 회원가입</title>
+</head>
+<body>
+<h1 style="text-align: center;">🗒️임시 사원등록 페이지🗒️</h1>
+<form action="/user/signup" method="post">
+    <!-- 프로필 사진 업로드 -->
+    <div class="container2">
+        <div class="profile-pic" id="profilePic" style="margin-bottom: 10px;">
+            <img id="profilePreview" src="" alt="Profile Picture">
+        </div>
+        <div class="container4">
+            <input type="file" name="image" accept="image/*" onchange="previewImage(event)">
+        </div>
+    </div>
+    <div class="container3">
+        <div class="left-column">
+            <div class="form-group">
+                <label for="hireDate">입사일자</label>
+                <input type="date" id="hireDate" name="hireDate" required>
+            </div>
+
+            <div class="form-group">
+                <label for="gender">성별</label>
+                <select name="gender" id="gender">
+                    <option value="남">남성</option>
+                    <option value="여">여성</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="authority">권한</label>
+                <select name="authority" id="authority">
+                    <option value="USER">일반사원</option>
+                    <option value="ADMIN">관리자</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="middle-column">
+
+            <div class="form-group">
+                <label for="code">사원번호</label>
+                <input type="text" id="code" name="code">
+            </div>
+
+            <div class="form-group">
+                <label for="name">이름</label>
+                <input type="text" id="name" name="name">
+            </div>
+
+            <div class="form-group">
+                <label for="jobCode">직급</label>
+                <select name="jobCode" id="jobCode">
+                    <option value="J1">대표</option>
+                    <option value="J2">부사장</option>
+                    <option value="J3">부장</option>
+                    <option value="J4">과장</option>
+                    <option value="J5">팀장</option>
+                    <option value="J6">대리</option>
+                    <option value="J7">주임</option>
+                    <option value="J8">사원</option>
+                </select>
+            </div>
+
+        </div>
+
+        <div class="right-column">
+
+            <div class="form-group">
+                <label for="pass">비밀번호</label>
+                <input type="password" id="pass" name="pass" value="1234">
+            </div>
+
+            <div class="form-group">
+                <label for="phone">핸드폰번호</label>
+                <input type="text" id="phone" name="phone">
+            </div>
+
+            <div class="form-group">
+                <label for="deptCode">부서</label>
+                <select name="deptCode" id="deptCode">
+                    <option value="B1">경영부</option>
+                    <option value="B2">애견담당부</option>
+                    <option value="B3">마케팅부</option>
+                    <option value="B4">영업부</option>
+                    <option value="B5">물류부</option>
+                    <option value="B6">고객CS업무부</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="bottom-container">
+        <div class="form-group">
+            <label for="address">주소</label>
+            <input type="text" id="address" name="address" class="address">
+        </div>
+
+        <div class="form-group">
+            <label for="email">이메일</label>
+            <input type="text" id="email" name="email">
+        </div>
+    </div>
+
+    <div class="button-area">
+        <button type="submit" class="submit">사원등록하기</button>
+        <input type="button" class="cancel" onclick="location.href='/home'" value="취소">
+    </div>
+</form>
+</body>
+</html>

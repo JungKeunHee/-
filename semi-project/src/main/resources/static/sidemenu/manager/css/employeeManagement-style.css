@@ -1,0 +1,50 @@
+.change-screen-employeeManagement{
+    width: 1850px;
+    height: 800px;
+    background-color: white;
+    border-radius: 10px;
+    margin-bottom: 3%;
+}
+
+.tab-header {
+    width: 1850px;
+    height: 100px;
+    display: flex;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 3px 3px 1px rgba(0, 0, 0, 0.1);
+    position: relative; /* 자식 요소의 절대 위치를 위해 추가 */
+}
+
+.management-button {
+    flex: 1; /* 버튼을 균등하게 분배 */
+    text-align: center; /* 버튼 텍스트 중앙 정렬 */
+}
+
+.tab-button {
+    display: inline-block;
+    padding: 20px;
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+    font-size: 20px;
+    margin-top: 15px;
+}
+
+.tab-button:hover {
+    color: #0056b3; /* 호버 시 색상 변경 */
+}
+
+.tab-button.active {
+    border-bottom: 3px solid #0079ff; /* 선택된 버튼에 밑줄 추가 */
+    color: #0079ff; /* 선택된 버튼 색상 */
+}
+
+.content-area {
+    margin-left: 22px;
+    margin-top: 20px;
+    border-radius: 10px;
+    background-color: white;
+}
+

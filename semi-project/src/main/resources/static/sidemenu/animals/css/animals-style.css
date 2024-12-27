@@ -1,0 +1,294 @@
+.change-screen-animals{
+    width: 1850px;
+    height: 800px;
+    background-color: white;
+    border-radius: 10px;
+    margin-bottom: 3%;
+    color: black;
+}
+
+#change-screen-content{
+    width: 1850px;
+    height: auto;
+    background-color: white;
+    border-radius: 10px;
+    color: #000000;
+}
+/* Reset some default styles */
+body, table {
+    font-family: "SCoreDream", "Malgun Gothic", "AppleGothic", sans-serif;
+    margin: 0;
+    padding-bottom: 220px;
+}
+
+/* Basic styling */
+body {
+    font-family: Arial, sans-serif;
+}
+
+.form-container{
+    font-weight: bold;
+    display: flex;
+    justify-content: center;  /* 가로 중앙 정렬 */
+    align-items: center;      /* 세로 중앙 정렬 */
+    padding-top: 20px;
+}
+
+.default-option {
+    color: gray; /* 회색 텍스트 */
+    background-color: #f0f0f0; /* 회색 배경 */
+}
+
+.default-option:disabled {
+    color: lightgray; /* 선택할 수 없는 회색 텍스트 */
+}
+/* 검색 */
+/* Form Wrapper */
+.search-form {
+
+    width: 1610px;
+    padding: 10px;
+    background: rgba(170, 170, 170, 0.26);
+    border-radius: 10px;
+}
+
+hr {
+    border: none;           /* 기본 테두리 제거 */
+    height: 2px;            /* 밑줄의 두께 설정 */
+    background-color: white; /* 밑줄 색상을 흰색으로 설정 */
+}
+
+/* 동물 검색 그룹 */
+.animal-search-group {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;  /* 세로로 가운데 정렬 */
+    justify-content: space-between;  /* 레이블과 입력 박스를 양옆으로 배치 */
+}
+
+/* 동물 검색 그룹 내부 레이아웃: flex로 가로 배치 */
+.animal-search-group-inline {
+    display: flex;
+    justify-content: space-between; /* 요소 간 간격을 동일하게 분배 */
+    gap: 20px;  /* 각 요소 사이에 20px 간격 추가 */
+}
+
+.animalCode-group select{
+        width: 300px; /* select와 input의 너비를 100%로 설정 */
+        padding: 8px;
+        border-radius: 8px;
+        border: 1px solid #000000;
+        font-size: 1rem;
+        background-color: white;
+        transition: all 0.3s ease-in-out;
+}
+
+.animal-search-group-inline select{
+    margin-top: 10px;
+    width: 300px; /* select와 input의 너비를 100%로 설정 */
+    padding: 8px;
+    border-radius: 8px;
+    border: 1px solid #000000;
+    font-size: 1rem;
+    background-color: white;
+    transition: all 0.3s ease-in-out;
+}
+
+.rescueDate-group input{
+    margin-top: 10px;
+    width: 300px; /* select와 input의 너비를 100%로 설정 */
+    padding: 8px;
+    border-radius: 8px;
+    border: 1px solid #000000;
+    font-size: 1rem;
+    background-color: white;
+    transition: all 0.3s ease-in-out;
+}
+
+/* 버튼 스타일 */
+.btn-container {
+    display: flex;
+    margin-top: 20px;
+    justify-content: center; /* 수평 가운데 정렬 */
+    align-items: center; /* 수직 가운데 정렬 */
+}
+
+.btn {
+    padding: 5px;
+    margin-right: 10px;
+    margin-left: 10px;
+    background: white;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1px;
+    padding: 10px;
+    margin-left: 100px;
+    margin-right: 100px;
+    margin-top: 10px;
+}
+
+.card {
+    flex-basis: calc(25% - 20px);
+    min-width: 220px;
+    max-width: 300px;
+    padding: 25px;
+    width: 200px;
+    min-height: 150px;
+    border-radius: 20px;
+    background: rgb(255, 255, 255);
+    box-shadow: 5px 5px 8px #d8d8d8, -5px -5px 8px #d8d8d8;
+    transition: 0.4s;
+    margin-bottom: 20px;
+    position: relative;  /* 부모 요소에 relative 위치 추가 */
+}
+
+.card:hover {
+    translate: 0 -10px;
+}
+
+.card-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #000000;
+    margin: 15px 0 0 10px;
+}
+
+.card-status {
+    width: 60px;
+    height: 60px;
+    background-color: #00827F;
+    border-radius: 0 0 15px 15px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: absolute;  /* 부모를 기준으로 절대 위치 지정 */
+    top: 20px;  /* 상단에서 20px 떨어짐 */
+    right: 20px;  /* 오른쪽에서 20px 떨어짐 */
+}
+
+.card-image {
+    width: 100%;
+    height: 200px;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card-body {
+    margin: 13px 0 0 10px;
+    color: rgb(184, 184, 184);
+    font-size: 18px;
+}
+
+.footer {
+    float: right;
+    margin: 28px 0 0 18px;
+    font-size: 15px;
+    color: #b3b3b3;
+}
+
+.by-name {
+    font-weight: 700;
+}
+
+.i-d-u-btn-group {
+    padding-top: 10px;
+    display: flex;                 /* 수평 배치 */
+    align-items: center;           /* 세로 가운데 정렬 */
+    width: 100%;  /* 부모 요소의 전체 너비를 사용 */
+}
+
+.count {
+    padding-left: 100px;
+    margin-right: auto;            /* 'count'는 왼쪽에 고정 */
+}
+
+.count span {
+        color: #00813e;
+        font-weight: 500;
+}
+
+.i-d-u-btn-group > div {
+    margin-left: 10px;             /* 각 버튼들 간의 간격 */
+}
+
+.i-d-u-btn-group > div:not(.count) {
+
+    margin-left: 10px;             /* 오른쪽 버튼들 간에 간격 추가 */
+}
+
+.delete {
+    padding-right: 110px;
+}
+
+.insert a, .delete a, .updateAdoption a {
+    display: inline-block; /* 버튼처럼 보이게 */
+    padding: 6px 12px; /* 내부 여백 */
+    border-radius: 4px; /* 모서리 둥글게 */
+    font-family: 'Arial', sans-serif;
+    font-size: 14px;
+    text-decoration: none; /* 밑줄 제거 */
+    color: white; /* 글자색 */
+    transition: background-color 0.3s; /* 배경색 변화 애니메이션 */
+}
+
+.insert a, .delete a, .updateAdoption a {
+    background-color: #fdfffd; /* 추가 버튼 배경색 */
+    border: 1px solid #000;
+    color :#000;
+}
+
+.updateAdoption a:hover {
+    background-color: #5a5a5a; /* 추가 버튼 호버 시 색상 */
+    border: 1px solid #000;
+}
+.delete a:hover {
+    background-color: #fd9494; /* 추가 버튼 호버 시 색상 */
+    border: 1px solid #000;
+}
+.insert a:hover{
+    background-color: #4CAF50; /* 추가 버튼 호버 시 색상 */
+    border: 1px solid #000;
+}
+
+
+    /* 페이징처리 버튼 */
+.page-btn-group {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding-bottom: 40px; /* 하단 여백 추가 */
+    position: static; /* 기본 위치 설정으로 변경 */
+
+}
+
+.page-btn {
+    width: 30px;
+    height: 30px;
+    background: #aaaaaa;
+    color: white;
+    border-radius: 4px;
+    border: 1px #aaaaaa;
+    margin: 0 3px; /* 각 페이지 아이템 간의 여백 */
+}
+
+.page-btn:hover {
+    background: #5a5a5a;
+    color: white;
+    border: 1px #5a5a5a;
+}

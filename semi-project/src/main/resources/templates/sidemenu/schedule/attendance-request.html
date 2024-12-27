@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>근태수정 요청</title>
+  <link rel="stylesheet" href="/main/css/main-style.css"> <!-- 메인 스타일 연결 -->
+  <script src="/main/js/main.js"></script> <!-- 메인 자바스크립트 연결 -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=keyboard_arrow_down" />
+  <link rel="stylesheet" href="/sidemenu/schedule/css/attendance.css">
+  <script src="/sidemenu/schedule/js/attedance.js"></script>
+  <script src="/sidemenu/schedule/js/getAttendance.js"></script>
+  <script src="/sidemenu/schedule/js/selectAttendanceRequest.js"></script>
+  <script src="/sidemenu/schedule/js/deleteAttedanceRequest.js"></script>
+</head>
+<body>
+<header>
+  <div class="side-menu-bar">
+    <ul>
+      <li><a href="/main">🐶PetHarmony🐶</a></li>
+      <li><a href="http://localhost:9595/sidemenu/schedule">근태관리</a></li>
+      <li><a href="http://localhost:9595/sidemenu/messenger">메신저(채팅)</a></li>
+      <li><a href="http://localhost:9595/sidemenu/mail">이메일</a></li>
+      <li><a href="http://localhost:9595/sidemenu/adoption">입양</a></li>
+      <li class="animal-menu">
+        <div class="menu-wrapper">
+          <a href="http://localhost:9595/sidemenu/animals">동물
+            <span class="material-symbols-outlined">keyboard_arrow_down</span>
+          </a>
+        </div>
+        <ul class="sub-menu">
+          <li><a href="http://localhost:9595/sidemenu/animals">구조동물</a></li>
+          <li><a href="http://localhost:9595/sidemenu/adoptionComplete">입양완료</a></li>
+          <li><a href="http://localhost:9595/sidemenu/stock">재고관리</a></li>
+        </ul>
+      </li>
+      <li><a href="http://localhost:9595/sidemenu/facilities">시설관리</a></li>
+      <li><a href="http://localhost:9595/sidemenu/board">전사게시판</a></li>
+      <li><a href="http://localhost:9595/sidemenu/employee">직원정보</a></li>
+      <li><a href="http://localhost:9595/sidemenu/mypage">마이페이지</a></li>
+      <li><a href="http://localhost:9595/sidemenu/approval">결재</a></li>
+      <li class="admin-menu">
+        <div class="admin-menu-wrapper">
+          <a href="http://localhost:9595/sidemenu/manager">관리자전용
+            <span class="material-symbols-outlined">keyboard_arrow_down</span>
+          </a>
+        </div>
+        <ul class="sub-menu">
+          <li><a href="http://localhost:9595/sidemenu/manager">관리자페이지</a></li>
+          <li><a href="http://localhost:9595/sidemenu/employeeRegister">사원등록</a></li>
+          <li><a href="http://localhost:9595/sidemenu/employeeManagement">직원관리</a></li>
+          <li><a href="http://localhost:9595/sidemenu/approvalBox">결재함</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</header>
+<div class="change-screen-attendance">
+  <div id="change-screen-content">
+    <div class="box">
+      <div class="select-box">
+        <h2>📜근태수정 목록</h2>
+        <div class="select-box2">
+          <ul id="item-list"></ul> <!-- 리스트를 추가할 ul 요소 -->
+        </div>
+        <div class="delete-attendance">
+          <button id="delete-button">근태수정 삭제하기</button>
+        </div>
+      </div>
+
+      <!-- 모달 구조 -->
+      <div id="attendance-modal" class="modal" style="display:none;">
+        <div class="modal-attendance-content">
+          <span class="modal-close-button">&times;</span>
+          <h2>근태사유</h2>
+          <p id="modal-reason"></p>
+          <div class="opinion-section">
+            <div class="opinion-box">
+              <h3>관리자 의견</h3>
+              <div id="admin-opinion" class="opinion-display" readonly></div> <!-- 관리자 의견을 표시하는 div -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="attendance-request">
+        <h2>🗒️근태수정 등록</h2>
+        <form action="/attendance-request" method="post">
+          <div class="form-row">
+            요청일자: <input type="date" id="request-date" name="workDate">
+            수정 전 근태시간: <input type="time" id="attendance-time" readonly>
+            수정 후 근태시간 <input type="time" name="modify_time">
+          </div>
+          <div class="radio-group">
+            구분
+            <label><input type="radio" name="division" value="출근"> 출근수정</label>
+            <label><input type="radio" name="division" value="퇴근"> 퇴근수정</label>
+
+            <div class="admin-select">
+              관리자 사번코드
+              <input type="text" id="selected-manager" name="adminCode" placeholder="요청할 관리자를 선택해주세요" readonly>
+              <input type="button" class="open-modal" id="open-modal" value="추가" />
+            </div>
+          </div>
+
+          <div id="modal" class="modal" style="display: none;">
+            <div class="modal-content">
+              <span class="close-button">&times;</span>
+              <h2>직원 목록</h2>
+              <div class="employee-header">
+                <span>사번</span>
+                <span>이름</span>
+                <span>직급</span>
+                <span>부서</span>
+              </div>
+              <div id="employee-info" class="employee-info">
+                <p id="emp-code"></p>
+                <p id="emp-name"></p>
+                <p id="job-name"></p>
+                <p id="dept-name"></p>
+              </div>
+              <div id="employee-list-container" class="employee-list-container">
+                <ul id="employee-list">
+                  <!-- 직원 목록이 여기에 동적으로 추가됩니다. -->
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="input-container">
+            <textarea class="text-area" name="workModifyReason" placeholder="근태사유를 작성해주세요."></textarea>
+          </div>
+
+          <div class="request-button">
+            <button>등록하기</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

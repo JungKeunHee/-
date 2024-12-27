@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ohgiraffers.semiproject.manager.model.dao.ManagerVacationMapper">
+
+    <resultMap id="vacationList" type="com.ohgiraffers.semiproject.manager.model.dto.VacationListDTO">
+        <id property="empCode" column="emp_code"/>
+        <result property="empPass" column="emp_pass"/>
+        <result property="empName" column="emp_name"/>
+        <result property="empEmail" column="emp_email"/>
+        <result property="empPhone" column="emp_phone"/>
+        <result property="hireDate" column="hire_date"/>
+        <result property="entDate" column="ent_date"/>
+        <result property="empGender" column="emp_gender"/>
+        <result property="empAddress" column="emp_address"/>
+        <result property="jobCode" column="job_code"/>
+        <result property="deptCode" column="dept_code"/>
+        <result property="authority" column="authority"/>
+        <result property="profile_image" column="profile_image"/>
+        <association property="deptDTO" javaType="com.ohgiraffers.semiproject.employee.model.dto.DeptDTO">
+            <id property="deptCode" column="dept_code"/>
+            <result property="deptName" column="dept_name"/>
+        </association>
+        <association property="jobDTO" javaType="com.ohgiraffers.semiproject.employee.model.dto.JobDTO">
+            <id property="jobCode" column="job_code"/>
+            <result property="jobName" column="job_name"/>
+        </association>
+        <association property="vacationDTO" javaType="com.ohgiraffers.semiproject.schedule.model.dto.VacationDTO">
+            <id property="code" column="emp_code"/>
+            <result property="vacation" column="vacation_number"/>
+            <result property="annualLeave" column="yearleave_number"/>
+        </association>
+    </resultMap>
+
+    <select id="getVacationList" resultMap="vacationList">
+    select
+        a.emp_code,
+        a.emp_name,
+        a.hire_date,
+        b.dept_name,
+        c.job_name,
+        d.yearleave_number,
+        d.vacation_number
+    from
+        tbl_emp a
+    join tbl_dept b on (a.dept_code = b.dept_code)
+    join tbl_job c on (a.job_code = c.job_code)
+    join tbl_vacation d on (a.emp_code = d.emp_code)
+
+        order by
+            b.dept_name
+    </select>
+
+    <update id="createAnnual" parameterType="com.ohgiraffers.semiproject.manager.model.dto.VacationManagementDTO">
+        UPDATE tbl_vacation
+        SET yearleave_number = yearleave_number + #{leaveDays}
+        WHERE emp_code IN
+        <foreach item="empCode" collection="empCodes" open="(" separator="," close=")">
+            #{empCode}
+        </foreach>
+    </update>
+
+    <update id="createVacation" parameterType="com.ohgiraffers.semiproject.manager.model.dto.VacationManagementDTO">
+        UPDATE tbl_vacation
+        SET vacation_number = vacation_number + #{leaveDays}
+        WHERE emp_code IN
+        <foreach item="empCode" collection="empCodes" open="(" separator="," close=")">
+            #{empCode}
+        </foreach>
+    </update>
+
+    <update id="deductedAnnual" parameterType="com.ohgiraffers.semiproject.manager.model.dto.VacationManagementDTO">
+        UPDATE tbl_vacation
+        SET yearleave_number = yearleave_number - #{leaveDays}
+        WHERE emp_code IN
+        <foreach item="empCode" collection="empCodes" open="(" separator="," close=")">
+            #{empCode}
+        </foreach>
+    </update>
+
+    <update id="deductedVacation" parameterType="com.ohgiraffers.semiproject.manager.model.dto.VacationManagementDTO">
+        UPDATE tbl_vacation
+        SET vacation_number = vacation_number - #{leaveDays}
+        WHERE emp_code IN
+        <foreach item="empCode" collection="empCodes" open="(" separator="," close=")">
+            #{empCode}
+        </foreach>
+    </update>
+</mapper>

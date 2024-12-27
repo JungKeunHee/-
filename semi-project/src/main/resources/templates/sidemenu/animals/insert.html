@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>구조동물</title>
+    <link rel="stylesheet" href="/main/css/main-style.css"> <!-- 메인 스타일 연결 -->
+    <script src="/main/js/main.js"></script> <!-- 메인 자바스크립트 연결 -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=keyboard_arrow_down" />
+    <link rel="stylesheet" href="/sidemenu/animals/css/animals-insert-style.css">
+</head>
+<body>
+<header>
+    <div class="side-menu-bar">
+        <ul>
+            <li><a href="/main">🐶PetHarmony🐶</a></li>
+            <li><a href="http://localhost:9595/sidemenu/schedule">근태관리</a></li>
+            <li><a href="http://localhost:9595/sidemenu/messenger">메신저(채팅)</a></li>
+            <li><a href="http://localhost:9595/sidemenu/mail">이메일</a></li>
+            <li><a href="http://localhost:9595/sidemenu/adoption">입양</a></li>
+            <li class="animal-menu">
+                <div class="menu-wrapper">
+                    <a href="http://localhost:9595/sidemenu/animals">동물
+                        <span class="material-symbols-outlined">keyboard_arrow_down</span>
+                    </a>
+                </div>
+                <ul class="sub-menu">
+                    <li><a href="http://localhost:9595/sidemenu/animals">구조동물</a></li>
+                    <li><a href="http://localhost:9595/sidemenu/adoptionComplete">입양완료</a></li>
+                    <li><a href="http://localhost:9595/sidemenu/stock">재고관리</a></li>
+                </ul>
+            </li>
+            <li><a href="http://localhost:9595/sidemenu/facilities">시설관리</a></li>
+            <li><a href="http://localhost:9595/sidemenu/board">전사게시판</a></li>
+            <li><a href="http://localhost:9595/sidemenu/employee">직원정보</a></li>
+            <li><a href="http://localhost:9595/sidemenu/mypage">마이페이지</a></li>
+            <li><a href="http://localhost:9595/sidemenu/approval">결재</a></li>
+            <li class="admin-menu">
+                <div class="admin-menu-wrapper">
+                    <a href="http://localhost:9595/sidemenu/manager">관리자전용
+                        <span class="material-symbols-outlined">keyboard_arrow_down</span>
+                    </a>
+                </div>
+                <ul class="sub-menu">
+                    <li><a href="http://localhost:9595/sidemenu/manager">관리자페이지</a></li>
+                    <li><a href="http://localhost:9595/sidemenu/employeeRegister">사원등록</a></li>
+                    <li><a href="http://localhost:9595/sidemenu/employeeManagement">직원관리</a></li>
+                    <li><a href="http://localhost:9595/sidemenu/approvalBox">결재함</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</header>
+<div class="change-screen-animals-insert">
+    <div id="change-screen-content">
+
+        <form action="/sidemenu/animals/insert" class="insert-group" method="post">
+            <!-- 프로필 사진 업로드 -->
+            <div class="animal-container">
+                <div class="animal-pic" id="animal-pic">
+                    <img id="animalImage" src="" alt="animal image">
+                </div>
+                <input type="file" name="animalImage" accept="image/*" onchange="previewImage(event)">
+            </div>
+
+            <div class="animal-group">
+                <label for="animalCode">동물등록번호 :</label>
+
+                <input type="text" id="animalCode" name="animalCode" th:value="${animalCode}" required>
+            </div>
+
+            <div class="animal-group">
+                <label>분류 :</label>
+                <select name="typeDTO.typeCode" required>
+                    <option value="C1">고양이</option>
+                    <option value="D1">개</option>
+                </select>
+            </div>
+
+            <div class="animal-group">
+                <label for="rescueDate">구조 된 날짜 :</label>
+                <input type="date" id="rescueDate" name="rescueDate" required>
+            </div>
+
+            <div class="animal-group">
+                <label for="rescueLocation">구조 된 위치 :</label>
+                <input type="text" id="rescueLocation" name="rescueLocation" required>
+            </div>
+
+            <div class="animal-group">
+                <label for="breedCode">품종 :</label>
+                <select id="breedCode" name="breedDTO.breedCode" required></select>
+            </div>
+
+            <div class="animal-group">
+                <label for="age">나이 :</label>
+                <input type="number" id="age" name="age" required>
+            </div>
+
+            <div class="animal-group">
+                <label>건강검진 :</label>
+                <select name="healthChecks" multiple>
+                    <option value="H1">사상충</option>
+                    <option value="H2">X-파보 검사</option>
+                    <option value="H3">코로나</option>
+                    <option value="H4">홍역</option>
+                    <option value="H5">원충</option>
+                </select>
+            </div>
+
+            <div class="animal-group">
+                <label>접종 :</label>
+                <select name="inoculations" multiple>
+                    <option value="INOC1">CVRP</option>
+                    <option value="INOC2">백혈병</option>
+                    <option value="INOC3">전염성 복막염</option>
+                    <option value="INOC4">공수병</option>
+                    <option value="INOD1">DHPPL</option>
+                    <option value="INOD2">코로나바이러스성장염</option>
+                    <option value="INOD3">기관지염</option>
+                    <option value="INOD4">광견병</option>
+                </select>
+            </div>
+
+            <div class="animal-radio-group">
+                <label>성별 :</label>
+                <label><input type="radio" name="gender" value="M" required> M</label>
+                <label><input type="radio" name="gender" value="F"> F</label>
+            </div>
+
+
+            <div class="animal-radio-group">
+                <label>상태 :</label>
+                <label><input type="radio" name="animalStatus" value="공고중" required> 공고중</label>
+                <label><input type="radio" name="animalStatus" value="보호중"> 보호중</label>
+            </div>
+
+            <div>
+                <label>담당자 :</label>
+                <span th:text="${userInfo.name}"></span> <!-- 사용자 이름 -->
+            </div>
+
+            <button type="submit">동물등록하기</button>
+        </form>
+        <script>
+            // 프로필 미리보기
+            function previewImage(event) {
+                const file = event.target.files[0];
+                const reader = new FileReader();
+
+                reader.onload = function(e) {
+                    const animalPic = document.getElementById('animalImage');
+                    animalPic.src = e.target.result;
+                }
+
+                if (file) {
+                    reader.readAsDataURL(file);
+                }
+            }
+
+            // 서버에서 비동기로 품종 가져오기
+            // 분류를 선택하면 분류에 맞는 품종만 보여주기
+            let breedData = [];
+
+            // 품종 비동기처리
+            fetch("/sidemenu/animals/breed")
+                .then(res => res.json())
+                .then(data => {
+                    breedData = data; // 비동기로 가져온 데이터를 저장
+                    breedsByType(); // 분류에 맞는 품종 메소드
+                })
+                .catch(error => console.error("Error fetching breed data:", error));
+
+            // 분류 선택 후 품종 필터링
+            document.querySelector('select[name="typeDTO.typeCode"]').addEventListener('change', breedsByType);
+
+            function breedsByType() {
+                const selectedType = document.querySelector('select[name="typeDTO.typeCode"]').value; // D1, C1
+                const breedSelect = document.getElementById('breedCode'); // 비동기로 가져온 품종들
+
+                // 기존 옵션 초기화
+                breedSelect.innerHTML = '';
+
+                // 선택된 분류 코드에 맞는 품종만 추가
+                breedData
+                    .filter(breed => breed.breedCode.startsWith(selectedType[0]))
+                    .forEach(breed => {
+                        const option = document.createElement('option');
+                        option.value = breed.breedCode;
+                        option.textContent = breed.breedName;
+                        breedSelect.appendChild(option);
+                    });
+            }
+        </script>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    <mapper namespace="com.ohgiraffers.semiproject.mail.model.dao.MailMapper">
+
+        <resultMap id="mailSelect" type="com.ohgiraffers.semiproject.mail.model.dto.MailDTO">
+            <id property="emailCode" column="email_code"/>
+            <result property="title" column="title"/>
+            <result property="content" column="content"/>
+            <result property="sendDate" column="send_date"/>
+            <result property="deleteDate" column="delete_date"/>
+            <result property="recipientId" column="recipient_id"/>
+            <result property="recipientName" column="recipient_name"/>
+            <result property="recipientFolder" column="recipient_folder"/>
+            <result property="senderId" column="sender_id"/>
+            <result property="senderName" column="sender_name"/>
+            <result property="senderFolder" column="sender_folder"/>
+            <association property="employeeDTO" javaType="com.ohgiraffers.semiproject.mail.model.dto.EmployeeDTO">
+                <id property="empCode" column="emp_code"/>
+                <result property="empPass" column="emp_pass"/>
+                <result property="empName" column="emp_name"/>
+                <result property="empEmail" column="emp_email"/>
+                <result property="empPhone" column="emp_phone"/>
+                <result property="hireDate" column="hire_date"/>
+                <result property="entDate" column="ent_date"/>
+                <result property="empGender" column="emp_gender"/>
+                <result property="empAddress" column="emp_address"/>
+                <result property="jobCode" column="job_code"/>
+                <result property="deptCode" column="dept_code"/>
+                <result property="authority" column="authority"/>
+                <result property="profile_image" column="profile_image"/>
+            </association>
+            <association property="jobDTO" javaType="com.ohgiraffers.semiproject.mail.model.dto.JobDTO">
+                <id property="jobCode" column="job_code"/>
+                <result property="jobName" column="job_name"/>
+            </association>
+            <association property="deptDTO" javaType="com.ohgiraffers.semiproject.mail.model.dto.DeptDTO">
+                <id property="deptCode" column="dept_code"/>
+                <result property="deptName" column="dept_name"/>
+            </association>
+        </resultMap>
+        <!-- 받은메일 조회 -->
+        <select id="mailAllSelect" resultMap="mailSelect">
+            SELECT
+                *
+            FROM
+                TBL_EMAIL
+            WHERE
+                recipient_id = #{code}
+            AND
+                recipient_folder = '받은쪽지함'
+            LIMIT
+                #{offset}, #{size}
+        </select>
+        <!-- 게시판페이지 행 -->
+        <select id="inboxTotalProducts" resultType="long">
+        SELECT
+            COUNT(*)
+        FROM
+            tbl_email
+        WHERE
+            recipient_id = 023
+        AND
+            recipient_folder = '받은쪽지함'
+        </select>
+
+        <!-- 보낸메일 조회 -->
+        <select id="mailSentSelect" resultMap="mailSelect">
+            SELECT
+                *
+            FROM
+                TBL_EMAIL
+            WHERE
+                sender_id = #{code}
+            AND
+                sender_folder = '보낸쪽지함'
+            LIMIT
+                #{offset}, #{size}
+        </select>
+        <!-- 게시판페이지 행 -->
+        <select id="sentTotalProducts" resultType="long">
+        SELECT
+            COUNT(*)
+        FROM
+            tbl_email
+        WHERE
+            sender_id = #{code}
+        AND
+            sender_folder = '보낸쪽지함'
+        </select>
+        <!-- 보관함 조회 -->
+        <select id="mailFolderArchived" resultMap="mailSelect">
+            SELECT
+                *
+            FROM
+                tbl_email
+            WHERE
+                recipient_id = #{code}
+            AND
+                recipient_folder = '보관함'
+            LIMIT
+                #{offset}, #{size}
+        </select>
+        <select id="archivedTotalProducts" resultType="long">
+            SELECT
+                COUNT(*)
+            FROM
+                tbl_email
+            WHERE
+                recipient_id = #{code}
+            AND
+                recipient_folder = '보관함'
+        </select>
+        <!-- 중요쪽지함 조회 -->
+        <select id="mailFolderImportant" resultMap="mailSelect">
+            SELECT
+                *
+            FROM
+                tbl_email
+            WHERE
+                recipient_id = #{code}
+            AND
+                recipient_folder = '중요쪽지함'
+            LIMIT
+                #{offset}, #{size}
+         </select>
+        <select id="importantTotalProducts" resultType="long">
+            SELECT
+                COUNT(*)
+            FROM
+                tbl_email
+            WHERE
+                recipient_id = #{code}
+            AND
+                recipient_folder = '중요쪽지함'
+        </select>
+        <select id="mailFolderTrash" resultMap="mailSelect">
+            SELECT *
+            FROM (
+            SELECT
+                *
+            FROM
+                tbl_email
+            WHERE
+                recipient_id = #{code}
+            AND
+                recipient_folder = '휴지통'
+
+            UNION ALL
+
+            SELECT
+                *
+            FROM
+                tbl_email
+            WHERE
+                sender_id = #{code}
+            AND
+                sender_folder = '휴지통'
+            )
+            AS combined_results
+            LIMIT
+                #{offset}, #{size}
+        </select>
+    <!-- 휴지통 메일 총 개수 -->
+        <select id="trashTotalProducts" resultType="long">
+            SELECT
+                COUNT(*)
+            FROM
+                tbl_email
+            WHERE
+                (recipient_id = #{code} AND recipient_folder = '휴지통')
+            OR
+                (sender_id = #{code} AND sender_folder = '휴지통')
+        </select>
+        <!-- 메일상세보기 -->
+        <select id="mailDetail" resultMap="mailSelect">
+            SELECT
+                a.*,
+                b.emp_name,
+                c.dept_name,
+                d.job_name
+            FROM
+                tbl_email a
+            JOIN
+                tbl_emp b
+            ON
+                a.sender_id = b.emp_code
+            JOIN
+                tbl_dept c ON b.dept_code = c.dept_code
+            JOIN
+                tbl_job d ON b.job_code = d.job_code
+            WHERE
+                email_code = #{emailCode}
+        </select>
+        <!-- 쪽지쓰기(받을메일함용) -->
+        <insert id="inboxRegistMail" parameterType="com.ohgiraffers.semiproject.mail.model.dto.MailDTO">
+            INSERT INTO tbl_email
+                (email_code, title, content, send_date, delete_date,
+                recipient_id, recipient_name, recipient_folder, sender_id, sender_name, sender_folder)
+            VALUES
+                (#{emailCode}, #{title}, #{content}, #{sendDate}, #{deleteDate},
+                #{recipientId}, #{recipientName}, '받은쪽지함', #{senderId}, #{senderName}, #{senderFolder})
+        </insert>
+
+        <!-- 쪽지쓰기(보낸메일함용) -->
+        <insert id="sentRegistMail" parameterType="com.ohgiraffers.semiproject.mail.model.dto.MailDTO">
+            INSERT INTO tbl_email
+                (email_code, title, content, send_date, delete_date,
+                recipient_id, recipient_name, recipient_folder, sender_id, sender_name, sender_folder)
+            VALUES
+                (#{emailCode}, #{title}, #{content}, #{sendDate}, #{deleteDate},
+                #{recipientId}, #{recipientName}, #{recipientFolder}, #{senderId}, #{senderName}, '보낸쪽지함')
+         </insert>
+        <!-- 받은쪽지함에서 이동 -->
+        <update id="moveMails" parameterType="map">
+            UPDATE
+                tbl_email
+            SET
+                recipient_folder = #{recipientFolder}
+            WHERE
+                recipient_id = #{code}
+            AND
+                recipient_folder = '받은쪽지함'
+            AND
+                email_code IN
+            <foreach collection="mail" item="mailCode" open="(" separator="," close=")">
+                #{mailCode}
+            </foreach>
+        </update>
+        <!-- 보낸쪽지함에서 이동 -->
+        <update id="sentMoveMails" parameterType="map">
+            UPDATE
+                tbl_email
+            SET
+                sender_folder = #{senderFolder}
+            WHERE
+                sender_id = #{code}
+            AND
+                sender_folder = '보낸쪽지함'
+            AND
+                email_code IN
+            <foreach collection="mail" item="mailCode" open="(" separator="," close=")">
+                #{mailCode}
+            </foreach>
+        </update>
+        <!-- 삭제 -->
+        <delete id="inboxDeleteMails" parameterType="map">
+            DELETE FROM
+                tbl_email
+            WHERE
+                email_code IN
+            <foreach item="item" collection="mail" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+            AND
+                recipient_id = #{code}
+        </delete>
+        <!-- 삭제 -->
+        <delete id="sentDeleteMails" parameterType="map">
+            DELETE FROM
+                tbl_email
+            WHERE
+                email_code IN
+            <foreach item="item" collection="mail" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+            AND
+                sender_id = #{code}
+        </delete>
+</mapper>

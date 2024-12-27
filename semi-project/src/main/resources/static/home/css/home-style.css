@@ -1,0 +1,151 @@
+body {
+    display: flex;
+    justify-content: center; /* 수평 중앙 정렬 */
+    align-items: center; /* 수직 중앙 정렬 */
+    height: 100vh; /* 전체 화면 높이 */
+    margin: 0; /* 기본 여백 제거 */
+    background: linear-gradient(to right, #ff3e2d, #ff9a3e); /* 왼쪽에서 오른쪽으로 그라데이션 */
+}
+
+
+.dogImg {
+    margin-left: auto; /* 왼쪽 여백을 자동으로 설정하여 오른쪽 끝으로 이동 */
+    margin-top: 10%; /* 위쪽 여백을 50픽셀로 설정하여 아래로 이동 */
+    display: block; /* margin-left: auto;가 작동하도록 블록 요소로 설정 */
+}
+
+.login {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    border-radius: 10px;
+    text-align: center;
+    background-color: white;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* 그림자 추가 */
+    display: flex; /* Flexbox 사용 */
+    flex-direction: column; /* 세로 방향으로 정렬 */
+    justify-content: center; /* 수직 중앙 정렬 */
+    align-items: center; /* 수평 중앙 정렬 */
+}
+
+.title {
+    position: absolute;
+    text-align: center;
+    /* 음수 값을 사용하여 위로 이동 */
+    margin-top: -70%;
+}
+
+.login-body{
+    margin-top: 15%;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+    text-align: left;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 400px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+    margin-bottom: 15px; /* 입력 박스 간의 간격 추가 */
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+input[type="checkbox"] {
+    margin-right: 10px;
+    width: 13px; /* 원하는 너비 */
+    height: 13px; /* 원하는 높이 */
+    transform: scale(1.5); /* 체크박스 크기 조정 (1.5배) */
+    -webkit-appearance: none; /* 기본 체크박스 스타일 제거 (웹킷 브라우저용) */
+    background-color: #fff; /* 배경색 설정 */
+    border: 1px solid #ccc; /* 테두리 설정 */
+    border-radius: 3px; /* 모서리 둥글게 */
+    cursor: pointer; /* 커서 모양 변경 */
+}
+
+input[type="checkbox"]:checked {
+    background-color: #717171; /* 체크된 상태의 배경색 */
+    border: 1px solid #717171;
+}
+
+input[type="checkbox"]:checked::after {
+    content: ''; /* 체크 표시를 위한 내용 설정 */
+    position: absolute; /* 체크 표시 위치 설정 */
+    left: 3px; /* 체크 표시의 위치 조정 */
+    top: 0px; /* 체크 표시의 위치 조정 */
+    width: 4px; /* 체크 표시의 너비 */
+    height: 8px; /* 체크 표시의 높이 */
+    border: solid white; /* 체크 표시의 색상 */
+    border-width: 0 2px 2px 0; /* 체크 표시의 두께 설정 */
+    transform: rotate(45deg); /* 체크 표시 회전 */
+}
+
+.checkbox-label {
+    position: absolute;
+    margin-top: 15px;
+    left: 75px; /* 오른쪽으로 이동시키기 위해 값을 증가시킴 */
+    font-size: 13px; /* 원하는 텍스트 크기로 설정 */
+    color: #333; /* 텍스트 색상 (원하는 색상으로 변경 가능) */
+}
+
+.searchContainer {
+    display: flex; /* Flexbox 사용 */
+    justify-content: center; /* 중앙 정렬 */
+    gap: 40px; /* 요소 간의 간격 조정 */
+    margin-top: -5%;
+}
+
+.checkbox {
+    display: flex; /* Flexbox 사용 */
+    align-items: center; /* 수직 중앙 정렬 */
+    margin-bottom: 15px; /* 체크박스와 아래 요소 간의 간격 추가 */
+}
+
+span {
+    margin-bottom: 15px; /* 체크박스와 링크 간의 간격 추가 */
+}
+
+a {
+    display: inline-block;
+    margin-top: 10px;
+    color: #000000;
+    text-decoration: none;
+    transition: color 0.3s;
+    font-size: 14px;
+}
+
+a:hover {
+    color: #0079ff;
+}
+
+.success {
+    width: 150px;
+    padding: 10px;
+    background-color: #ff4141;
+    color: #ffffff;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 40px; /* 로그인 버튼과 위 요소 간의 간격 추가 */
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.success:hover {
+    background-color: #0079ff;
+    color: white;
+}

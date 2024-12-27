@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ohgiraffers.semiproject.manager.model.dao.ManagerApprovalMapper">
+
+    <resultMap id="CacPaymentResultMap" type="com.ohgiraffers.semiproject.manager.model.dto.CacPaymentDTO">
+        <id property="documentNo" column="document_no"/>
+        <result property="empCode" column="emp_code"/>
+        <result property="deadLineDate" column="deadline_date"/>
+        <result property="type" column="type"/>
+        <result property="cacStartDate" column="cac_start_date"/>
+        <result property="cacEndDate" column="cac_end_date"/>
+        <result property="cacReason" column="cac_reason"/>
+        <result property="accountNum" column="account_number"/>
+        <result property="managerAccept" column="manager_accept"/>
+        <result property="presidentAccept" column="president_accept"/>
+        <result property="progressCode" column="progress_code"/>
+        <result property="adminCode" column="admin_code"/>
+        <result property="adminName" column="admin_name"/>
+        <result property="ownerCode" column="owner_code"/>
+        <association property="userInfo" javaType="com.ohgiraffers.semiproject.employee.model.dto.EmployeeJoinListDTO">
+            <id property="empCode" column="emp_code"/>
+            <result property="empPass" column="emp_pass"/>
+            <result property="empName" column="emp_name"/>
+            <result property="empEmail" column="emp_email"/>
+            <result property="empPhone" column="emp_phone"/>
+            <result property="hireDate" column="hire_date"/>
+            <result property="entDate" column="ent_date"/>
+            <result property="empGender" column="emp_gender"/>
+            <result property="empAddress" column="emp_address"/>
+            <result property="jobCode" column="job_code"/>
+            <result property="deptCode" column="dept_code"/>
+            <result property="authority" column="authority"/>
+            <result property="profile_image" column="profile_image"/>
+            <association property="deptDTO" javaType="com.ohgiraffers.semiproject.employee.model.dto.DeptDTO">
+                <id property="deptCode" column="dept_code"/>
+                <result property="deptName" column="dept_name"/>
+            </association>
+            <association property="jobDTO" javaType="com.ohgiraffers.semiproject.employee.model.dto.JobDTO">
+                <id property="jobCode" column="job_code"/>
+                <result property="jobName" column="job_name"/>
+            </association>
+        </association>
+    </resultMap>
+
+    <resultMap id="OverTimeResultMap" type="com.ohgiraffers.semiproject.manager.model.dto.OverTimeDTO">
+        <id property="documentNo" column="document_no"/>
+        <result property="empCode" column="emp_code"/>
+        <result property="deadLineDate" column="deadline_date"/>
+        <result property="type" column="type"/>
+        <result property="overTime" column="overtime"/>
+        <result property="overTimeReason" column="overtime_reason"/>
+        <result property="managerAccept" column="manager_accept"/>
+        <result property="presidentAccept" column="president_accept"/>
+        <result property="progressCode" column="progress_code"/>
+        <result property="adminCode" column="admin_code"/>
+        <result property="adminName" column="admin_name"/>
+        <result property="ownerCode" column="owner_code"/>
+        <association property="userInfo" javaType="com.ohgiraffers.semiproject.employee.model.dto.EmployeeJoinListDTO">
+            <id property="empCode" column="emp_code"/>
+            <result property="empPass" column="emp_pass"/>
+            <result property="empName" column="emp_name"/>
+            <result property="empEmail" column="emp_email"/>
+            <result property="empPhone" column="emp_phone"/>
+            <result property="hireDate" column="hire_date"/>
+            <result property="entDate" column="ent_date"/>
+            <result property="empGender" column="emp_gender"/>
+            <result property="empAddress" column="emp_address"/>
+            <result property="jobCode" column="job_code"/>
+            <result property="deptCode" column="dept_code"/>
+            <result property="authority" column="authority"/>
+            <result property="profile_image" column="profile_image"/>
+            <association property="deptDTO" javaType="com.ohgiraffers.semiproject.employee.model.dto.DeptDTO">
+                <id property="deptCode" column="dept_code"/>
+                <result property="deptName" column="dept_name"/>
+            </association>
+            <association property="jobDTO" javaType="com.ohgiraffers.semiproject.employee.model.dto.JobDTO">
+                <id property="jobCode" column="job_code"/>
+                <result property="jobName" column="job_name"/>
+            </association>
+        </association>
+    </resultMap>
+
+    <resultMap id="RetirementResultMap" type="com.ohgiraffers.semiproject.manager.model.dto.RetirementDTO">
+        <id property="documentNo" column="document_no"/>
+        <result property="empCode" column="emp_code"/>
+        <result property="deadLineDate" column="deadline_date"/>
+        <result property="type" column="type"/>
+        <result property="retireDate" column="retire_date"/>
+        <result property="retireReason" column="retire_reason"/>
+        <result property="managerAccept" column="manager_accept"/>
+        <result property="presidentAccept" column="president_accept"/>
+        <result property="progressCode" column="progress_code"/>
+        <result property="adminCode" column="admin_code"/>
+        <result property="adminName" column="admin_name"/>
+        <result property="ownerCode" column="owner_code"/>
+        <association property="userInfo" javaType="com.ohgiraffers.semiproject.employee.model.dto.EmployeeJoinListDTO">
+            <id property="empCode" column="emp_code"/>
+            <result property="empPass" column="emp_pass"/>
+            <result property="empName" column="emp_name"/>
+            <result property="empEmail" column="emp_email"/>
+            <result property="empPhone" column="emp_phone"/>
+            <result property="hireDate" column="hire_date"/>
+            <result property="entDate" column="ent_date"/>
+            <result property="empGender" column="emp_gender"/>
+            <result property="empAddress" column="emp_address"/>
+            <result property="jobCode" column="job_code"/>
+            <result property="deptCode" column="dept_code"/>
+            <result property="authority" column="authority"/>
+            <result property="profile_image" column="profile_image"/>
+            <association property="deptDTO" javaType="com.ohgiraffers.semiproject.employee.model.dto.DeptDTO">
+                <id property="deptCode" column="dept_code"/>
+                <result property="deptName" column="dept_name"/>
+            </association>
+            <association property="jobDTO" javaType="com.ohgiraffers.semiproject.employee.model.dto.JobDTO">
+                <id property="jobCode" column="job_code"/>
+                <result property="jobName" column="job_name"/>
+            </association>
+        </association>
+    </resultMap>
+
+    <resultMap id="VacPaymentResultMap" type="com.ohgiraffers.semiproject.manager.model.dto.VacPaymentDTO">
+        <id property="documentNo" column="document_no"/>
+        <result property="empCode" column="emp_code"/>
+        <result property="deadLineDate" column="deadline_date"/>
+        <result property="type" column="type"/>
+        <result property="vacStartDate" column="vac_start_date"/>
+        <result property="vacEndDate" column="vac_end_date"/>
+        <result property="vacReason" column="vac_reason"/>
+        <result property="managerAccept" column="manager_accept"/>
+        <result property="presidentAccept" column="president_accept"/>
+        <result property="progressCode" column="progress_code"/>
+        <result property="adminCode" column="admin_code"/>
+        <result property="adminName" column="admin_name"/>
+        <result property="ownerCode" column="owner_code"/>
+        <association property="userInfo" javaType="com.ohgiraffers.semiproject.employee.model.dto.EmployeeJoinListDTO">
+            <id property="empCode" column="emp_code"/>
+            <result property="empPass" column="emp_pass"/>
+            <result property="empName" column="emp_name"/>
+            <result property="empEmail" column="emp_email"/>
+            <result property="empPhone" column="emp_phone"/>
+            <result property="hireDate" column="hire_date"/>
+            <result property="entDate" column="ent_date"/>
+            <result property="empGender" column="emp_gender"/>
+            <result property="empAddress" column="emp_address"/>
+            <result property="jobCode" column="job_code"/>
+            <result property="deptCode" column="dept_code"/>
+            <result property="authority" column="authority"/>
+            <result property="profile_image" column="profile_image"/>
+            <association property="deptDTO" javaType="com.ohgiraffers.semiproject.employee.model.dto.DeptDTO">
+                <id property="deptCode" column="dept_code"/>
+                <result property="deptName" column="dept_name"/>
+            </association>
+            <association property="jobDTO" javaType="com.ohgiraffers.semiproject.employee.model.dto.JobDTO">
+                <id property="jobCode" column="job_code"/>
+                <result property="jobName" column="job_name"/>
+            </association>
+        </association>
+    </resultMap>
+
+
+    <select id="getCacPaymentList" resultMap="CacPaymentResultMap">
+        select
+            document_no,
+            emp_code,
+            deadline_date,
+            type,
+            manager_accept,
+            president_accept,
+            progress_code
+        from
+            tbl_cacpayment
+        where
+            admin_code = #{code} or owner_code = #{code}
+    </select>
+
+    <select id="getOverTimeList" resultMap="OverTimeResultMap">
+        select
+            document_no,
+            emp_code,
+            deadline_date,
+            type,
+            manager_accept,
+            president_accept,
+            progress_code
+        from
+            tbl_overtime
+        where
+            admin_code = #{code} or owner_code = #{code}
+    </select>
+
+    <select id="getRetirement" resultMap="RetirementResultMap">
+        select
+            document_no,
+            emp_code,
+            deadline_date,
+            type,
+            manager_accept,
+            president_accept,
+            progress_code
+        from
+            tbl_retirement
+        where
+            admin_code = #{code} or owner_code = #{code}
+    </select>
+
+    <select id="getVacPayment" resultMap="VacPaymentResultMap">
+        select
+            document_no,
+            emp_code,
+            deadline_date,
+            type,
+            manager_accept,
+            president_accept,
+            progress_code
+        from
+            tbl_vacpayment
+        where
+            admin_code = #{code} or owner_code = #{code}
+    </select>
+
+    <select id="getVacRequest" resultMap="VacPaymentResultMap">
+        SELECT
+            a.emp_code,
+            a.admin_code,
+            a.owner_code,
+            a.deadline_date,
+            a.type,
+            a.vac_start_date,
+            a.vac_end_date,
+            a.vac_reason,
+            a.admin_name,
+            b.emp_name,
+            c.dept_name,
+            d.job_name
+        FROM
+        tbl_vacpayment a
+            JOIN tbl_emp b ON a.emp_code = b.emp_code
+            JOIN tbl_dept c ON b.dept_code = c.dept_code
+            JOIN tbl_job d ON b.job_code = d.job_code
+        WHERE
+            a.document_no = #{documentNo}
+    </select>
+
+    <update id="vacationProcess" parameterType="com.ohgiraffers.semiproject.manager.model.dto.VacPaymentDTO">
+        update
+            tbl_vacpayment
+        set
+            manager_accept = #{managerAccept}, president_accept = #{presidentAccept}, progress_code = #{progressCode}
+        where
+            document_no = #{documentNo}
+    </update>
+
+    <select id="getVacationDetails" resultMap="VacPaymentResultMap">
+        select
+            document_no,
+            manager_accept,
+            president_accept
+        from
+            tbl_vacpayment
+        where
+            document_no = #{no}
+    </select>
+
+    <select id="getDate" resultMap="VacPaymentResultMap">
+        select
+            emp_code,
+            type,
+            vac_start_date,
+            vac_end_date,
+            manager_accept,
+            president_accept
+        from
+            tbl_vacpayment
+        where
+            document_no = #{documentNo}
+    </select>
+
+    <select id="getCacRequest" resultMap="CacPaymentResultMap">
+        SELECT
+        a.emp_code,
+        a.admin_code,
+        a.owner_code,
+        a.deadline_date,
+        a.type,
+        a.cac_start_date,
+        a.cac_end_date,
+        a.cac_reason,
+        a.account_number,
+        a.admin_name,
+        b.emp_name,
+        c.dept_name,
+        d.job_name
+        FROM
+        tbl_cacpayment a
+        JOIN tbl_emp b ON a.emp_code = b.emp_code
+        JOIN tbl_dept c ON b.dept_code = c.dept_code
+        JOIN tbl_job d ON b.job_code = d.job_code
+        WHERE
+        a.document_no = #{documentNo}
+    </select>
+
+    <select id="getCacDetails" resultMap="CacPaymentResultMap">
+        select
+        document_no,
+        manager_accept,
+        president_accept
+        from
+        tbl_cacpayment
+        where
+        document_no = #{no}
+    </select>
+
+    <update id="cacProcess" parameterType="com.ohgiraffers.semiproject.manager.model.dto.CacPaymentDTO">
+        update
+        tbl_cacpayment
+        set
+        manager_accept = #{managerAccept}, president_accept = #{presidentAccept}, progress_code = #{progressCode}
+        where
+        document_no = #{documentNo}
+    </update>
+
+    <select id="getOverTimeRequest" resultMap="OverTimeResultMap">
+        SELECT
+        a.emp_code,
+        a.admin_code,
+        a.owner_code,
+        a.deadline_date,
+        a.type,
+        a.overtime,
+        a.overtime_reason,
+        a.admin_name,
+        b.emp_name,
+        c.dept_name,
+        d.job_name
+        FROM
+        tbl_overtime a
+        JOIN tbl_emp b ON a.emp_code = b.emp_code
+        JOIN tbl_dept c ON b.dept_code = c.dept_code
+        JOIN tbl_job d ON b.job_code = d.job_code
+        WHERE
+        a.document_no = #{documentNo}
+    </select>
+
+    <select id="getOverTimeDetails" resultMap="OverTimeResultMap">
+        select
+        document_no,
+        manager_accept,
+        president_accept
+        from
+        tbl_overtime
+        where
+        document_no = #{no}
+    </select>
+
+    <update id="overTimeProcess" parameterType="com.ohgiraffers.semiproject.manager.model.dto.OverTimeDTO">
+        update
+        tbl_overtime
+        set
+        manager_accept = #{managerAccept}, president_accept = #{presidentAccept}, progress_code = #{progressCode}
+        where
+        document_no = #{documentNo}
+    </update>
+
+    <select id="getRetirementRequest" resultMap="RetirementResultMap">
+        SELECT
+        a.emp_code,
+        a.admin_code,
+        a.owner_code,
+        a.deadline_date,
+        a.type,
+        a.retire_date,
+        a.retire_reason,
+        a.admin_name,
+        b.emp_name,
+        c.dept_name,
+        d.job_name
+        FROM
+        tbl_retirement a
+        JOIN tbl_emp b ON a.emp_code = b.emp_code
+        JOIN tbl_dept c ON b.dept_code = c.dept_code
+        JOIN tbl_job d ON b.job_code = d.job_code
+        WHERE
+        a.document_no = #{documentNo}
+    </select>
+
+    <select id="getRetirementDetails" resultMap="RetirementResultMap">
+        select
+        document_no,
+        manager_accept,
+        president_accept
+        from
+        tbl_retirement
+        where
+        document_no = #{no}
+    </select>
+
+    <update id="retirementProcess" parameterType="com.ohgiraffers.semiproject.manager.model.dto.RetirementDTO">
+        update
+        tbl_retirement
+        set
+        manager_accept = #{managerAccept}, president_accept = #{presidentAccept}, progress_code = #{progressCode}
+        where
+        document_no = #{documentNo}
+    </update>
+</mapper>

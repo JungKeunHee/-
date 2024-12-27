@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>이메일</title>
+    <link rel="stylesheet" href="/main/css/main-style.css"> <!-- 메인 스타일 연결 -->
+    <script src="/main/js/main.js"></script> <!-- 메인 자바스크립트 연결 -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=keyboard_arrow_down" />
+    <link rel="stylesheet" href="/sidemenu/mail/css/mail-style.css">
+</head>
+<body>
+<header>
+    <div class="side-menu-bar">
+        <ul>
+            <li><a href="/main">🐶PetHarmony🐶</a></li>
+            <li><a href="http://localhost:9595/sidemenu/schedule">근태관리</a></li>
+            <li><a href="http://localhost:9595/sidemenu/messenger">메신저(채팅)</a></li>
+            <li><a href="http://localhost:9595/sidemenu/mail">이메일</a></li>
+            <li><a href="http://localhost:9595/sidemenu/adoption">입양</a></li>
+            <li class="animal-menu">
+                <div class="menu-wrapper">
+                    <a href="http://localhost:9595/sidemenu/animals">동물
+                        <span class="material-symbols-outlined">keyboard_arrow_down</span>
+                    </a>
+                </div>
+                <ul class="sub-menu">
+                    <li><a href="http://localhost:9595/sidemenu/animals">구조동물</a></li>
+                    <li><a href="http://localhost:9595/sidemenu/adoptionComplete">입양완료</a></li>
+                    <li><a href="http://localhost:9595/sidemenu/stock">재고관리</a></li>
+                </ul>
+            </li>
+            <li><a href="http://localhost:9595/sidemenu/facilities">시설관리</a></li>
+            <li><a href="http://localhost:9595/sidemenu/board">전사게시판</a></li>
+            <li><a href="http://localhost:9595/sidemenu/employee">직원정보</a></li>
+            <li><a href="http://localhost:9595/sidemenu/mypage">마이페이지</a></li>
+            <li><a href="http://localhost:9595/sidemenu/approval">결재</a></li>
+            <li class="admin-menu">
+                <div class="admin-menu-wrapper">
+                    <a href="http://localhost:9595/sidemenu/manager">관리자전용
+                        <span class="material-symbols-outlined">keyboard_arrow_down</span>
+                    </a>
+                </div>
+                <ul class="sub-menu">
+                    <li><a href="http://localhost:9595/sidemenu/manager">관리자페이지</a></li>
+                    <li><a href="http://localhost:9595/sidemenu/employeeRegister">사원등록</a></li>
+                    <li><a href="http://localhost:9595/sidemenu/employeeManagement">직원관리</a></li>
+                    <li><a href="http://localhost:9595/sidemenu/approvalBox">결재함</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</header>
+<div class="change-screen-email">
+    <div id="change-screen-content">
+        <div class="form">
+            <div class="navigation">
+                <nav>
+                    <ul class="ul-change">
+                        <li style="font-size: 20px;">
+                            <a th:href="@{/sidemenu/mail}" style="text-decoration: none;">
+                                <b>📥&nbsp;&nbsp;&nbsp;&nbsp;받은쪽지함</b>
+                            </a>
+                        </li>
+                        <br><br><br>
+                        <li style="font-size: 20px;">
+                            <a th:href="@{/mail/sent}" style="text-decoration: none;">
+                                <b>📤&nbsp;&nbsp;&nbsp;&nbsp;보낸쪽지함</b>
+                            </a>
+                        </li>
+                        <br><br><br>
+                        <li style="font-size: 20px;">
+                            <a th:href="@{/mail/important}" style="text-decoration: none;">
+                                <b>⭐&nbsp;&nbsp;&nbsp;&nbsp;중요쪽지함</b>
+                            </a>
+                        </li>
+                        <br><br><br>
+                        <li style="font-size: 20px;">
+                            <a th:href="@{/mail/trash}" style="text-decoration: none;">
+                                <b>❌&nbsp;&nbsp;&nbsp;&nbsp;휴지통</b>
+                            </a>
+                        </li>
+                        <br><br><br>
+                        <li style="font-size: 20px;">
+                            <a th:href="@{/mail/archived}" style="text-decoration: none;">
+                                <b>📦&nbsp;&nbsp;&nbsp;&nbsp;보관함</b>
+                            </a>
+                        </li>
+                    </ul>
+                    <button id="messageModalBtn" class="styled-button">🖍 쪽지 쓰기</button>
+                </nav>
+            </div>
+
+            <div class="form1">
+                <div class="main-button">
+                    <button class="main-button1" id="moveToTrash" onclick="moveMails('휴지통')">❌ 휴지통</button>
+                    <button class="main-button2" id="moveToImportant" onclick="moveMails('중요쪽지함')">⭐ 중요보관함</button>
+                    <button class="main-button3" id="moveToReceived" onclick="moveMails('보관함')">📦 받은쪽지보관함</button>
+                </div>
+                <table border="1" class="post-list">
+                    <colgroup>
+                        <col style="width: 5%;">
+                        <col>
+                        <col>
+                        <col>
+                    </colgroup>
+                    <thead>
+                    <tr>
+                        <th>
+                            <input type="checkbox" id="selectAll" class="checkbox1" onclick="toggleSelectAll(this)">
+                        </th>
+                        <th>메일번호</th>
+                        <th>보낸사람</th>
+                        <th>제목</th>
+                        <th>날짜</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:if="${mail.isEmpty}">
+                        <td colspan="5" style="text-align: center;">쪽지가 없습니다</td>
+                    </tr>
+                    <tr th:each="mail : ${mail}">
+                        <td>
+                            <input type="checkbox" class="select-item" name="selectedMail" th:value="${mail.emailCode}" onchange="handleEmailSelection()">
+                        </td>
+                        <td th:text="${mail.emailCode}"></td>
+                        <td th:text="${mail.senderName}"></td>
+                        <td>
+                            <a th:href="@{/mail/details/{emailCode}(emailCode=${mail.emailCode})}" th:class="styled-link" th:text="${mail.title}"></a>
+                        </td>
+                        <td th:text="${#dates.format(mail.sendDate, 'yyyy-MM-dd')}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <form action="/sidemenu/mail" method="get">
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination">
+                            <li class="page-item" th:classappend="${pageInfo.currentPage == 0 or pageInfo.totalPages == 1} ? 'disabled'">
+                                <a class="page-link"
+                                   th:href="@{/sidemenu/mail(page=${pageInfo.currentPage - 1}, size=${pageInfo.pageSize})}"
+                                   th:classappend="${pageInfo.currentPage == 0 or pageInfo.totalPages == 1} ? 'disabled'">Previous</a>
+                            </li>
+                            <li class="page-item" th:each="pageNum : ${#numbers.sequence(0, pageInfo.totalPages - 1)}"
+                                th:classappend="${pageInfo.currentPage == pageNum} ? 'active'">
+                                <a class="page-link"
+                                   th:href="@{/sidemenu/mail(page=${pageNum}, size=${pageInfo.pageSize})}"
+                                   th:text="${pageNum + 1}"></a>
+                            </li>
+                            <li class="page-item" th:classappend="${pageInfo.currentPage == pageInfo.totalPages - 1 or pageInfo.totalPages == 1} ? 'disabled'">
+                                <a class="page-link"
+                                   th:href="@{/sidemenu/mail(page=${pageInfo.currentPage + 1}, size=${pageInfo.pageSize})}"
+                                   th:classappend="${pageInfo.currentPage == pageInfo.totalPages - 1 or pageInfo.totalPages == 1} ? 'disabled'">Next</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </form>
+                <div id="messageModal" class="modal">
+                    <div class="modal-content">
+                        <form class=modal2-form id="messageForm" action="/sidemenu/mail/regist" method="post">
+                            <span class="close-btn" id="closeModalBtn">&times;</span>
+                            <h2>쪽지 보내기</h2>
+                            <button id="openModalBtn" class="styled-button2"><b>🔎 찾기</b></button>
+                            <div class="form-group">
+                                <label for="recipient">받는 사람</label>
+                                <input class="textbox" type="text" id="recipient" name="recipient" placeholder="받는 사람을 입력하세요" required readonly>
+                            </div>
+                            <div class="form-name">
+                                <label>제목</label>
+                                <input class="textbox1-1" type="text" id="title" name="title" placeholder="제목을 입력하세요" required>
+                            </div>
+                            <div class="form-group2">
+                                <label for="message">쪽지 내용</label>
+                                <textarea id="message" name="content" placeholder="내용을 입력하세요" required></textarea>
+                            </div>
+                            <button type="submit" id="sendMessageBtn" class="submit">보내기</button>
+                            <input type="hidden" id="recipient_id" name="recipientId">
+                            <input type="hidden" id="recipient_name" name="recipientName">
+                            <input  type="hidden" id="senderId" name="senderId" value="${userInfo.code}">
+                        </form>
+                    </div>
+                </div>
+                <div id="addressBookModal" class="modal2">
+                    <div class="modal-content2">
+                        <span class="close-btn2" id="closeModalBtn2">&times;</span>
+                        <h2>주소록</h2>
+                         <div class="search-bar">
+                            <input class="textbox2" type="text" id="searchInput2" placeholder="직원 검색..." oninput="filterEmployees()">
+                        </div>
+                        <div id="addressBookContainer2">
+                            <input type="checkbox" id="selectAllManagementDept" onclick="toggleSelectAll(this, 'managementDept')"> 전체 선택
+                            <div class="department-group">
+                                <h3>📂 경영부
+                                </h3>
+                                <ul class="employee-list" id="managementDept"></ul>
+                            </div>
+                            <div class="department-group">
+                                <h3>📂 애견담당부
+                                </h3>
+                                <ul class="employee-list" id="dogDept"></ul>
+                            </div>
+                            <div class="department-group">
+                                <h3>📂 마케팅부
+                                </h3>
+                                <ul class="employee-list" id="marketingDept"></ul>
+                            </div>
+                            <div class="department-group">
+                                <h3>📂 영업부
+                                </h3>
+                                <ul class="employee-list" id="salesDept"></ul>
+                            </div>
+                            <div class="department-group">
+                                <h3>📂 물류부
+                                </h3>
+                                <ul class="employee-list" id="logisticsDept"></ul>
+                            </div>
+                            <div class="department-group">
+                                <h3>📂 고객업무부
+                                </h3>
+                                <ul class="employee-list" id="customerDept"></ul>
+                            </div>
+                        </div>
+                        <button id="submitSelection2" onclick="submitSelections()" class="styled-button3">선택 완료</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    document.getElementById('messageModalBtn').addEventListener('click', function() {
+        document.getElementById('messageModal').style.display = 'block';
+    });
+
+    document.getElementById('closeModalBtn').addEventListener('click', function() {
+        document.getElementById('messageModal').style.display = 'none';
+    });
+
+    document.getElementById('openModalBtn').addEventListener('click', function() {
+        document.getElementById('addressBookModal').style.display = 'block';
+    });
+
+    document.getElementById('closeModalBtn2').addEventListener('click', function() {
+        document.getElementById('addressBookModal').style.display = 'none';
+    });
+
+    function moveMails(targetFolder) {
+        const selectedMailIds = getSelectedMailIds();
+
+        if (selectedMailIds.length === 0) {
+            alert("이동할 메일을 선택하세요.");
+            return;
+        }
+
+        fetch('/mail/move', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                emailCode: selectedMailIds.join(","),
+                recipientFolder: targetFolder
+            })
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("메일 이동 실패");
+                }
+                return response.text();
+            })
+            .then(data => {
+                alert(data);
+                location.reload();
+            })
+            .catch(error => {
+                console.error("메일 이동 중 오류 발생:", error);
+            });
+    }
+
+    let selectedRecipients = [];
+
+    // 직원 선택 및 해제 처리
+    function selectEmployee(employee, checkbox) {
+        const recipientField = document.getElementById('recipient');
+        const recipientIdField = document.getElementById('recipient_id');
+        const recipientNameField = document.getElementById('recipient_name');
+
+        // 직원 정보가 이미 선택되었는지 확인
+        const recipientIndex = selectedRecipients.findIndex(emp => emp.empCode === employee.empCode);
+
+        if (checkbox.checked) {
+            // 체크박스가 선택되면, 수신자 리스트에 추가
+            if (recipientIndex === -1) {
+                selectedRecipients.push({
+                    empCode: employee.empCode,
+                    empName: employee.empName
+                });
+            }
+        } else {
+            // 체크박스가 해제되면, 수신자 리스트에서 제거
+            if (recipientIndex !== -1) {
+                selectedRecipients.splice(recipientIndex, 1);
+            }
+        }
+
+        // 선택된 직원들 갱신
+        updateRecipientField();
+    }
+
+    // 선택된 직원들을 갱신
+    function updateRecipientField() {
+        const recipientField = document.getElementById('recipient');
+        const recipientIdField = document.getElementById('recipient_id');
+        const recipientNameField = document.getElementById('recipient_name');
+
+        // 선택된 직원들이 있을 때만 처리
+        if (selectedRecipients.length > 0) {
+            recipientField.value = selectedRecipients.map(emp => emp.empName).join(', ');
+            recipientIdField.value = selectedRecipients.map(emp => emp.empCode).join(',');
+            recipientNameField.value = selectedRecipients.map(emp => emp.empName).join(',');
+        } else {
+            recipientField.value = '';
+            recipientIdField.value = '';
+            recipientNameField.value = '';
+        }
+    }
+
+    function fetchEmployees() {
+        const departments = {
+            '경영부': document.getElementById('managementDept'),
+            '애견담당부': document.getElementById('dogDept'),
+            '마케팅부': document.getElementById('marketingDept'),
+            '영업부': document.getElementById('salesDept'),
+            '물류부': document.getElementById('logisticsDept'),
+            '고객CS업무부': document.getElementById('customerDept')
+        };
+
+        fetch('/mail/employees')
+            .then(response => response.json())
+            .then(data => {
+                data.forEach(employee => {
+                    const empName = employee.empName || 'N/A';
+                    const jobName = employee.jobDTO ? employee.jobDTO.jobName : 'N/A';
+                    const deptName = employee.deptDTO ? employee.deptDTO.deptName : 'N/A';
+
+                    if (departments[deptName]) {
+                        const li = document.createElement('li');
+                        // 체크박스를 동적으로 생성하여 li에 추가
+                        const checkbox = document.createElement('input');
+                        checkbox.type = "checkbox";
+                        checkbox.classList.add("select-item");
+                        checkbox.value = employee.empCode;
+                        checkbox.setAttribute('data-name', empName);
+                        checkbox.onclick = () => selectEmployee(employee, checkbox); // 클릭시 직원 선택 처리
+
+                        // 직원 이름과 직급을 li에 추가
+                        const nameText = document.createTextNode(`${empName} (${jobName})`);
+
+                        // 체크박스를 먼저 추가하고, 그 다음 텍스트를 추가합니다.
+                        li.appendChild(checkbox);  // 체크박스를 먼저 추가
+                        li.appendChild(nameText);  // 그 후 텍스트 추가
+
+                        li.onclick = () => selectEmployee(employee, checkbox);  // 클릭시 직원 선택 처리
+
+                        departments[deptName].appendChild(li);
+                    }
+                });
+
+                // 선택된 직원들을 표시
+                restoreSelectedEmployees();
+            })
+            .catch(error => {
+                console.error('직원 목록을 가져오는 중 오류 발생:', error);
+            });
+    }
+
+    // 선택된 직원들을 갱신
+    function restoreSelectedEmployees() {
+        const checkboxes = document.querySelectorAll('.select-item');
+        checkboxes.forEach(checkbox => {
+            const empCode = checkbox.value;
+            // 선택된 직원의 체크박스를 체크 상태로 유지
+            const isSelected = selectedRecipients.some(emp => emp.empCode === empCode);
+            checkbox.checked = isSelected;
+        });
+    }
+
+    function submitSelections() {
+        updateRecipientField();  // 선택된 직원들 갱신
+
+        const recipientIdsField = document.getElementById('recipient_id');
+        const recipientNameField = document.getElementById('recipient_name');
+
+        // 선택된 직원이 없으면 경고 메시지 표시
+        if (!recipientIdsField || !recipientIdsField.value || !recipientNameField || !recipientNameField.value) {
+            alert("받는 사람을 선택해 주세요!");
+            return;
+        }
+
+        // 선택된 직원이 있으면, 추가 작업
+        const addressBookModal = document.getElementById('addressBookModal');
+        if (addressBookModal) {
+            addressBookModal.style.display = 'none';
+        }
+    }
+
+    function filterEmployees() {
+        const searchInput = document.getElementById('searchInput2').value.toLowerCase();
+        const employeeListItems = document.querySelectorAll('#addressBookContainer2 .employee-list li');
+
+        employeeListItems.forEach(item => {
+            const name = item.getAttribute('data-name').toLowerCase();
+            if (name.includes(searchInput)) {
+                item.style.display = '';
+            } else {
+                item.style.display = 'none';
+            }
+        });
+    }
+
+    function toggleSelectAll(source, isAddressBook = false) {
+        const checkboxes = isAddressBook
+            ? document.querySelectorAll('.employee-list .select-item') // 주소록에서의 선택
+            : document.querySelectorAll('.post-list .select-item');  // 메일 목록에서의 선택
+
+        checkboxes.forEach(function(checkbox) {
+            checkbox.checked = source.checked;
+            const empCode = checkbox.value;
+            const empName = checkbox.getAttribute('data-name');
+
+            const recipientIndex = selectedRecipients.findIndex(emp => emp.empCode === empCode);
+
+            if (checkbox.checked) {
+                // 체크박스가 선택되면 수신자 리스트에 추가
+                if (recipientIndex === -1) {
+                    selectedRecipients.push({
+                        empCode: empCode,
+                        empName: empName
+                    });
+                }
+            } else {
+                // 체크박스가 해제되면 수신자 리스트에서 제거
+                if (recipientIndex !== -1) {
+                    selectedRecipients.splice(recipientIndex, 1);
+                }
+            }
+        });
+
+        // 선택된 직원들 갱신
+        updateRecipientField();
+    }
+
+    window.onload = function() {
+        // 서버에서 가져온 사용자 이름을 senderName 필드에 설정
+        const senderId = '현재 로그인한 사 용자 코드'; // 실제로 서버에서 받아온 값을 사용
+        document.getElementById('senderId').value = senderId;
+
+        fetchEmployees();
+    };
+
+    function getSelectedMailIds() {
+        const selected = [];
+        document.querySelectorAll('input.select-item:checked').forEach(function (checkbox) {
+            selected.push(checkbox.value);
+        });
+        return selected;
+    }
+</script>
+</html>

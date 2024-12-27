@@ -1,0 +1,85 @@
+.change-screen-stock {
+    width: 1850px;
+    margin-top: 15px;
+    height: auto;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    color: black;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+table {
+    border-collapse: collapse;
+    font-size: 14px;
+    margin-top: 20px;
+    margin: 0 auto; /* This will center the table horizontally */
+}
+
+th, td {
+    padding: 12px 20px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #f0f0f0;
+    color: #333;
+    font-weight: bold;
+}
+
+td {
+    background-color: white;
+}
+
+.btn-dealName {
+    cursor: pointer;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    padding: 5px 15px;
+    font-size: 14px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.btn-dealName:hover {
+    background-color: #0056b3;
+}
+
+form {
+    display: inline;
+}
+
+input[type="number"] {
+    padding: 5px;
+    width: 80px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+input[type="number"]:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+form button {
+    padding: 6px 12px;
+    font-size: 14px;
+    background-color: #28a745;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+form button:hover {
+    background-color: #218838;
+}

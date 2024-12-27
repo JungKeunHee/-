@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>구조동물</title>
+    <link rel="stylesheet" href="/main/css/main-style.css"> <!-- 메인 스타일 연결 -->
+    <script src="/main/js/main.js"></script> <!-- 메인 자바스크립트 연결 -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=keyboard_arrow_down" />
+    <link rel="stylesheet" href="/sidemenu/animals/css/animals-style.css">
+</head>
+<body>
+<header>
+    <div class="side-menu-bar">
+        <ul>
+            <li><a href="/main">🐶PetHarmony🐶</a></li>
+            <li><a href="http://localhost:9595/sidemenu/schedule">근태관리</a></li>
+            <li><a href="http://localhost:9595/sidemenu/messenger">메신저(채팅)</a></li>
+            <li><a href="http://localhost:9595/sidemenu/mail">이메일</a></li>
+            <li><a href="http://localhost:9595/sidemenu/adoption">입양</a></li>
+            <li class="animal-menu">
+                <div class="menu-wrapper">
+                    <a href="http://localhost:9595/sidemenu/animals">동물
+                        <span class="material-symbols-outlined">keyboard_arrow_down</span>
+                    </a>
+                </div>
+                <ul class="sub-menu">
+                    <li><a href="http://localhost:9595/sidemenu/animals">구조동물</a></li>
+                    <li><a href="http://localhost:9595/sidemenu/adoptionComplete">입양완료</a></li>
+                    <li><a href="http://localhost:9595/sidemenu/stock">재고관리</a></li>
+                </ul>
+            </li>
+            <li><a href="http://localhost:9595/sidemenu/facilities">시설관리</a></li>
+            <li><a href="http://localhost:9595/sidemenu/board">전사게시판</a></li>
+            <li><a href="http://localhost:9595/sidemenu/employee">직원정보</a></li>
+            <li><a href="http://localhost:9595/sidemenu/mypage">마이페이지</a></li>
+            <li><a href="http://localhost:9595/sidemenu/approval">결재</a></li>
+            <li class="admin-menu">
+                <div class="admin-menu-wrapper">
+                    <a href="http://localhost:9595/sidemenu/manager">관리자전용
+                        <span class="material-symbols-outlined">keyboard_arrow_down</span>
+                    </a>
+                </div>
+                <ul class="sub-menu">
+                    <li><a href="http://localhost:9595/sidemenu/manager">관리자페이지</a></li>
+                    <li><a href="http://localhost:9595/sidemenu/employeeRegister">사원등록</a></li>
+                    <li><a href="http://localhost:9595/sidemenu/employeeManagement">직원관리</a></li>
+                    <li><a href="http://localhost:9595/sidemenu/approvalBox">결재함</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</header>
+<div class="body-main">
+    <div class="change-screen-animals">
+        <div id="change-screen-content">
+            <div class="animal">
+            <!--  검색  -->
+            <div class="form-container">
+            <form th:action="@{/sidemenu/animals}" method="get" class="search-form">
+                <div class="search">
+                    <div class="animal-search-group-inline">
+                    <div class="typeCode-group">
+                        <label for="typeCode">분류 :</label>
+                        <select id="typeCode" name="typeCode">
+                            <option class="default-option" value="">선택</option>
+                            <option value="C1" th:selected="${param.typeCode == 'C1'}">고양이</option>
+                            <option value="D1" th:selected="${param.typeCode == 'D1'}">개</option>
+                        </select>
+                    </div>
+                    <div class="breedCode-group">
+                        <label for="breedCode">품종 :</label>
+                        <select id="breedCode" name="breedCode"></select>
+                    </div>
+                    <div class="gender-group">
+                        <label for="gender">성별 :</label>
+                        <select id="gender" name="gender">
+                            <option class="default-option" value="">선택</option>
+                            <option value="M">M</option>
+                            <option value="F">F</option>
+                        </select>
+                    </div>
+                    </div>
+                    <div class="rescueDate-group">
+                        <label for="rescueDate">구조 된 날짜 :</label>
+                        <input type="date" id="rescueDate" name="rescueDate"> ( 구조 된 접수일 기준 )
+                    </div>
+                    <hr>
+                    <div class="btn-container">
+                        <button class="btn">🔍조회하기</button>
+                        <button class="btn" th:href="@{/sidemenu/animals}">📃목록으로</button>
+                    </div>
+                </div>
+            </form>
+            </div>
+
+            <!--  동물 리스트 -->
+            <div class="animalList">
+                <div class="i-d-u-btn-group">
+                    <div class="count">
+                        전체 <span th:text="${totalRecords}"></span> 건
+                    </div>
+                    <div class="insert">
+                        <a href="/sidemenu/animals/insert">등록</a>
+                    </div>
+                    <div class="delete">
+                        <a href="javascript:boardDelete();">삭제</a>
+                    </div>
+                </div>
+
+                <div class="card-container">
+                    <div class="card" th:each="allList : ${list}">
+                        <div class="card-image">
+                            <img th:src="@{${allList.animalImage != null and allList.animalImage != '' ? '/img/animals/' + allList.animalImage : '/img/animals/defaultAnimal.jpg'}}"
+                                 alt="Animal Image" th:attr="onclick=|location.href='@{/animals/detailAnimal/{animalCode}(animalCode=${allList.animalCode})}'|"/>
+                        </div>
+                        <div class="card-status"
+                             th:style="${allList.animalStatus == '공고중' ? 'background-color: #00827F;' :
+                                        (allList.animalStatus == '보호중' ? 'background-color: #4CAF50;' : 'background-color: #FF9800;')}">
+                            <span th:text="${allList.animalStatus}"></span>
+                        </div>
+                        <p class="card-body">
+                            <span class="by-name" th:text="${allList.typeDTO.typeName}"></span>/
+                            <span class="date" th:text="${allList.breedDTO.breedName}"></span>
+                        </p>
+                        <label class="card-title">
+                            <input type="checkbox" name="chk" class="chk" onclick="chkClicked()" th:value="${allList.animalCode}">
+                            <span th:text="${allList.animalCode}"></span>
+                        </label>
+                        <p class="footer" th:text="${#dates.format(allList.rescueDate, 'yyyy-MM-dd')}"></p>
+                        <p class="footer">구조 된 날짜</p>
+                    </div>
+                </div>
+
+                <div class="page-btn-group" role="group" >
+                    <button type="button" class="page-btn"
+                            th:each="i : ${#numbers.sequence(1, totalPages)}"
+                            th:text="${i}"
+                            th:classappend="${currentPage == i ? 'btn-primary' : ''}"
+                            th:onclick="|location.href='/sidemenu/animals?page=' + ${i} + '&limit=8'|">
+                    </button>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+<script>
+    // 체크박스 전체 선택 클릭 이벤트
+    function allChecked(target){
+        // 전체 체크박스 버튼
+        const checkbox = document.getElementById('allCheckBox');
+        // 전체 체크박스 버튼 체크 여부
+        const is_checked = checkbox.checked;
+        // 전체 체크박스 제외한 모든 체크박스
+        if(is_checked){
+            // 체크박스 전체 체크
+            chkAllChecked()
+        }
+        else{
+            // 체크박스 전체 해제
+            chkAllUnChecked()
+        }
+    }
+    // 자식 체크박스 클릭 이벤트
+    function chkClicked(){
+        // 체크박스 전체개수
+        const allCount = document.querySelectorAll(".chk").length;
+        // 체크된 체크박스 전체개수
+        const query = 'input[name="chk"]:checked'
+        const selectedElements = document.querySelectorAll(query)
+        const selectedElementsCnt = selectedElements.length;
+        // 체크박스 전체개수와 체크된 체크박스 전체개수가 같으면 전체 체크박스 체크
+        if(allCount == selectedElementsCnt){
+            document.getElementById('allCheckBox').checked = true;
+        }
+        // 같지않으면 전체 체크박스 해제
+        else{
+            document.getElementById('allCheckBox').checked = false;
+        }
+    }
+    // 체크박스 전체 체크
+    function chkAllChecked(){
+        document.querySelectorAll(".chk").forEach(function(v, i) {
+            v.checked = true;
+        });
+    }
+    // 체크박스 전체 체크 해제
+    function chkAllUnChecked(){
+        document.querySelectorAll(".chk").forEach(function(v, i) {
+            v.checked = false;
+        });
+    }
+    // 글 삭제
+    function boardDelete(){
+        //체크박스 체크된 항목
+        const query = 'input[name="chk"]:checked'
+        const selectedElements = document.querySelectorAll(query)
+        //체크박스 체크된 항목의 개수
+        const selectedElementsCnt = selectedElements.length;
+
+        if(selectedElementsCnt == 0){
+            alert("삭제할 항목을 선택해주세요.");
+            return false;
+        }
+        else{
+            if (confirm("정말로 삭제하시겠습니까?")) {
+                //배열생성
+                const arr = new Array(selectedElementsCnt);
+
+                document.querySelectorAll('input[name="chk"]:checked').forEach(function(v, i) {
+                    arr[i] = v.value;
+                });
+
+                const form = document.createElement('form');
+                form.setAttribute('method', 'post');        //Post 메소드 적용
+                form.setAttribute('action', '/delete');
+
+                var input1 = document.createElement('input');
+                input1.setAttribute("type", "hidden");
+                input1.setAttribute("name", "boardIds");
+                input1.setAttribute("value", arr);
+                form.appendChild(input1);
+                console.log(form);
+                document.body.appendChild(form);
+                form.submit();
+            }
+        }
+    }
+
+    fetch("/sidemenu/animals/breed")
+        .then(res => res.json())
+        .then(data => {
+            breedData = data; // 비동기로 가져온 데이터를 저장
+            breedsByType(); // 분류에 맞는 품종 메소드
+        })
+        .catch(error => console.error("Error fetching breed data:", error));
+
+    // 분류 선택 후 품종 필터링
+    document.querySelector('select[name="typeCode"]').addEventListener('change', breedsByType);
+
+    function breedsByType() {
+        const selectedType = document.querySelector('select[name="typeCode"]').value; // D1, C1
+        const breedSelect = document.getElementById('breedCode'); // 비동기로 가져온 품종들
+
+        // 기존 옵션 초기화
+        breedSelect.innerHTML = '';
+
+        // "선택 안함" 옵션 추가
+        const defaultOption = document.createElement('option');
+        defaultOption.value = '';  // 선택하지 않은 상태
+        defaultOption.textContent = '선택'; // 기본 텍스트
+        defaultOption.classList.add('default-option'); // 'default-option' 클래스 추가
+        breedSelect.appendChild(defaultOption);
+
+        // 선택된 분류 코드에 맞는 품종만 추가
+        breedData
+            .filter(breed => breed.breedCode.startsWith(selectedType[0]))
+            .forEach(breed => {
+                const option = document.createElement('option');
+                option.value = breed.breedCode;
+                option.textContent = breed.breedName;
+                breedSelect.appendChild(option);
+            });
+    }
+
+</script>

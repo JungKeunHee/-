@@ -1,0 +1,214 @@
+.change-screen-settingPass {
+    width: 1850px;
+    height: 800px;
+    background-color: #f9f9f9; /* 배경색 수정 */
+    border-radius: 10px;
+    margin-bottom: 3%;
+    display: flex;
+    justify-content: center;
+}
+
+#change-screen-content {
+    display: flex;
+    align-items: stretch; /* 자식 요소들이 같은 높이를 가지도록 설정 */
+    width: 100%;
+}
+
+.navigation {
+    width: 300px;
+    height: 700px;
+    border-radius: 10px;
+    background: white;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    margin: 23px 0 15px 23px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding-top: 50px;
+}
+
+h1 {
+    position: sticky;
+    top: 0;
+    background-color: white;
+    padding: 10px;
+    font-size: 40px;
+    color: #333;
+    width: 90%;
+    text-align: center;
+    z-index: 100;
+}
+
+.content-container {
+    width: 1500px;
+    height: 710px; /* 고정된 높이 */
+    border-radius: 10px;
+    background: white;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    margin: 23px 23px 15px 30px;
+    padding: 20px;
+    overflow-y: auto; /* 내용이 넘칠 경우 스크롤바가 생기도록 설정 */
+}
+
+h3 {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #007bff;
+}
+
+/* 기본 스타일 */
+.dropdown {
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.dropdown-title {
+    color: #007bff;
+    padding: 10px;
+    cursor: pointer;
+    text-align: left;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    transition: color 0.3s ease;
+    width: 100%;
+}
+
+.dropdown-menu {
+    display: block;
+    position: relative;
+    background-color: transparent;
+    width: 100%;
+    padding: 0;
+    list-style: none;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.3s ease, opacity 0.3s ease;
+}
+
+.dropdown-menu.open {
+    max-height: 300px;
+    opacity: 1;
+}
+
+.dropdown-menu li {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.dropdown-menu li a {
+    display: block;
+    color: #333;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: normal; /* 기본 폰트 굵기 */
+}
+
+.dropdown-menu li a.active {
+    font-weight: bold !important; /* 활성화된 항목의 폰트 굵기 */
+    color: #007bff !important; /* 선택된 항목의 텍스트 색상 */
+}
+
+.dropdown-menu li a:hover {
+    background-color: #f1f1f1;
+}
+
+.dropdown-menu li:last-child {
+    border-bottom: none;
+}
+
+.dropdown-menu.open li a:hover {
+    background-color: #e0e0e0;
+}
+
+/* 추가된 스타일 및 수정된 폼 스타일 */
+form.password-change-form {
+    display: flex; /* 추가 */
+    flex-direction: column; /* 세로 정렬 추가 */
+    gap: 20px; /* 항목 간 간격 추가 */
+    max-width: 500px; /* 중앙 정렬용 폭 제한 */
+    margin: 0 auto; /* 중앙 정렬 */
+}
+
+.form-group {
+    display: flex; /* 추가 */
+    flex-direction: column; /* 세로 정렬 추가 */
+    gap: 8px; /* 입력 필드와 레이블 간의 간격 추가 */
+}
+
+.form-group label {
+    font-size: 16px; /* 텍스트 크기 추가 */
+    font-weight: bold; /* 굵은 글씨 추가 */
+    color: #333; /* 텍스트 색상 추가 */
+}
+
+.form-group input {
+    padding: 10px; /* 내부 여백 추가 */
+    border: 1px solid #ccc; /* 테두리 색상 추가 */
+    border-radius: 5px; /* 모서리 둥글게 추가 */
+    font-size: 14px; /* 글씨 크기 추가 */
+}
+
+.form-group input:focus {
+    border-color: #007bff; /* 포커스 테두리 색상 추가 */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* 포커스 시 그림자 추가 */
+    outline: none; /* 기본 아웃라인 제거 */
+}
+
+.password-hints {
+    background-color: #f8f9fa; /* 배경색 추가 */
+    border: 1px solid #e9ecef; /* 테두리 색상 추가 */
+    padding: 15px; /* 내부 여백 추가 */
+    border-radius: 5px; /* 모서리 둥글게 추가 */
+    font-size: 14px; /* 텍스트 크기 추가 */
+    line-height: 1.5; /* 줄 간격 추가 */
+    color: #495057; /* 텍스트 색상 추가 */
+}
+
+.password-hints ul {
+    list-style: disc; /* 리스트 스타일 추가 */
+    margin: 0; /* 기본 마진 제거 */
+    padding-left: 20px; /* 리스트 여백 추가 */
+}
+
+.password-hints li {
+    margin-bottom: 10px; /* 항목 간 간격 추가 */
+}
+
+.form-buttons {
+    display: flex; /* 추가 */
+    justify-content: center; /* 중앙 정렬 추가 */
+    margin-top: 20px; /* 상단 여백 추가 */
+}
+
+.btn-submit {
+    padding: 12px 20px; /* 버튼 내부 여백 추가 */
+    font-size: 16px; /* 버튼 글씨 크기 추가 */
+    color: white; /* 텍스트 색상 추가 */
+    background-color: #007bff; /* 버튼 배경색 추가 */
+    border: none; /* 테두리 제거 */
+    border-radius: 5px; /* 모서리 둥글게 추가 */
+    cursor: pointer; /* 포인터 커서 추가 */
+    transition: background-color 0.3s ease; /* 호버 시 배경색 전환 효과 추가 */
+}
+
+.btn-submit:hover {
+    background-color: #0056b3; /* 호버 시 배경색 변경 */
+}
+
+.main-line {
+    border: 0; /* 기본 테두리 제거 */
+    height: 1px; /* 선의 두께 */
+    background-color: #ccc; /* 선의 색상 */
+    margin-top: 10px; /* 상단 간격 추가 */
+    margin-bottom: 30px; /* 하단 간격 추가 */
+}
+
+#password-message,
+#newPassword-message,
+#confirmPassword-message {
+    font-size: 13px;
+}

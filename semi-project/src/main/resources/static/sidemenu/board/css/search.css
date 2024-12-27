@@ -1,0 +1,144 @@
+.change-screen-board{
+    width: 1850px;
+    height: 800px;
+    background-color: white;
+    border-radius: 10px;
+    margin-bottom: 3%;
+    color: #000000;
+    position: relative;
+}
+
+body, table {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+.board {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff; /* 흰색 배경 */
+    border-radius: 10px; /* 둥근 모서리 */
+}
+
+.post-list {
+    border-collapse: collapse;
+    width: 100%;
+    border: none;
+    margin-bottom: 20px;
+    table-layout: fixed;
+    height: 30%;
+}
+
+.post-list th, .post-list td {
+    padding: 8px;
+    text-align: center;
+}
+
+.post-list td {
+    border: 1px solid gainsboro;
+    border-left: none;
+    border-right: none;
+}
+
+.post-list th {
+    font-family: HY견고딕, sans-serif;
+    color: black;
+    font-weight: 900;
+    border-right: none;
+    border-left: none;
+    border-top: none;
+}
+
+.styled-button {
+    background-color: #006a38;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 12px;
+}
+
+.styled-button:hover {
+    background-color: #00532d;
+}
+
+.styled-link {
+    color: black;
+    text-decoration: none;
+}
+
+.styled-link:hover {
+    color: black;
+}
+
+.title-search {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.search {
+    background: rgba(209,231,221,0.52);
+    flex: 1;
+    padding: 10px;
+    font-size: 15px;
+    border: 1px solid
+    white; border-radius: 30px;
+
+}
+.pagination {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+    position: absolute;
+    left: 25px;
+    right: 25px;
+    bottom: 10px;
+}
+
+.page-item {
+    margin: 0 3px;
+}
+
+.page-link {
+    display: block;
+    padding: 5px 10px;
+    font-size: 0.875rem;
+    font-weight: bold;
+    color: #006a38;
+    text-decoration: none;
+    border: 1px solid #006a38;
+    border-radius: 4px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.page-link:hover {
+    background-color: #006a38;
+    color: white;
+}
+
+.page-item.active .page-link {
+    background-color: #006a38;
+    color: white;
+    border: 1px solid #006a38;
+}
+
+.page-item.disabled .page-link {
+    color: #6c757d;
+    pointer-events: none;
+    background-color: transparent;
+    border: 1px solid #6c757d;
+}

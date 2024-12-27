@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>경조사 신청서</title>
+  <link rel="stylesheet" href="/main/css/main-style.css"> <!-- 메인 스타일 연결 -->
+  <script src="/main/js/main.js"></script> <!-- 메인 자바스크립트 연결 -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=keyboard_arrow_down" />
+  <link rel="stylesheet" href="/sidemenu/approval/css/vacation-form.css">
+</head>
+<body>
+<header>
+  <div class="side-menu-bar">
+    <ul>
+      <li><a href="/main">🐶PetHarmony🐶</a></li>
+      <li><a href="http://localhost:9595/sidemenu/schedule">근태관리</a></li>
+      <li><a href="http://localhost:9595/sidemenu/messenger">메신저(채팅)</a></li>
+      <li><a href="http://localhost:9595/sidemenu/mail">이메일</a></li>
+      <li><a href="http://localhost:9595/sidemenu/adoption">입양</a></li>
+      <li class="animal-menu">
+        <div class="menu-wrapper">
+          <a href="http://localhost:9595/sidemenu/animals">동물
+            <span class="material-symbols-outlined">keyboard_arrow_down</span>
+          </a>
+        </div>
+        <ul class="sub-menu">
+          <li><a href="http://localhost:9595/sidemenu/animals">구조동물</a></li>
+          <li><a href="http://localhost:9595/sidemenu/adoptionComplete">입양완료</a></li>
+          <li><a href="http://localhost:9595/sidemenu/stock">재고관리</a></li>
+        </ul>
+      </li>
+      <li><a href="http://localhost:9595/sidemenu/facilities">시설관리</a></li>
+      <li><a href="http://localhost:9595/sidemenu/board">전사게시판</a></li>
+      <li><a href="http://localhost:9595/sidemenu/employee">직원정보</a></li>
+      <li><a href="http://localhost:9595/sidemenu/mypage">마이페이지</a></li>
+      <li><a href="http://localhost:9595/sidemenu/approval">결재</a></li>
+      <li class="admin-menu">
+        <div class="admin-menu-wrapper">
+          <a href="http://localhost:9595/sidemenu/manager">관리자전용
+            <span class="material-symbols-outlined">keyboard_arrow_down</span>
+          </a>
+        </div>
+        <ul class="sub-menu">
+          <li><a href="http://localhost:9595/sidemenu/manager">관리자페이지</a></li>
+          <li><a href="http://localhost:9595/sidemenu/employeeRegister">사원등록</a></li>
+          <li><a href="http://localhost:9595/sidemenu/employeeManagement">직원관리</a></li>
+          <li><a href="http://localhost:9595/sidemenu/approvalBox">결재함</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</header>
+<div class="change-screen-vacationForm">
+  <div id="change-screen-content">
+    <form action="/myCacFormRequest" id="cacFormRequest" method="post">
+    <div class="form-title">
+      <h2>📜경조사 신청서📜</h2>
+          <div class="form-box">
+            <table class="data-table">
+              <thead>
+              <tr>
+                <th>관리자</th>
+                <th>대표</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <td></td>
+                <td></td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="form2">
+          <table class="data-table special-table">
+            <tbody>
+            <tr>
+              <td style="width: 40%; background-color: #f2f2f2; font-weight: bold;">부서명</td>
+              <td id="department" style="background-color: white; width: 70%; height: 30px;">&nbsp;</td> <!-- 빈 셀 -->
+              <td style="width: 40%; background-color: #f2f2f2; font-weight: bold;">기안자</td>
+              <td id="author" style="background-color: white; width: 70%; height: 30px;">&nbsp;</td> <!-- 빈 셀 -->
+            </tr>
+            <tr>
+              <td style="width: 40%; background-color: #f2f2f2; font-weight: bold;">기안일자</td>
+              <td id="date" style="background-color: white; width: 70%; height: 30px;">&nbsp;</td> <!-- 빈 셀 -->
+              <input type="hidden" name="deadLineDate" id="deadline_date" value="">
+              <td style="width: 40%; background-color: #f2f2f2; font-weight: bold;">관리자</td>
+              <td id="managerCell" style="background-color: white; width: 70%; height: 30px;">&nbsp;</td> <!-- 빈 셀 -->
+              <input type="hidden" name="adminCode" id="adminCode" value="">
+              <input type="hidden" name="adminName" id="adminName" value="">
+            </tr>
+            </tbody>
+          </table>
+          <button type="button" id="showEmployeeList" class="employeeList-button">추가</button>
+          <div id="employeeListContainer" style="display: none;">
+            <ul id="employeeList" style="background-color: white; padding: 0; margin: 0; list-style-type: none;">
+              <!-- 직원 목록 항목이 여기에 추가됩니다. -->
+            </ul>
+          </div>
+        </div>
+
+        <!-- 모달 창 -->
+        <div id="employeeModal" class="modal" style="display: none;">
+          <div class="modal-content">
+            <span class="close-button" id="closeModal">&times;</span>
+            <div class="filter">
+              <h2>직원 목록</h2>
+
+              <!-- 필터 기능 추가 -->
+              <div class="deptName">
+                <label for="departmentFilter">부서명</label>
+                <select id="departmentFilter">
+                  <option value="">모두</option>
+                  <option value="경영부">경영부</option>
+                  <option value="애견담당부">애견담당부</option>
+                  <option value="마케팅부">마케팅부</option>
+                  <option value="영업부">영업부</option>
+                  <option value="물류부">물류부</option>
+                  <option value="고객CS업무부">고객CS업무부</option>
+                </select>
+
+                <label for="positionFilter" style="margin-left: 20px;">직급</label>
+                <select id="positionFilter">
+                  <option value="">모두</option>
+                  <option value="대표">대표</option>
+                  <option value="부사장">부사장</option>
+                  <option value="과장">과장</option>
+                  <option value="팀장">팀장</option>
+                  <option value="대리">대리</option>
+                  <option value="주임">주임</option>
+                  <option value="주임">사원</option>
+                </select>
+              </div>
+            </div>
+            <ul id="employeeListModal" style="list-style-type: none; padding: 0;"></ul>
+          </div>
+        </div>
+
+        <div class="form3">
+          <table class="data-table">
+            <tbody>
+            <tr>
+              <td style="width: 10%; background-color: #f2f2f2; font-weight: bold;">경조사 종류</td>
+              <td style="background-color: white; width: 70%; height: 30px;">
+                <select name="type" id="cacType" style="width: 15%; height: 70%; padding: 5px; border: 1px solid #ccc; border-radius: 4px; margin-right: 85%;">
+                  <option value="결혼">결혼</option>
+                  <option value="조사">조사</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td style="width: 10%; background-color: #f2f2f2; font-weight: bold;">경조사 일시</td>
+              <td style="background-color: white; width: 70%; height: 30px;">
+                <div class="date">
+                  <input type="date" id="startDate" name="cacStartDate" style="width: 200px; padding: 5px; border-radius: 4px;" onchange="calculateTotalDays()"/>
+                  ~
+                  <input type="date" id="endDate" name="cacEndDate" style="width: 200px; padding: 5px; border-radius: 4px;" onchange="calculateTotalDays()"/>
+                  <input type="text" id="totalDays" placeholder="일 수" readonly style="width: 50px; padding: 5px; border-radius: 4px; margin-left: 10px"/> 일
+                </div>
+              </td>
+            </tr>
+
+            <tr>
+              <td style="width: 30%; background-color: #f2f2f2; font-weight: bold;">경조사 사유</td>
+              <td style="background-color: white; width: 70%; height: 140px;">
+                <textarea name="cacReason" rows="5" style="width: 100%; height: 100%; padding: 5px; border-radius: 4px; resize: none;" placeholder="사유를 입력해주세요."></textarea>
+              </td>
+            </tr>
+
+            <tr>
+              <td style="width: 30%; background-color: #f2f2f2; font-weight: bold;">계좌번호</td>
+              <td style="background-color: white; width: 70%; height: 30px;">
+                <input type="text" name="accountNum" placeholder="예시) 우리 123-4567-8910" style="width: 100%; height: 100%; border: 1px solid #ccc; box-sizing: border-box;">
+              </td>
+            </tr>
+
+            </tbody>
+          </table>
+        </div>
+        <div class="form4">
+          <button id="submitButton">결재 등록</button>
+          <input type="button" onclick="location.href='/sidemenu/approvalBox'" value="취소">
+        </div>
+    </form>
+  </div>
+</div>
+<script src="/sidemenu/approval/js/cac-form.js"></script>
+</body>
+</html>

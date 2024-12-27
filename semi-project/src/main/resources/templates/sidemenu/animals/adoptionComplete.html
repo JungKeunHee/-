@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>입양완료</title>
+    <link rel="stylesheet" href="/main/css/main-style.css"> <!-- 메인 스타일 연결 -->
+    <script src="/main/js/main.js"></script> <!-- 메인 자바스크립트 연결 -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=keyboard_arrow_down" />
+  <link rel="stylesheet" href="/sidemenu/animals/css/adoptionComplete-style.css">
+</head>
+<body>
+<header>
+    <div class="side-menu-bar">
+        <ul>
+            <li><a href="/main">🐶PetHarmony🐶</a></li>
+            <li><a href="http://localhost:9595/sidemenu/schedule">근태관리</a></li>
+            <li><a href="http://localhost:9595/sidemenu/messenger">메신저(채팅)</a></li>
+            <li><a href="http://localhost:9595/sidemenu/mail">이메일</a></li>
+            <li><a href="http://localhost:9595/sidemenu/adoption">입양</a></li>
+            <li class="animal-menu">
+                <div class="menu-wrapper">
+                    <a href="http://localhost:9595/sidemenu/animals">동물
+                        <span class="material-symbols-outlined">keyboard_arrow_down</span>
+                    </a>
+                </div>
+                <ul class="sub-menu">
+                    <li><a href="http://localhost:9595/sidemenu/animals">구조동물</a></li>
+                    <li><a href="http://localhost:9595/sidemenu/adoptionComplete">입양완료</a></li>
+                    <li><a href="http://localhost:9595/sidemenu/stock">재고관리</a></li>
+                </ul>
+            </li>
+            <li><a href="http://localhost:9595/sidemenu/facilities">시설관리</a></li>
+            <li><a href="http://localhost:9595/sidemenu/board">전사게시판</a></li>
+            <li><a href="http://localhost:9595/sidemenu/employee">직원정보</a></li>
+            <li><a href="http://localhost:9595/sidemenu/mypage">마이페이지</a></li>
+            <li><a href="http://localhost:9595/sidemenu/approval">결재</a></li>
+            <li class="admin-menu">
+                <div class="admin-menu-wrapper">
+                    <a href="http://localhost:9595/sidemenu/manager">관리자전용
+                        <span class="material-symbols-outlined">keyboard_arrow_down</span>
+                    </a>
+                </div>
+                <ul class="sub-menu">
+                    <li><a href="http://localhost:9595/sidemenu/manager">관리자페이지</a></li>
+                    <li><a href="http://localhost:9595/sidemenu/employeeRegister">사원등록</a></li>
+                    <li><a href="http://localhost:9595/sidemenu/employeeManagement">직원관리</a></li>
+                    <li><a href="http://localhost:9595/sidemenu/approvalBox">결재함</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</header>
+<div class="change-screen-adoptionComplete">
+    <div id="change-screen-content">
+        <div class="animals">
+            <div class="sendAdoption-delete">
+                <div class="delete">
+                    <a href="javascript:boardDelete();">삭제</a>
+                </div>
+            </div>
+            <form th:action th:object="${form}" method="get">
+                <table border="1" class="animals-list">
+                    <thead>
+                    <tr>
+                        <th style="width: 30px;">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" id="allCheckBox" onclick="allChecked()">
+                            </label>
+                        </th>
+                        <th style="width: 80px;">담당자</th>
+                        <th style="width: 150px;">구조 된 날짜</th>
+                        <th style="width: 50px;">사진</th>
+                        <th style="width: 100px;">동물등록번호</th>
+                        <th style="width: 70px;">분류</th>
+                        <th style="width: 170px;">품종</th>
+                        <th style="width: 50px;">성별</th>
+                        <th style="width: 50px;">나이</th>
+                        <th style="width: 270px;">구조 된 위치</th>
+                        <th style="width: 70px;">상태</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <!-- 자동으로 menuList 의 크기까지 반복 -->
+                    <tr th:each="adopt : ${adoptList}">
+                        <td>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="chk" class="chk" onclick="chkClicked()" th:value="${adopt.animalCode}">
+                            </label></td>
+                        <td th:text="${adopt.empDTO.empName}"></td>
+                        <td th:text="${#dates.format(adopt.rescueDate, 'yyyy-MM-dd')}"></td>
+                        <td class="image">
+                            <img th:src="@{${adopt.animalImage != null and adopt.animalImage != '' ? '/img/animals/' + adopt.animalImage : '/img/animals/defaultAnimal.jpg'}}"
+                                 alt="Animal Image" width="45px" height="45px"/>
+                        </td>
+                        <td th:text="${adopt.animalCode}" th:attr="onclick=|location.href='@{/adoptionComplete/detailAnimal/{animalCode}(animalCode=${adopt.animalCode})}'|" class="animal-code-cell"></td>
+                        <td th:text="${adopt.typeDTO.typeName}"></td>
+                        <td th:text="${adopt.breedDTO.breedName}"></td>
+                        <td th:text="${adopt.gender}"></td>
+                        <td th:text="${adopt.age}"></td>
+                        <td th:text="${adopt.rescueLocation}"></td>
+                        <td th:text="${adopt.animalStatus}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="page-btn-group" role="group" style="text-align: center">
+                    <button type="button" class="page-btn"
+                            th:each="i : ${#numbers.sequence(1, totalPages)}"
+                            th:text="${i}"
+                            th:classappend="${currentPage == i ? 'btn-primary' : ''}"
+                            th:onclick="|location.href='/sidemenu/adoptionComplete?page=' + ${i} + '&limit=10'|">
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+<script>
+    // 체크박스 전체 선택 클릭 이벤트
+    function allChecked(target){
+        // 전체 체크박스 버튼
+        const checkbox = document.getElementById('allCheckBox');
+        // 전체 체크박스 버튼 체크 여부
+        const is_checked = checkbox.checked;
+        // 전체 체크박스 제외한 모든 체크박스
+        if(is_checked){
+            // 체크박스 전체 체크
+            chkAllChecked()
+        }
+        else{
+            // 체크박스 전체 해제
+            chkAllUnChecked()
+        }
+    }
+    // 자식 체크박스 클릭 이벤트
+    function chkClicked(){
+        // 체크박스 전체개수
+        const allCount = document.querySelectorAll(".chk").length;
+        // 체크된 체크박스 전체개수
+        const query = 'input[name="chk"]:checked'
+        const selectedElements = document.querySelectorAll(query)
+        const selectedElementsCnt = selectedElements.length;
+        // 체크박스 전체개수와 체크된 체크박스 전체개수가 같으면 전체 체크박스 체크
+        if(allCount == selectedElementsCnt){
+            document.getElementById('allCheckBox').checked = true;
+        }
+        // 같지않으면 전체 체크박스 해제
+        else{
+            document.getElementById('allCheckBox').checked = false;
+        }
+    }
+    // 체크박스 전체 체크
+    function chkAllChecked(){
+        document.querySelectorAll(".chk").forEach(function(v, i) {
+            v.checked = true;
+        });
+    }
+    // 체크박스 전체 체크 해제
+    function chkAllUnChecked(){
+        document.querySelectorAll(".chk").forEach(function(v, i) {
+            v.checked = false;
+        });
+    }
+    // 글 삭제
+    function boardDelete(){
+        //체크박스 체크된 항목
+        const query = 'input[name="chk"]:checked'
+        const selectedElements = document.querySelectorAll(query)
+        //체크박스 체크된 항목의 개수
+        const selectedElementsCnt = selectedElements.length;
+
+        if(selectedElementsCnt == 0){
+            alert("삭제할 항목을 선택해주세요.");
+            return false;
+        }
+        else{
+            if (confirm("정말로 삭제하시겠습니까?")) {
+                //배열생성
+                const arr = new Array(selectedElementsCnt);
+
+                document.querySelectorAll('input[name="chk"]:checked').forEach(function(v, i) {
+                    arr[i] = v.value;
+                });
+
+                const form = document.createElement('form');
+                form.setAttribute('method', 'post');        //Post 메소드 적용
+                form.setAttribute('action', '/delete');
+
+                var input1 = document.createElement('input');
+                input1.setAttribute("type", "hidden");
+                input1.setAttribute("name", "boardIds");
+                input1.setAttribute("value", arr);
+                form.appendChild(input1);
+                console.log(form);
+                document.body.appendChild(form);
+                form.submit();
+            }
+        }
+    }
+</script>

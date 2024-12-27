@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>PetHarmony</title>
+  <link rel="stylesheet" href="/home/css/home-style.css">
+</head>
+<body>
+<div class="login">
+  <div class="title">
+    <h2>🐶PetHarmony🐶</h2>
+  </div>
+
+  <div class="login-body">
+    <form action="/home" method="post" onsubmit="validateForm(event)">
+      <div class="login-input">
+        <label class="">사번 </label>
+        <input type="text" class="empNo" name="code" placeholder="사원번호를 입력해주세요"><br>
+      </div>
+
+      <div class="login-pass">
+        <label>비밀번호 </label>
+        <input type="password" class="empPass" name="pass" placeholder="비밀번호를 입력해주세요"><br>
+      </div>
+
+      <span class="checkbox">
+        <input type="checkbox" id="saveEmpNo">
+        <span class="checkbox-label">사번저장</span>
+      </span><br>
+
+      <div class="searchContainer">
+        <div class="empSearch">
+          <a href="/home/no-search">사원번호 찾기</a>
+        </div>
+
+        <div class="passSearch">
+          <a href="/home/pass-search">비밀번호 찾기</a>
+        </div>
+
+        <div class="empSearch">
+          <a href="/user/signup">임시 회원가입</a>
+        </div>
+      </div>
+      <button type="submit" class="success">로그인</button>
+    </form>
+  </div>
+</div>
+
+<div class="dogImg">
+  <img src="/img/dog/dog.png" style="width: 900px; height: auto;">
+</div>
+
+<script>
+  // 페이지 로드 시 사원 번호 자동 입력
+  window.onload = function() {
+    const savedEmpNo = localStorage.getItem('empNo');
+    if (savedEmpNo) {
+      document.querySelector('.empNo').value = savedEmpNo;
+      document.getElementById('saveEmpNo').checked = true; // 체크박스 체크
+    }
+
+    // 로그인 실패 시 알림창 표시
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.has('error')) {
+      alert('로그인에 실패하였습니다. 사원번호와 비밀번호를 확인해주세요.');
+    }
+  };
+
+  function validateForm(event) {
+    // 입력 필드 가져오기
+    const empNo = document.querySelector('.empNo').value;
+    const empPass = document.querySelector('.empPass').value;
+
+    // 알림 메시지 초기화
+    let message = '';
+
+    // 사번 입력 확인
+    if (!empNo) {
+      message += '사번을 입력해주세요.\n';
+    }
+
+    // 비밀번호 입력 확인
+    if (!empPass) {
+      message += '비밀번호를 입력해주세요.\n';
+    }
+
+    // 메시지가 있으면 알림창 표시하고 폼 제출 방지
+    if (message) {
+      alert(message);
+      event.preventDefault(); // 폼 제출 방지
+    } else {
+      // 사번 저장 체크박스가 체크되어 있으면 로컬 스토리지에 저장
+      if (document.getElementById('saveEmpNo').checked) {
+        localStorage.setItem('empNo', empNo);
+      } else {
+        localStorage.removeItem('empNo'); // 체크 해제 시 로컬 스토리지에서 삭제
+      }
+    }
+  }
+</script>
+</body>
+</html>

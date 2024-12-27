@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ohgiraffers.semiproject.home.model.dao.UserMapper">
+
+    <resultMap id="login" type="com.ohgiraffers.semiproject.home.model.dto.LoginUserDTO">
+        <id property="code" column="emp_code"/>
+        <result property="pass" column="emp_pass"/>
+        <result property="name" column="emp_name"/>
+        <result property="email" column="emp_email"/>
+        <result property="phone" column="emp_phone"/>
+        <result property="hireDate" column="hire_date"/>
+        <result property="entDate" column="ent_date"/>
+        <result property="gender" column="emp_gender"/>
+        <result property="address" column="emp_address"/>
+        <result property="jobCode" column="job_code"/>
+        <result property="deptCode" column="dept_code"/>
+        <result property="authority" column="authority"/>
+        <result property="image" column="profile_image"/>
+    </resultMap>
+
+    <resultMap id="passSearch" type="com.ohgiraffers.semiproject.home.model.dto.PassSearchDTO">
+        <id property="code" column="emp_code"/>
+        <result property="email" column="emp_email"/>
+    </resultMap>
+
+    <insert id="regist" parameterType="com.ohgiraffers.semiproject.home.model.dto.SignupDTO">
+        INSERT INTO tbl_emp
+        (emp_code, emp_pass, emp_name, emp_email, emp_phone, hire_date, emp_gender, emp_address, job_code, dept_code, authority, profile_image)
+        VALUES
+        (#{code}, #{pass}, #{name}, #{email}, #{phone}, #{hireDate}, #{gender}, #{address}, #{jobCode}, #{deptCode}, #{authority}, #{image})
+    </insert>
+
+    <resultMap id="noCheck" type="com.ohgiraffers.semiproject.home.model.dto.NoCheckDTO">
+        <id property="code" column="emp_code"/>
+        <result property="name" column="emp_name"/>
+    </resultMap>
+
+    <select id="findByUsername" resultMap="login">
+        SELECT
+        *
+        FROM
+        tbl_emp
+        WHERE
+        emp_code = #{code}
+    </select>
+
+    <select id="findByNo" resultMap="noCheck">
+        SELECT
+        emp_code,
+        emp_name
+        FROM
+        tbl_emp
+        WHERE
+        dept_code = #{deptCode} AND emp_name = #{name} AND emp_email = #{email}
+    </select>
+
+    <update id="updatePass" parameterType="String">
+        update tbl_emp
+        set emp_pass = #{hashedPassword}
+        where emp_code = #{code}
+    </update>
+
+    <select id="selectEmail" resultMap="passSearch">
+        select
+            emp_email
+        from
+            tbl_emp
+        where
+            emp_code = #{code}
+    </select>
+</mapper>

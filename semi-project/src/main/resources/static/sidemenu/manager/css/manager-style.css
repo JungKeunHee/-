@@ -1,0 +1,354 @@
+.change-screen-manager{
+    width: 1850px;
+    height: 800px;
+    background-color: white;
+    border-radius: 10px;
+    margin-bottom: 3%;
+}
+
+.container-box1{
+    width: 1830px;
+    height: 780px;
+    display: flex;
+    margin-left: 8px;
+    margin-top: 10px;
+}
+
+.left-box{
+    width: 1400px;
+    height: 780px;
+}
+
+.header{
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    width: 1380px;
+    height: 150px;
+    margin-left: 8px;
+    background-color: white;
+}
+
+.middle-box{
+    margin-left: 10px;
+}
+
+.middle {
+    display: flex;
+    width: 1400px;
+    height: 315px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.board {
+    border: 1px solid #e0e0e0; /* 연한 회색 테두리 */
+    border-radius: 10px;
+    width: 682px;
+    height: 300px;
+    overflow-y: auto; /* 스크롤이 필요할 경우 스크롤바 표시 */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* 부드러운 그림자 효과 */
+}
+
+.board ul {
+    list-style-type: none; /* 기본 리스트 스타일 제거 */
+    padding: 0; /* 패딩 제거 */
+    margin: 0; /* 마진 제거 */
+}
+
+.board {
+    list-style-type: none; /* 기본 리스트 스타일 제거 */
+    padding: 0; /* 기본 패딩 제거 */
+    margin: 0; /* 기본 마진 제거 */
+}
+
+.board li {
+    padding: 15px; /* 패딩 */
+    text-align: center; /* 가운데 정렬 */
+    position: relative; /* 자식 요소의 절대 위치를 위한 설정 */
+    transition: background-color 0.3s, color 0.3s; /* 배경색과 글씨 색상 변화 애니메이션 */
+    color: #000000; /* 기본 글씨 색상: 중간 회색 */
+    cursor: pointer; /* 마우스 오버 시 포인터 모양으로 변경 */
+    font-weight: bold; /* 글씨 두께를 일반으로 설정 */
+    font-size: 16px; /* 글씨 크기 조정 */
+    border-radius: 5px; /* 모서리 둥글게 */
+    border: 1px solid #dcdcdc; /* 연한 회색 테두리 */
+    margin-bottom: 10px; /* 항목 간 간격 추가 */
+}
+
+/* 홀수 항목에 흰색 배경 */
+.board li:nth-child(odd) {
+    background-color: #ffffff; /* 흰색 배경 */
+}
+
+/* 짝수 항목에 연한 회색 배경 */
+.board li:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.board li:hover {
+    background-color: #0079ff;; /* 마우스 오버 시 파란색 배경 */
+    color: #ffffff; /* 마우스 오버 시 글씨 색상 변경: 흰색 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 호버 시 그림자 효과 추가 */
+}
+
+
+.employee-info {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    width: 682px;
+    height: 300px;
+    background-color: white;
+    overflow-y: auto; /* 세로 스크롤 추가 */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
+}
+
+.employee-header {
+    display: flex; /* Flexbox를 사용하여 가로 정렬 */
+    justify-content: space-between; /* 항목 간격을 동일하게 */
+    font-weight: bold; /* 글씨를 굵게 */
+    margin-bottom: 10px; /* 헤더와 내용 간의 간격 */
+    background-color: #0079ff;
+    padding: 10px 0; /* 헤더 패딩 */
+    border-bottom: 2px solid #ccc; /* 헤더 아래 구분선 */
+    padding-left: 10px;
+}
+
+.header-item {
+    flex: 0 0 95px; /* flex-grow: 0, flex-shrink: 0, flex-basis: 95px */
+    text-align: center; /* 텍스트 중앙 정렬 */
+    color: white;
+}
+
+.employee-info-content {
+    list-style-type: none; /* 기본 리스트 스타일 제거 */
+    padding: 0; /* 패딩 제거 */
+    margin: 0; /* 마진 제거 */
+}
+
+.employee-info-content li {
+    display: flex; /* Flexbox를 사용하여 가로 정렬 */
+    justify-content: space-between; /* 항목 간격을 동일하게 */
+    padding: 10px; /* 각 항목의 패딩 */
+    border-bottom: 1px solid #eee; /* 항목 간 구분선 */
+    align-items: center; /* 세로 중앙 정렬 */
+    cursor: pointer;
+}
+
+.employee-info-content li:nth-child(even) {
+    background-color: #f9f9f9; /* 짝수 항목 배경색 */
+}
+
+.employee-info-content li:hover {
+    background-color: #e0f7fa; /* 마우스 오버 시 배경색 */
+    transition: background-color 0.3s; /* 부드러운 전환 효과 */
+}
+
+.employee-info-content li .item {
+    flex: 0 0 95px; /* flex-grow: 0, flex-shrink: 0, flex-basis: 95px */
+    text-align: center; /* 텍스트 중앙 정렬 */
+}
+
+.right-box{
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    width: 430px;
+    height: 770px;
+    background-color: white;
+}
+
+.bottom{
+    display: flex;
+    width: 1400px;
+    height: 309px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.adoption-board{
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    width: 682px;
+    height: 300px;
+    background-color: white;
+}
+
+.animal-board{
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    width: 682px;
+    height: 300px;
+    background-color: white;
+}
+
+/* 전체 카운트 컨테이너 스타일 */
+#total-count-container {
+    background-color: red; /* 빨간색 배경 */
+    color: white; /* 흰색 글씨 */
+    border-radius: 5px; /* 모서리 둥글게 */
+    padding: 5px 10px; /* 패딩 */
+    margin-left: 10px; /* 왼쪽 여백 */
+    font-weight: bold; /* 굵은 글씨 */
+}
+
+.header-box {
+    margin-left: 10px;
+    position: relative;
+}
+
+.header-box::after {
+    content: "";
+    display: block;
+    width: 1350px;
+    height: 2px;
+    background-color: black;
+    position: absolute;
+    bottom: -17px;
+    left: 0;
+}
+
+.today-work {
+    margin-top: 3%;
+    margin-left: 10px;
+    display: flex;
+    flex-wrap: wrap; /* 줄 바꿈 허용 */
+}
+
+.work-item {
+    display: flex; /* 플렉스 박스 사용 */
+    align-items: center; /* 수직 중앙 정렬 */
+    margin-right: 30px; /* 각 세트 간의 간격 */
+}
+
+.count {
+    color: red;
+    font-weight: bold;
+    margin-left: 5px; /* 카운트와 텍스트 간격 */
+}
+
+.total-count {
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    background-color: red;
+    color: white;
+    text-align: center;
+    line-height: 25px;
+    border-radius: 5px;
+    margin-left: 5px;
+}
+
+.today-work .count {
+    text-decoration: none; /* 밑줄 제거 */
+    color: red; /* 부모 요소의 색상 상속 */
+    cursor: pointer; /* 커서 모양 변경 */
+}
+
+.today-work .count:hover {
+    color: blue; /* 마우스 오버 시 색상 변경 */
+}
+
+.calendar-top{
+    width: 430px;
+    height: 385px;
+}
+
+.calendar-bottom {
+    width: 430px; /* 너비를 고정 */
+    height: 368px; /* 높이를 고정 */
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+h2 {
+    margin-bottom: 20px;
+    padding-top: 15px;
+}
+
+input[type="text"] {
+    padding: 10px;
+    width: 70%;
+    border: 1px solid #add8e6; /* 기본 테두리 색상: 연한 파란색 */
+    border-radius: 4px;
+    margin-bottom: 10px;
+    outline: none; /* 기본 포커스 아웃라인 제거 */
+}
+
+input[type="text"]:focus {
+    border-color: #87cefa; /* 포커스 시 테두리 색상: 더 밝은 파란색 */
+    box-shadow: 0 0 5px rgba(135, 206, 250, 0.5); /* 포커스 시 그림자 효과 (선택 사항) */
+}
+
+
+button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    background-color: #28a745;
+    color: white;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+/* .calendar-bottom 아래의 ul과 li 스타일 */
+.calendar-bottom ul {
+    list-style-type: none;
+    padding: 0;
+    max-height: 230px;
+    overflow-y: auto; /* 리스트가 넘칠 경우 스크롤 가능 */
+}
+
+.calendar-bottom li {
+    display: flex;
+    justify-content: space-between; /* 텍스트와 버튼을 양쪽 끝으로 배치 */
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.calendar-bottom li .todo-text {
+    flex-grow: 1; /* 텍스트가 가능한 공간을 차지하도록 설정 */
+}
+
+.calendar-bottom li button {
+    background-color: #007bff;
+    margin-left: 5px; /* 버튼 사이에 약간의 여백 추가 */
+}
+
+.calendar-bottom li button:hover {
+    background-color: #0056b3;
+}
+
+.calendar-bottom .completed {
+    text-decoration: line-through;
+    color: gray;
+}
+
+#todo-list li button {
+    margin-left: 10px; /* 버튼 사이에 여백 추가 */
+}
+
+.todo-label {
+    background-color: #ffcc00;
+    color: #ffffff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: -32px;
+    font-size: 12px;
+    position: relative;
+}
+
+
+
+
+
+

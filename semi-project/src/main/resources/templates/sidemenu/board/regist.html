@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>게시판 추가</title>
+    <link rel="stylesheet" href="/main/css/main-style.css"> <!-- 메인 스타일 연결 -->
+    <script src="/main/js/main.js"></script> <!-- 메인 자바스크립트 연결 -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=keyboard_arrow_down" />
+    <link rel="stylesheet" href="/sidemenu/board/css/regist.css">
+</head>
+<body>
+<header>
+  <div class="side-menu-bar">
+    <ul>
+      <li><a href="/main">🐶PetHarmony🐶</a></li>
+      <li><a href="http://localhost:9595/sidemenu/schedule">근태관리</a></li>
+      <li><a href="http://localhost:9595/sidemenu/messenger">메신저(채팅)</a></li>
+      <li><a href="http://localhost:9595/sidemenu/mail">이메일</a></li>
+      <li><a href="http://localhost:9595/sidemenu/adoption">입양</a></li>
+      <li class="animal-menu">
+        <div class="menu-wrapper">
+          <a href="http://localhost:9595/sidemenu/animals">동물
+            <span class="material-symbols-outlined">keyboard_arrow_down</span>
+          </a>
+        </div>
+        <ul class="sub-menu">
+          <li><a href="http://localhost:9595/sidemenu/animals">구조동물</a></li>
+          <li><a href="http://localhost:9595/sidemenu/adoptionComplete">입양완료</a></li>
+          <li><a href="http://localhost:9595/sidemenu/stock">재고관리</a></li>
+        </ul>
+      </li>
+      <li><a href="http://localhost:9595/sidemenu/facilities">시설관리</a></li>
+      <li><a href="http://localhost:9595/sidemenu/board">전사게시판</a></li>
+      <li><a href="http://localhost:9595/sidemenu/employee">직원정보</a></li>
+      <li><a href="http://localhost:9595/sidemenu/mypage">마이페이지</a></li>
+      <li><a href="http://localhost:9595/sidemenu/approval">결재</a></li>
+      <li class="admin-menu">
+        <div class="admin-menu-wrapper">
+          <a href="http://localhost:9595/sidemenu/manager">관리자전용
+            <span class="material-symbols-outlined">keyboard_arrow_down</span>
+          </a>
+        </div>
+        <ul class="sub-menu">
+          <li><a href="http://localhost:9595/sidemenu/manager">관리자페이지</a></li>
+          <li><a href="http://localhost:9595/sidemenu/employeeRegister">사원등록</a></li>
+          <li><a href="http://localhost:9595/sidemenu/employeeManagement">직원관리</a></li>
+          <li><a href="http://localhost:9595/sidemenu/approvalBox">결재함</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</header>
+<form action="/sidemenu/board/regist" method="post" id="registForm">
+  <div class="change-screen-regist">
+    <div id="change-screen-content">
+      <h2>게시글 작성</h2>
+      <div class="header-title">
+        <div class="title-textarea">
+          <h3>제목</h3>
+          <textarea name="boardTitle" class="textareaLabel" style="height: 48px" placeholder="제목을 입력해주세요..."></textarea>
+          <div class="emp-select">
+            <h3>작성자</h3>
+            <select name="empCode">
+              <option value="001">대표</option>
+              <option value="002">부사장</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="title-context">
+        <h3>내용</h3>
+        <textarea class="title-con" name="boardContents" placeholder="내용을 입력해주세요..."></textarea>
+        <input type="submit" value="등록">
+      </div>
+    </div>
+  </div>
+</form>
+<script>
+  document.getElementById('registForm').addEventListener('submit', function(event) {
+    const boardTitle = document.querySelector('textarea[name="boardTitle"]').value.trim();
+    const boardContents = document.querySelector('textarea[name="boardContents"]').value.trim();
+
+    if (!boardTitle || !boardContents) {
+      alert("제목과 내용을 모두 입력해주세요.");
+      event.preventDefault();
+    } else {
+      alert("글이 추가되었습니다!");
+    }
+  });
+</script>
+</body>
+</html>

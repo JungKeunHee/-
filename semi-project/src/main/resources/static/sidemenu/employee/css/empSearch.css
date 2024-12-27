@@ -1,0 +1,147 @@
+.change-screen-empsearch{
+    width: 1850px;
+    height: 800px;
+    background-color: white;
+    border-radius: 10px;
+    margin-bottom: 3%;
+    color: black;
+    position: relative;
+}
+
+body, table {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Basic styling */
+body {
+    font-family: Arial, sans-serif;
+}
+
+.employee {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff; /* 흰색 배경 */
+    border-radius: 10px; /* 둥근 모서리 */
+}
+
+.post-list {
+    border-collapse: collapse;
+    table-layout: fixed;
+    width: 100%;
+    border: none;
+    margin-bottom: 20px;
+    height: 30%;
+}
+
+.post-list th, .post-list td {
+    padding: 8px;
+    text-align: center;
+}
+
+.post-list td {
+    border: 1px solid gainsboro;
+    border-left: none;
+    border-right: none;
+}
+
+.post-list th {
+    font-family: HY견고딕, sans-serif;
+    color: black;
+    font-weight: 900;
+    border-right: none;
+    border-left: none;
+    border-top: none;
+}
+
+.pagination {
+    display: flex; /* 가로 정렬 */
+    justify-content: center; /* 중앙 정렬 */
+    list-style: none; /* 점 제거 */
+    padding: 0;
+    position: absolute;
+    left: 25px;
+    right: 25px;
+    bottom: 10px;
+}
+
+.page-item {
+    margin: 0 3px; /* 각 페이지 아이템 간의 여백 */
+}
+
+.page-link {
+    display: block; /* 블록 요소로 설정 */
+    padding: 5px 10px; /* 패딩 */
+    font-size: 0.875rem; /* 글자 크기 */
+    font-weight: bold;
+    color: #006a38; /* 링크 색상 */
+    text-decoration: none; /* 밑줄 제거 */
+    border: 1px solid #006a38; /* 테두리 */
+    border-radius: 4px; /* 모서리 둥글게 */
+    transition: background-color 0.3s, color 0.3s; /* 전환 효과 */
+}
+
+.page-link:hover {
+    background-color: #00532d; /* 호버 시 배경색 */
+    color: white; /* 호버 시 글자색 */
+}
+
+.page-item.active .page-link {
+    background-color: #006a38; /* 활성화된 페이지 배경색 */
+    color: white; /* 활성화된 글자색 */
+    border: 1px solid #006a38; /* 테두리 */
+}
+
+.page-item.disabled .page-link {
+    color: #6c757d; /* 비활성화된 링크 색상 */
+    pointer-events: none; /* 클릭 비활성화 */
+    background-color: transparent; /* 비활성화된 배경색 */
+    border: 1px solid #6c757d; /* 비활성화된 테두리 */
+}
+
+.search {
+    background: rgba(209,231,221,0.52);
+    flex: 1;
+    padding: 10px;
+    font-size: 15px;
+    border: 1px solid
+    white; border-radius: 30px;
+
+
+}
+
+.title-search {
+    display: flex;
+    margin-bottom: 13px;
+    margin-left: 78%;
+}
+
+.styled-button {
+    background-color: #006a38;
+    border: none; /* 테두리 없음 */
+    color: white; /* 글자색 흰색 */
+    padding: 10px 20px; /* 패딩 */
+    text-align: center; /* 텍스트 중앙 정렬 */
+    text-decoration: none; /* 밑줄 없음 */
+    display: inline-block; /* 인라인 블록 */
+    font-size: 15px; /* 글자 크기 */
+    font-weight: bold;
+    margin: 4px 2px; /* 마진 */
+    cursor: pointer; /* 커서 포인터 */
+    border-radius: 12px; /* 둥근 모서리 */
+}
+
+.styled-button:hover {
+    background-color: #00532d;
+}
+
+.styled-link {
+    color: black;
+    text-decoration: none;
+}
+
+.styled-link:hover {
+    color: black; /* 호버 시 색상 변화 */
+}

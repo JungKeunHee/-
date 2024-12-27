@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>마이페이지</title>
+    <link rel="stylesheet" href="/main/css/main-style.css"> <!-- 메인 스타일 연결 -->
+    <script src="/main/js/main.js"></script> <!-- 메인 자바스크립트 연결 -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=keyboard_arrow_down" />
+    <link rel="stylesheet" href="/sidemenu/mypage/css/settingPass-style.css">
+</head>
+<body>
+<header>
+    <div class="side-menu-bar">
+        <ul>
+            <li><a href="/main">🐶PetHarmony🐶</a></li>
+            <li><a href="http://localhost:9595/sidemenu/schedule">근태관리</a></li>
+            <li><a href="http://localhost:9595/sidemenu/messenger">메신저(채팅)</a></li>
+            <li><a href="http://localhost:9595/sidemenu/mail">이메일</a></li>
+            <li><a href="http://localhost:9595/sidemenu/adoption">입양</a></li>
+            <li class="animal-menu">
+                <div class="menu-wrapper">
+                    <a href="http://localhost:9595/sidemenu/animals">동물
+                        <span class="material-symbols-outlined">keyboard_arrow_down</span>
+                    </a>
+                </div>
+                <ul class="sub-menu">
+                    <li><a href="http://localhost:9595/sidemenu/animals">구조동물</a></li>
+                    <li><a href="http://localhost:9595/sidemenu/adoptionComplete">입양완료</a></li>
+                    <li><a href="http://localhost:9595/sidemenu/stock">재고관리</a></li>
+                </ul>
+            </li>
+            <li><a href="http://localhost:9595/sidemenu/facilities">시설관리</a></li>
+            <li><a href="http://localhost:9595/sidemenu/board">전사게시판</a></li>
+            <li><a href="http://localhost:9595/sidemenu/employee">직원정보</a></li>
+            <li><a href="http://localhost:9595/sidemenu/mypage">마이페이지</a></li>
+            <li><a href="http://localhost:9595/sidemenu/approval">결재</a></li>
+            <li class="admin-menu">
+                <div class="admin-menu-wrapper">
+                    <a href="http://localhost:9595/sidemenu/manager">관리자전용
+                        <span class="material-symbols-outlined">keyboard_arrow_down</span>
+                    </a>
+                </div>
+                <ul class="sub-menu">
+                    <li><a href="http://localhost:9595/sidemenu/manager">관리자페이지</a></li>
+                    <li><a href="http://localhost:9595/sidemenu/employeeRegister">사원등록</a></li>
+                    <li><a href="http://localhost:9595/sidemenu/employeeManagement">직원관리</a></li>
+                    <li><a href="http://localhost:9595/sidemenu/approvalBox">결재함</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</header>
+<div class="change-screen-settingPass">
+    <div id="change-screen-content">
+
+        <div class="navigation">
+            <nav>
+                <h1>MY PAGE</h1>
+                <div class="dropdown">
+                    <div class="dropdown-title" onclick="toggleDropdown(this)">
+                        기본 설정
+                    </div>
+                    <ul class="dropdown-menu">
+                        <li><a href="/sidemenu/mypage">회원정보 수정</a></li>
+                        <li><a href="/setting/password">비밀번호 변경</a></li>
+                    </ul>
+                </div>
+
+                <div class="dropdown">
+                    <div class="dropdown-title" onclick="toggleDropdown(this)">
+                        내 활동
+                    </div>
+                    <ul class="dropdown-menu">
+                        <li><a href="/my-activity/comments">댓글 내역</a></li>
+                        <li><a href="/my-activity/posts">게시글 내역</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+
+        <div class="content-container">
+            <h3>기본 설정 > 비밀번호 변경</h3>
+            <hr class="main-line">
+            <form action="/setting/password" method="post" class="password-change-form">
+                <div class="form-group">
+                    <label for="current-password">현재 비밀번호</label>
+                    <input type="password" id="current-password" name="insertPW" placeholder="현재 비밀번호를 입력하세요" oninput="checkPassword(this.value)">
+                    <p id="password-message"></p>
+                </div>
+                <div class="form-group">
+                    <label for="new-password">새 비밀번호</label>
+                    <input type="password" id="new-password" name="newPW" placeholder="새 비밀번호를 입력하세요" oninput="newPassword(this.value)">
+                    <p id="newPassword-message"></p>
+                </div>
+                <div class="form-group">
+                    <label for="confirm-password">새 비밀번호 확인</label>
+                    <input type="password" id="confirm-password" name="confirmPW" placeholder="새 비밀번호를 다시 입력하세요" oninput="confirmPassword(this.value)">
+                    <p id="confirmPassword-message"></p>
+                </div>
+                <div class="password-hints">
+                    <ul>
+                        <li>8~16자의 영문 대/소문자, 숫자, 특수기호 조합 사용할 수 있습니다.</li>
+                        <li>생년월일, 전화번호 등 개인정보와 관련된 숫자 사용은 불가합니다.</li>
+                        <li>현재 비밀번호와 동일한 비밀번호는 사용할 수 없습니다.</li>
+                    </ul>
+                </div>
+                <div class="form-buttons">
+                    <button type="submit" class="btn-submit">비밀번호 변경</button>
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    function checkPassword(currentPassword) {
+        fetch('/check-password', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ password: currentPassword })
+        })
+            .then(response => response.json())
+            .then(data => {
+                const messageElement = document.getElementById('password-message');
+                if (data.isValid) {
+                    messageElement.textContent = '현재 비밀번호가 일치합니다.';
+                    messageElement.style.color = 'green';
+                } else {
+                    messageElement.textContent = '현재 비밀번호가 일치하지 않습니다.';
+                    messageElement.style.color = 'red';
+                }
+            })
+            .catch(error => console.error('Error:', error));
+    }
+
+    function newPassword(newPassword) {
+        const currentPassword = document.getElementById('current-password').value; // 현재 비밀번호 가져오기
+        const passwordRegex = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,16}$/;
+
+        // 메시지를 출력할 <p> 태그를 가져옵니다
+        const messageElement = document.getElementById('newPassword-message');
+
+        // 현재 비밀번호와 새 비밀번호가 같으면
+        if (newPassword === currentPassword) {
+            setMessage(messageElement, '현재 비밀번호와 같은 비밀번호는 사용할 수 없습니다.', 'red');
+        }
+        // 비밀번호가 유효한지 체크
+        else if (passwordRegex.test(newPassword)) {
+            setMessage(messageElement, '새 비밀번호가 유효합니다.', 'green');
+        } else {
+            setMessage(messageElement, '비밀번호는 8~16자, 영문, 숫자, 특수기호 조합이어야 합니다.', 'red');
+        }
+    }
+
+    // 새 비밀번호 확인
+    function confirmPassword(confirmPassword) {
+        const newPassword = document.getElementById('new-password').value;
+
+        // 메시지를 출력할 <p> 태그를 가져옵니다
+        const messageElement = document.getElementById('confirmPassword-message');
+
+        // 비밀번호가 일치하는지 확인
+        if (confirmPassword === newPassword) {
+            setMessage(messageElement, '비밀번호가 일치합니다.', 'green');
+        } else {
+            setMessage(messageElement, '비밀번호가 일치하지 않습니다.', 'red');
+        }
+    }
+
+    // 메시지를 설정하는 함수
+    function setMessage(element, message, color) {
+        element.textContent = message;
+        element.style.color = color;
+    }
+
+    // 드롭다운 메뉴를 열고 닫는 함수
+    function toggleDropdown(titleElement) {
+        const dropdown = titleElement.closest('.dropdown');
+        const menu = dropdown.querySelector('.dropdown-menu');
+
+        // 클릭한 메뉴만 열기
+        menu.classList.toggle('open');
+
+        // 상태 저장
+        saveDropdownState();
+    }
+
+    // 페이지 이동 후, 활성화된 항목 유지
+    document.addEventListener('DOMContentLoaded', function () {
+        // 저장된 드롭다운 상태 복원
+        restoreDropdownState();
+
+        // 페이지 URL에 맞는 메뉴 항목에 active 클래스 추가
+        const links = document.querySelectorAll('.dropdown-menu li a');
+        links.forEach(function(link) {
+            if (link.href === window.location.href) {
+                link.classList.add('active');
+            } else {
+                link.classList.remove('active');
+            }
+        });
+    });
+
+    // 드롭다운의 열린 상태를 저장
+    function saveDropdownState() {
+        const openMenus = [];
+        const menus = document.querySelectorAll('.dropdown-menu');
+        menus.forEach(function(menu, index) {
+            if (menu.classList.contains('open')) {
+                openMenus.push(index);
+            }
+        });
+
+        // 로컬 스토리지에 열린 메뉴 인덱스 배열을 저장
+        localStorage.setItem('openMenus', JSON.stringify(openMenus));
+    }
+
+    // 저장된 드롭다운 상태를 복원
+    function restoreDropdownState() {
+        const openMenus = JSON.parse(localStorage.getItem('openMenus') || '[]');
+
+        const menus = document.querySelectorAll('.dropdown-menu');
+        openMenus.forEach(function(index) {
+            if (menus[index]) {
+                menus[index].classList.add('open');
+            }
+        });
+    }
+</script>
+</body>
+</html>

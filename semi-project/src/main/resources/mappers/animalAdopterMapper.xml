@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ohgiraffers.semiproject.adoption.model.dao.AdoptionMapper">
+
+    <resultMap id="AdopterListResultMap" type="com.ohgiraffers.semiproject.adoption.model.dto.AdoptionDTO">
+        <id property="adoptNo" column="adopt_no"/>
+
+        <result property="adoptName" column="adopt_name"/>
+        <result property="adoptEmail" column="adopt_email"/>
+        <result property="adoptPhone" column="adopt_phone"/>
+        <result property="adoptAge" column="adopt_age"/>
+        <result property="adoptGender" column="adopt_gender"/>
+        <result property="adoptStartDate" column="adopt_start_date"/>
+        <result property="adoptEndDate" column="adopt_end_date"/>
+        <result property="adoptStatus" column="adopt_status"/>
+
+        <association property="animalDTO" javaType="com.ohgiraffers.semiproject.animals.model.dto.AnimalDTO">
+            <id property="animalCode" column="animal_code"/>
+            <result property="animalStatus" column="animal_status"/>
+            <result property="rescueDate" column="rescue_date"/>
+            <result property="rescueLocation" column="rescue_location"/>
+            <result property="animalImage" column="animal_image"/>
+            <result property="age" column="animal_age"/>
+            <result property="gender" column="animal_gender"/>
+        </association>
+
+        <association property="empDTO" javaType="com.ohgiraffers.semiproject.animals.model.dto.EmpDTO">
+            <id property="empCode" column="emp_code"/>
+            <result property="empName" column="emp_name"/>
+            <result property="empPhone" column="emp_phone"/>
+            <result property="profileImage" column="profile_image"/>
+        </association>
+    </resultMap>
+<!-- comment. ************************* 입양진행중 Tab ************************* -->
+    <!-- 진행중 조회 -->
+    <select id="adoptingList" resultMap="AdopterListResultMap">
+        SELECT
+        *
+        FROM
+        tbl_ani_adopt AD
+        JOIN
+        TBL_ANIMAL A ON AD.animal_code = A.animal_code
+        JOIN
+        TBL_EMP E ON AD.EMP_CODE = E.EMP_CODE
+        WHERE
+        adopt_status = '입양진행중'
+    </select>
+    <!-- 완료 조회 -->
+    <select id="adoptCompletedList" resultMap="AdopterListResultMap">
+        SELECT
+        *
+        FROM
+        tbl_ani_adopt AD
+        JOIN
+        TBL_ANIMAL A ON AD.animal_code = A.animal_code
+        JOIN
+        TBL_EMP E ON AD.EMP_CODE = E.EMP_CODE
+        WHERE
+        ADOPT_STATUS = '입양완료'
+        ORDER BY
+        ADOPT_NO DESC
+    </select>
+    <!-- 취소 조회 -->
+    <select id="adoptCanceledList" resultMap="AdopterListResultMap">
+        SELECT
+        *
+        FROM
+        tbl_ani_adopt AD
+        JOIN
+        TBL_ANIMAL A ON AD.animal_code = A.animal_code
+        JOIN
+        TBL_EMP E ON AD.EMP_CODE = E.EMP_CODE
+        WHERE
+        adopt_status = '입양취소'
+    </select>
+
+    <!-- 진행중에서 입양취소로 상태 업데이트 -->
+    <update id="updateByCanceled" parameterType="String">
+        UPDATE  tbl_ani_adopt
+        SET adopt_status = '입양취소'
+        WHERE adopt_no = #{adoptNo}
+    </update>
+    <!-- 진행중 상세페이지 -->
+    <select id="adoptingDetail" resultMap="AdopterListResultMap">
+        SELECT
+        *
+        FROM
+        tbl_ani_adopt AD
+        JOIN
+        TBL_ANIMAL A ON AD.animal_code = A.animal_code
+        JOIN
+        TBL_EMP E ON AD.EMP_CODE = E.EMP_CODE
+        WHERE
+        adopt_status = '입양진행중'
+        And
+        adopt_no = #{adoptNo}
+    </select>
+    <!-- 진행중 상세페이지에서 입양완료로 상태 업데이트 -->
+    <update id="updateByCompleted" parameterType="String">
+        UPDATE  TBL_ANI_ADOPT AD
+        JOIN TBL_ANIMAL A ON AD.animal_code = A.animal_code
+        SET AD.adopt_status = '입양완료' , A.animal_status = '입양완료', AD.adopt_end_date = CURDATE()
+        WHERE adopt_no = #{adoptNo}
+    </update>
+
+<!-- comment. ************************* 입양완료 Tab ************************* -->
+    <!-- 완료 상세페이지 -->
+    <select id="completedAdopterDetail" resultMap="AdopterListResultMap">
+        SELECT
+        *
+        FROM
+        tbl_ani_adopt AD
+        JOIN
+        TBL_ANIMAL A ON AD.animal_code = A.animal_code
+        JOIN
+        TBL_EMP E ON AD.EMP_CODE = E.EMP_CODE
+        WHERE
+        adopt_status = '입양완료'
+        And
+        adopt_no = #{adoptNo}
+    </select>
+
+    <!-- 입양완료 상세페이지에서 파양으로 상태 업데이트 -->
+    <update id="updateByGiveUp" parameterType="String">
+        UPDATE  TBL_ANI_ADOPT AD
+        JOIN TBL_ANIMAL A ON AD.animal_code = A.animal_code
+        SET AD.adopt_status = '입양취소' , A.animal_status = '파양/보호중'
+        WHERE adopt_no = #{adoptNo}
+    </update>
+
+<!-- comment. ************************* 입양취소 Tab ************************* -->
+    <!-- 취소 상세페이지 -->
+    <select id="canceledAdopterDetail" resultMap="AdopterListResultMap">
+        SELECT
+        *
+        FROM
+        tbl_ani_adopt AD
+        JOIN
+        TBL_ANIMAL A ON AD.animal_code = A.animal_code
+        JOIN
+        TBL_EMP E ON AD.EMP_CODE = E.EMP_CODE
+        WHERE
+        adopt_status = '입양취소'
+        And
+        adopt_no = #{adoptNo}
+    </select>
+</mapper>

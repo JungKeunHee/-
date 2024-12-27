@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>관리자페이지</title>
+    <link rel="stylesheet" href="/main/css/main-style.css"> <!-- 메인 스타일 연결 -->
+    <script src="/main/js/main.js"></script> <!-- 메인 자바스크립트 연결 -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=keyboard_arrow_down" />
+    <link rel="stylesheet" href="/sidemenu/manager/css/manager-style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- FullCalendar JS -->
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script>
+
+</head>
+<body>
+<header>
+    <div class="side-menu-bar">
+        <ul>
+            <li><a href="/main">🐶PetHarmony🐶</a></li>
+            <li><a href="http://localhost:9595/sidemenu/schedule">근태관리</a></li>
+            <li><a href="http://localhost:9595/sidemenu/messenger">메신저(채팅)</a></li>
+            <li><a href="http://localhost:9595/sidemenu/mail">이메일</a></li>
+            <li><a href="http://localhost:9595/sidemenu/adoption">입양</a></li>
+            <li class="animal-menu">
+                <div class="menu-wrapper">
+                    <a href="http://localhost:9595/sidemenu/animals">동물
+                        <span class="material-symbols-outlined">keyboard_arrow_down</span>
+                    </a>
+                </div>
+                <ul class="sub-menu">
+                    <li><a href="http://localhost:9595/sidemenu/animals">구조동물</a></li>
+                    <li><a href="http://localhost:9595/sidemenu/adoptionComplete">입양완료</a></li>
+                    <li><a href="http://localhost:9595/sidemenu/stock">재고관리</a></li>
+                </ul>
+            </li>
+            <li><a href="http://localhost:9595/sidemenu/facilities">시설관리</a></li>
+            <li><a href="http://localhost:9595/sidemenu/board">전사게시판</a></li>
+            <li><a href="http://localhost:9595/sidemenu/employee">직원정보</a></li>
+            <li><a href="http://localhost:9595/sidemenu/mypage">마이페이지</a></li>
+            <li><a href="http://localhost:9595/sidemenu/approval">결재</a></li>
+            <li class="admin-menu">
+                <div class="admin-menu-wrapper">
+                    <a href="http://localhost:9595/sidemenu/manager">관리자전용
+                        <span class="material-symbols-outlined">keyboard_arrow_down</span>
+                    </a>
+                </div>
+                <ul class="sub-menu">
+                    <li><a href="http://localhost:9595/sidemenu/manager">관리자페이지</a></li>
+                    <li><a href="http://localhost:9595/sidemenu/employeeRegister">사원등록</a></li>
+                    <li><a href="http://localhost:9595/sidemenu/employeeManagement">직원관리</a></li>
+                    <li><a href="http://localhost:9595/sidemenu/approvalBox">결재함</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</header>
+<div class="change-screen-manager">
+    <div id="change-screen-content">
+        <div class="container-box1">
+            <div class="left-box">
+                <div class="header">
+                    <div class="header-box">
+                        <h3>오늘의 할일<span id="total-count" class="total-count">0</span></h3>
+                    </div>
+                    <div class="today-work" id="today-work">
+                        <div class="work-item">
+                            <span>근태수정 요청</span>
+                            <a href="/scheduleManagement" id="attendance-request-count" class="count">0</a> <!-- 근태 요청 갯수 -->
+                        </div>
+                        <div class="work-item">
+                            <span>연차 결재</span>
+                            <a href="/sidemenu/approvalBox" id="annual-leave-count" class="count">0</a> <!-- 연차 결재 갯수 -->
+                        </div>
+                        <div class="work-item">
+                            <span>휴가 결재</span>
+                            <a href="/sidemenu/approvalBox" id="vacation-count" class="count">0</a> <!-- 휴가 결재 갯수 -->
+                        </div>
+                        <div class="work-item">
+                            <span>경조사 결재</span>
+                            <a href="/sidemenu/approvalBox" id="event-count" class="count">0</a> <!-- 경조사 결재 갯수 -->
+                        </div>
+                        <div class="work-item">
+                            <span>연장 결재</span>
+                            <a href="/sidemenu/approvalBox" id="extension-count" class="count">0</a> <!-- 연장 결재 갯수 -->
+                        </div>
+                        <div class="work-item">
+                            <span>퇴직원 결재</span>
+                            <a href="/sidemenu/approvalBox" id="retirement-count" class="count">0</a> <!-- 퇴직원 결재 갯수 -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="middle">
+                    <div class="middle">
+                        <div class="board">
+                            <div class="middle-box">
+                                <h3>📢전사 게시판 현황</h3>
+                            </div>
+                            <ul id="board-content"></ul> <!-- 데이터가 표시될 영역 -->
+                        </div>
+                        <div class="employee-info">
+                            <div class="middle-box">
+                                <h3>🧑‍💼오늘의 직원근태 현황</h3>
+                            </div>
+                            <div class="employee-header">
+                                <div class="header-item">부서명</div>
+                                <div class="header-item">사번</div>
+                                <div class="header-item">이름</div>
+                                <div class="header-item">직급</div>
+                                <div class="header-item">출근시간</div>
+                                <div class="header-item">퇴근시간</div>
+                                <div class="header-item">상태</div>
+                            </div>
+                            <ul class="employee-info-content" id="employee-info-content"></ul> <!-- 데이터가 표시될 영역 -->
+                        </div>
+                    </div>
+                </div>
+                <div class="bottom">
+                    <div class="adoption-board">
+                        <div class="chart">
+                            <canvas id="myChart" style="width: 683px; height: 280px;"></canvas>
+                        </div>
+                    </div>
+                    <div class="adoption-board">
+                        <div class="chart">
+                            <canvas id="myChart2" style="width: 683px; height: 280px;"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="right-box">
+                <div class="right-box">
+                    <div class="calendar-top">
+                        <div class="calendar" id='calendar'></div>
+                    </div>
+                    <div class="calendar-bottom">
+                            <h2 id="todo-header">To-Do List</h2>
+                        <form id="todo-form" action="/insertTodo" method="post">
+                            <input type="text" name="toDoContents" id="todo-input" placeholder="할 일을 입력하세요" autocomplete="off"/>
+                            <input type="hidden" name="writeDate" id="write-date"> <!-- ID 추가 -->
+                            <button type="submit" id="add-todo">추가</button>
+                        </form>
+                        <ul id="todo-list"></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    const ctx = document.querySelector('#myChart');
+
+    // 현재 날짜 가져오기
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, '0'); // 월은 0부터 시작하므로 +1
+    const monthYearLabel = `${year}년 ${month}월 입양 진행 현황`;
+
+    // 데이터 가져오기 (입양 현황)
+    fetch('/api/adoption-status')
+        .then(response => response.json())
+        .then(data => {
+            // 날짜별 입양 수를 집계하기 위한 객체
+            const adoptionCounts = {};
+            const adoptionDates = [];
+
+            // 데이터 가공
+            data.forEach(adoption => {
+                const date = adoption.adoptStartDate;
+                const formattedDate = date.split('-').slice(1).join('-'); // "MM-DD" 형식으로 변환
+                if (!adoptionCounts[formattedDate]) {
+                    adoptionCounts[formattedDate] = 0;
+                    adoptionDates.push(formattedDate); // 날짜를 배열에 추가
+                }
+                adoptionCounts[formattedDate] += 1; // 해당 날짜의 입양 수 증가
+            });
+
+            // 차트 데이터 준비
+            const counts = adoptionDates.map(date => adoptionCounts[date]);
+
+            // 차트 생성 및 설정
+            new Chart(ctx, {
+                type: 'line',  // 차트 유형
+                data: {
+                    labels: adoptionDates, // 날짜를 라벨로 사용
+                    datasets: [
+                        {
+                            label: monthYearLabel, // 자동으로 현재 연도와 월을 포함한 레이블
+                            data: counts, // 입양 수를 데이터로 사용
+                            backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 1,
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true, // Y축 0부터 시작
+                            title: {
+                                display: true,
+                                text: '입양 수' // Y축 제목
+                            },
+                            ticks: {
+                                stepSize: 1 // Y축 눈금 간격을 1로 설정
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: '날짜' // X축 제목
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'top',
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(tooltipItem) {
+                                    return tooltipItem.label + ': ' + tooltipItem.raw + '명'; // 툴팁에 '명' 추가
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // 품종 수 가져오기
+            return fetch('/api/breed-counts');
+        })
+        .then(response => response.json())
+        .then(breedData => {
+            // 품종 수 데이터 처리
+            const breedCountsMap = breedData.reduce((acc, breed) => {
+                const breedName = breed.breedDTO.breedName;
+
+                // 품종 이름이 이미 존재하면 수를 더하고, 존재하지 않으면 새로 추가
+                if (acc[breedName]) {
+                    acc[breedName] += 1; // 품종이 발견될 때마다 1씩 증가
+                } else {
+                    acc[breedName] = 1; // 새로운 품종 발견 시 1로 초기화
+                }
+
+                return acc;
+            }, {});
+
+            // 중간 결과 확인
+            console.log('품종 카운트 맵:', breedCountsMap);
+
+            // 객체를 배열로 변환
+            const breedLabels = Object.keys(breedCountsMap); // 품종 이름 배열
+            const breedCounts = Object.values(breedCountsMap); // 품종 수 배열
+
+            // 중간 결과 확인
+            console.log('품종 이름:', breedLabels);
+            console.log('품종 수:', breedCounts);
+
+            // 품종 수 차트 생성
+            const ctx2 = document.querySelector('#myChart2'); // 두 번째 차트의 ctx
+            new Chart(ctx2, {
+                type: 'bar',  // 차트 유형
+                data: {
+                    labels: breedLabels, // 품종 이름을 라벨로 사용
+                    datasets: [
+                        {
+                            label: '품종 수', // 데이터 레이블
+                            data: breedCounts, // 품종 수를 데이터로 사용
+                            backgroundColor: 'rgba(153, 102, 255, 0.6)',
+                            borderColor: 'rgba(153, 102, 255, 1)',
+                            borderWidth: 1,
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true, // Y축 0부터 시작
+                            title: {
+                                display: true,
+                                text: '품종 수' // Y축 제목
+                            },
+                            ticks: {
+                                stepSize: 1, // Y축의 간격을 1로 설정하여 정수형으로 표시
+                                callback: function(value) {
+                                    return Number.isInteger(value) ? value : ''; // 정수만 표시
+                                }
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: '품종' // X축 제목
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'top',
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(tooltipItem) {
+                                    return tooltipItem.label + ': ' + tooltipItem.raw + '마리'; // 툴팁에 '마리' 추가
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        })
+        .catch(error => {
+            console.error('데이터를 가져오는 중 오류 발생:', error);
+        });
+</script>
+<script src="/sidemenu/manager/js/manager.js"></script>
+</body>
+</html>

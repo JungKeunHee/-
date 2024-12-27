@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>근태관리</title>
+    <link rel="stylesheet" href="/main/css/main-style.css"> <!-- 메인 스타일 연결 -->
+    <script src="/main/js/main.js"></script> <!-- 메인 자바스크립트 연결 -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=keyboard_arrow_down" />
+    <link rel="stylesheet" href="/sidemenu/schedule/css/schedule-style.css">
+    <!-- FullCalendar JS -->
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script>
+    <script src="/sidemenu/schedule/js/calendar.js"></script>
+    <script src="/sidemenu/schedule/js/user-info.js"></script>
+    <script src="/sidemenu/schedule/js/checkInOut.js"></script>
+</head>
+<body>
+<header>
+    <div class="side-menu-bar">
+        <ul>
+            <li><a href="/main">🐶PetHarmony🐶</a></li>
+            <li><a href="http://localhost:9595/sidemenu/schedule">근태관리</a></li>
+            <li><a href="http://localhost:9595/sidemenu/messenger">메신저(채팅)</a></li>
+            <li><a href="http://localhost:9595/sidemenu/mail">이메일</a></li>
+            <li><a href="http://localhost:9595/sidemenu/adoption">입양</a></li>
+            <li class="animal-menu">
+                <div class="menu-wrapper">
+                    <a href="http://localhost:9595/sidemenu/animals">동물
+                        <span class="material-symbols-outlined">keyboard_arrow_down</span>
+                    </a>
+                </div>
+                <ul class="sub-menu">
+                    <li><a href="http://localhost:9595/sidemenu/animals">구조동물</a></li>
+                    <li><a href="http://localhost:9595/sidemenu/adoptionComplete">입양완료</a></li>
+                    <li><a href="http://localhost:9595/sidemenu/stock">재고관리</a></li>
+                </ul>
+            </li>
+            <li><a href="http://localhost:9595/sidemenu/facilities">시설관리</a></li>
+            <li><a href="http://localhost:9595/sidemenu/board">전사게시판</a></li>
+            <li><a href="http://localhost:9595/sidemenu/employee">직원정보</a></li>
+            <li><a href="http://localhost:9595/sidemenu/mypage">마이페이지</a></li>
+            <li><a href="http://localhost:9595/sidemenu/approval">결재</a></li>
+            <li class="admin-menu">
+                <div class="admin-menu-wrapper">
+                    <a href="http://localhost:9595/sidemenu/manager">관리자전용
+                        <span class="material-symbols-outlined">keyboard_arrow_down</span>
+                    </a>
+                </div>
+                <ul class="sub-menu">
+                    <li><a href="http://localhost:9595/sidemenu/manager">관리자페이지</a></li>
+                    <li><a href="http://localhost:9595/sidemenu/employeeRegister">사원등록</a></li>
+                    <li><a href="http://localhost:9595/sidemenu/employeeManagement">직원관리</a></li>
+                    <li><a href="http://localhost:9595/sidemenu/approvalBox">결재함</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</header>
+<div class="change-screen-schedule">
+    <div id="change-screen-content">
+        <div class="box">
+            <div class="user-info">
+                <div>
+                    <img id="profile" src="" alt="Profile Picture" class="profile-picture"/>
+                </div>
+                <div class="user-details">
+                    <div id="user-name" class="name"></div>
+                    <div class="container">
+                        <div class="department-info" id="department"></div>
+                        <div class="position-info" id="position"></div>
+                    </div>
+                </div>
+                <input type="button" class="attendance-request-button" onclick="location.href='/attendance-request'" value="🗒️근태 수정 요청">
+
+                <h1 id="time-display">00:00:00</h1>
+
+                <div class="time-container">
+                    <div class="check-in">
+                        출근 <span id="check-in-time"></span>
+                    </div>
+                    <div class="check-out">
+                        퇴근 <span id="check-out-time"></span>
+                    </div>
+                </div>
+
+                <div class="box-container">
+                    <div class="box2">
+                        <h4>🎁올해 남은 연차🎁</h4>
+                        <div id="annualLeave"></div>
+                        <h4>일 남았어요!</h4>
+                    </div>
+                    <div class="box3">
+                        <h4>✈️️️올해 남은 휴가✈️</h4>
+                        <div id="vacation"></div>
+                        <h4>일 남았어요!</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="calendar" id='calendar'></div>
+        </div>
+    </div>
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span id="closeModal" class="close">&times;</span>
+            <h2 id="modalTitle"></h2>
+
+            <div class="text-box">
+                <p id="modalStartTime"></p>
+                <p id="modalEndTime"></p>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

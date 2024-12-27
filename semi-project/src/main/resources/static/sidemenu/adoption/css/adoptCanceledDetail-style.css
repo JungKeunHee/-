@@ -1,0 +1,164 @@
+.change-screen-adoptCanceledDetail {
+    width: 1850px;
+    height: 800px;
+    background-color: white;
+    border-radius: 10px;
+    margin-bottom: 3%;
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#change-screen-content {
+    width: 100%;
+    max-width: 98%;
+    height: auto;
+}
+
+/* 공통 컨테이너 스타일 */
+.container {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    height: 100%;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* 입양 정보 섹션 */
+.adoption-section {
+    flex: 1;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    max-width: 50%;
+    display: flex;
+    flex-direction: column;
+    height: auto; /* 자동 높이 조정 */
+}
+
+/* 동물 정보 섹션과 담당자 정보 섹션을 감싸는 컨테이너 */
+.right-sections {
+    flex: 1;
+    display: flex;
+    flex-direction: column; /* 세로로 배치 */
+    gap: 20px;
+    height: 100%;
+    min-height: 100%;
+}
+
+/* 동물 정보 섹션 */
+.animal-section,
+.staff-section {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    flex: 1; /* 높이를 동일하게 설정 */
+}
+
+.btn-adoptCompleted {
+    display: flex;
+    justify-content: space-between; /* 왼쪽과 오른쪽 끝으로 배치 */
+    align-items: center; /* 세로로 가운데 정렬 */
+}
+
+.complete-button {
+    background-color: #28a745;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    align-self: flex-start;
+    transition: background-color 0.3s;
+    margin-top: 20px;
+}
+
+h1 {
+    color: #007bff;
+}
+
+/* 섹션 제목 스타일 */
+section h2 {
+    font-size: 22px;
+    color: #333;
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+/* 카드 스타일 */
+.animal-card, .staff-card {
+    background-color: #fff;  /* 카드 배경 */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* 그림자 */
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    flex-direction: row;
+    line-height: 1.6;
+}
+
+.adoption-card{
+    background-color: #fff;  /* 카드 배경 */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* 그림자 */
+    gap: 20px;
+    align-items: center;
+    height: 510px;
+}
+
+/* 입양자 카드의 텍스트 스타일 */
+.adoption-card p {
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+}
+
+.adoption-card p strong {
+    color: #555;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.complete-button:hover {
+    background-color: #218838;
+}
+
+/* 이미지 스타일 */
+.staff-card img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ddd;
+}
+
+.animal-card img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border: 2px solid #ddd;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .adoption-section,
+    .right-sections {
+        max-width: 100%;
+    }
+}

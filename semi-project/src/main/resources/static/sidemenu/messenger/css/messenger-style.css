@@ -1,0 +1,257 @@
+.change-screen-messenger{
+    width: 1850px;
+    height: 800px;
+    background-color: white;
+    border-radius: 10px;
+    margin-bottom: 3%;
+}
+
+.chat-container{
+    width: 1800px;
+    height: 780px;
+    display: flex;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+    margin-top: 7px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
+}
+
+
+
+.chat-box{
+    border-radius: 10px;
+    width: 1300px;
+    height: 780px;
+}
+
+.chat-title{
+    border: 1px solid #0079ff;
+    border-radius: 10px;
+    text-align: center;
+    background-color: #ffffff;
+    color: #0079ff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
+}
+
+.chat-history {
+    border: 1px solid #ccc; /* 테두리 색상 */
+    border-radius: 10px; /* 모서리 둥글게 */
+    width: 1296px; /* 너비 설정 */
+    height: 625px; /* 높이 설정 */
+    background-color: #dcdcdc; /* 배경색 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
+    overflow-y: auto; /* 스크롤 가능하도록 설정 */
+}
+
+
+.chat-bottom {
+    border-radius: 10px;
+    width: 1300px;
+    height: 88px;
+    display: flex; /* Flexbox 사용 */
+    align-items: center; /* 수직 중앙 정렬 */
+}
+
+#messageInput {
+    flex: 1; /* 입력창이 가능한 공간을 모두 차지하도록 설정 */
+    height: 100%; /* 입력창 높이를 부모 요소에 맞춤 */
+    border: 1px solid #ccc; /* 입력창 테두리 */
+    border-radius: 5px 0 0 5px; /* 왼쪽 모서리 둥글게 */
+    padding: 0 10px; /* 입력창 내부 패딩 */
+    box-sizing: border-box; /* 패딩과 테두리를 포함하여 크기 계산 */
+    outline: none; /* 포커스 시 검은 테두리 제거 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
+}
+
+button {
+    height: 100%; /* 버튼 높이를 부모 요소에 맞춤 */
+    border: none; /* 버튼 테두리 제거 */
+    background-color: #417eff;; /* 버튼 배경색 */
+    color: white; /* 버튼 글자색 */
+    border-radius: 0 5px 5px 0; /* 오른쪽 모서리 둥글게 */
+    cursor: pointer; /* 마우스 커서 변경 */
+    width: 100px; /* 버튼 고정 너비 설정 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
+    font-size: 18px;
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: #3626ff; /* 버튼 호버 시 색상 변경 */
+}
+
+
+.users {
+    border-radius: 10px; /* 모서리 둥글게 */
+    width: 500px; /* 너비 설정 */
+    height: 780px; /* 높이 설정 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
+    background-color: #ffffff; /* 배경색을 흰색으로 변경 */
+    overflow-y: auto; /* 스크롤 가능하도록 설정 */
+    overflow-x: hidden; /* 좌우 스크롤 숨기기 */
+}
+
+
+.employee-info {
+    text-align: center; /* 텍스트 중앙 정렬 */
+    margin-bottom: 20px; /* 아래쪽 여백 추가 */
+}
+
+.employee-info h3 {
+    font-size: 20px;
+    color: #ff4141;
+    padding-bottom: 10px;
+    background-color: #ffffff;
+    margin: 0 auto;
+    height: 38px;
+    padding-top: 15px;
+    border-radius: 10px;
+    border: 1px solid #ff4141;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
+}
+
+#userList {
+    list-style-type: none; /* 기본 리스트 스타일 제거 */
+    padding: 0; /* 패딩 제거 */
+}
+
+#userList li {
+    background-color: #ffffff; /* 리스트 항목 배경색을 흰색으로 설정 */
+    border: 1px solid #ddd; /* 리스트 항목 테두리 */
+    border-radius: 5px; /* 리스트 항목 모서리 둥글게 */
+    padding: 10px; /* 리스트 항목 내부 패딩 */
+    margin: 5px 0; /* 리스트 항목 간격 */
+    transition: background-color 0.3s; /* 배경색 변화 애니메이션 */
+    overflow: hidden; /* 오버플로우 숨기기 */
+    cursor: pointer;
+}
+
+#userList li:hover {
+    background-color: #f0f0f0; /* 마우스 오버 시 배경색 변화 */
+}
+
+.filter-options {
+    display: flex;
+    gap: 15px; /* 요소 간의 간격 설정 */
+    width: 500px; /* 전체 가로 크기 설정 */
+    margin: 20px auto; /* 상하 여백 및 중앙 정렬 */
+}
+
+select, input[type="text"] {
+    width: 28%; /* 각 요소의 너비를 28%로 설정 */
+    padding: 10px; /* 내부 여백 추가 */
+    border: 1px solid #ccc; /* 테두리 스타일 */
+    border-radius: 5px; /* 모서리 둥글게 */
+    font-size: 16px; /* 글자 크기 설정 */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+    transition: border-color 0.3s; /* 테두리 색상 변화에 애니메이션 추가 */
+}
+
+select:focus, input[type="text"]:focus {
+    border-color: #007bff; /* 포커스 시 테두리 색상 변경 */
+    outline: none; /* 기본 포커스 아웃라인 제거 */
+}
+
+.user-item {
+    display: flex; /* 수평 정렬을 위해 flexbox 사용 */
+    align-items: center; /* 수직 중앙 정렬 */
+    margin: 10px 0; /* 항목 간 간격 */
+}
+
+.profile-image {
+    width: 50px; /* 이미지 너비 */
+    height: 50px; /* 이미지 높이 */
+    border-radius: 50%; /* 동그란 모양 */
+    margin-right: 10px; /* 이미지와 텍스트 간 간격 */
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column; /* 세로 방향으로 정렬 */
+}
+
+.department {
+    font-weight: bold; /* 부서명 강조 */
+}
+
+.name-job {
+    display: flex; /* 이름과 직급을 수평으로 정렬 */
+    align-items: center; /* 수직 중앙 정렬 */
+}
+
+.status-indicator {
+    display: flex;
+    align-items: center;
+    margin-left: auto; /* 오른쪽으로 이동 */
+}
+
+.green-circle, .red-circle, .gray-circle {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 5px; /* 동그라미와 텍스트 사이의 간격 */
+}
+
+.green-circle {
+    background-color: #02d302; /* 초록색 */
+}
+
+.red-circle {
+    background-color: red; /* 빨간색 */
+}
+
+.gray-circle {
+    background-color: gray; /* 회색 */
+}
+
+.chat-message {
+    display: flex;
+    margin-bottom: 10px; /* 메시지 간 간격 */
+}
+
+.profile-image {
+    margin-right: 10px; /* 프로필 이미지와 메시지 세부 정보 간 간격 */
+}
+
+.profile-image img {
+    width: 40px; /* 프로필 이미지 크기 */
+    height: 40px; /* 프로필 이미지 크기 */
+    border-radius: 50%; /* 원형으로 만들기 */
+}
+
+.message-details {
+    flex-grow: 1; /* 메시지 세부 정보가 남은 공간을 차지하도록 */
+    display: flex;
+    flex-direction: column; /* 세로 방향으로 배치 */
+}
+
+.header {
+    display: flex;
+    justify-content: space-between; /* 부서명과 이름/직급을 양쪽으로 배치 */
+    font-weight: bold;
+    margin-bottom: 5px; /* 부서명과 이름/직급 간 간격 */
+}
+
+.name-job {
+    display: flex;
+    justify-content: flex-start; /* 이름과 직급을 왼쪽 정렬 */
+    margin-top: 5px; /* 간격 추가 */
+}
+
+.name {
+    margin-right: 10px; /* 이름과 직급 간 간격 */
+}
+
+.message-text {
+    margin-top: 5px; /* 메시지 텍스트와 이전 요소 간 간격 */
+}
+
+.timestamp {
+    font-size: 0.8em; /* 타임스탬프 크기 조정 */
+    color: gray; /* 타임스탬프 색상 */
+    margin-top: 5px; /* 타임스탬프와 메시지 텍스트 간 간격 */
+}
+
+
+

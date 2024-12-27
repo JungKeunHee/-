@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>직원관리</title>
+    <link rel="stylesheet" href="/main/css/main-style.css"> <!-- 메인 스타일 연결 -->
+    <script src="/main/js/main.js"></script> <!-- 메인 자바스크립트 연결 -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=keyboard_arrow_down" />
+    <link rel="stylesheet" href="/sidemenu/manager/css/employeeManagement-style.css">
+</head>
+<body>
+<header>
+    <div class="side-menu-bar">
+        <ul>
+            <li><a href="/main">🐶PetHarmony🐶</a></li>
+            <li><a href="http://localhost:9595/sidemenu/schedule">근태관리</a></li>
+            <li><a href="http://localhost:9595/sidemenu/messenger">메신저(채팅)</a></li>
+            <li><a href="http://localhost:9595/sidemenu/mail">이메일</a></li>
+            <li><a href="http://localhost:9595/sidemenu/adoption">입양</a></li>
+            <li class="animal-menu">
+                <div class="menu-wrapper">
+                    <a href="http://localhost:9595/sidemenu/animals">동물
+                        <span class="material-symbols-outlined">keyboard_arrow_down</span>
+                    </a>
+                </div>
+                <ul class="sub-menu">
+                    <li><a href="http://localhost:9595/sidemenu/animals">구조동물</a></li>
+                    <li><a href="http://localhost:9595/sidemenu/adoptionComplete">입양완료</a></li>
+                    <li><a href="http://localhost:9595/sidemenu/stock">재고관리</a></li>
+                </ul>
+            </li>
+            <li><a href="http://localhost:9595/sidemenu/facilities">시설관리</a></li>
+            <li><a href="http://localhost:9595/sidemenu/board">전사게시판</a></li>
+            <li><a href="http://localhost:9595/sidemenu/employee">직원정보</a></li>
+            <li><a href="http://localhost:9595/sidemenu/mypage">마이페이지</a></li>
+            <li><a href="http://localhost:9595/sidemenu/approval">결재</a></li>
+            <li class="admin-menu">
+                <div class="admin-menu-wrapper">
+                    <a href="http://localhost:9595/sidemenu/manager">관리자전용
+                        <span class="material-symbols-outlined">keyboard_arrow_down</span>
+                    </a>
+                </div>
+                <ul class="sub-menu">
+                    <li><a href="http://localhost:9595/sidemenu/manager">관리자페이지</a></li>
+                    <li><a href="http://localhost:9595/sidemenu/employeeRegister">사원등록</a></li>
+                    <li><a href="http://localhost:9595/sidemenu/employeeManagement">직원관리</a></li>
+                    <li><a href="http://localhost:9595/sidemenu/approvalBox">결재함</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</header>
+<div class="change-screen-employeeManagement">
+    <div id="change-screen-content">
+        <div class="tab-header">
+            <div class="management-button">
+                <a href="/scheduleManagement" id="btn-1" class="tab-button active">⏰근태수정 요청관리⏰</a>
+            </div>
+            <div class="management-button">
+                <a href="/vacationManagement" id="btn-2" class="tab-button">🏖️연차 & 휴가 관리🏖️</a>
+            </div>
+        </div>
+        <div id="content-area" class="content-area">
+            <!-- 콘텐츠가 여기에 로드됩니다. -->
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // 페이지가 로드될 때 기본적으로 근태수정 요청관리 페이지를 불러옵니다.
+        loadContent('/scheduleManagement');
+
+        document.getElementById('btn-1').addEventListener('click', function(event) {
+            event.preventDefault(); // 기본 링크 동작 방지
+            setActiveButton(this);
+            window.location.href = '/scheduleManagement'; // 근태수정 요청관리 페이지로 이동
+        });
+
+        document.getElementById('btn-2').addEventListener('click', function(event) {
+            event.preventDefault(); // 기본 링크 동작 방지
+            setActiveButton(this);
+            window.location.href = '/vacationManagement'; // 연차 & 휴가 관리 페이지로 이동
+        });
+    });
+
+    function loadContent(url) {
+        // 페이지를 새로 고침하여 URL로 이동
+        window.location.href = url;
+    }
+
+    function setActiveButton(selectedButton) {
+        // 모든 버튼에서 active 클래스 제거
+        const buttons = document.querySelectorAll('.tab-button');
+        buttons.forEach(button => {
+            button.classList.remove('active');
+        });
+        // 선택된 버튼에 active 클래스 추가
+        selectedButton.classList.add('active');
+    }
+</script>
+
+</body>
+</html>

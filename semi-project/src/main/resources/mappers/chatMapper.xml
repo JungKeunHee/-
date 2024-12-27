@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ohgiraffers.semiproject.messenger.model.dao.ChatMapper">
+
+    <resultMap id="chatResultMap" type="com.ohgiraffers.semiproject.messenger.model.dto.ChatDTO">
+        <id property="id" column="chat_id"/>
+        <result property="senderCode" column="sender_code"/>
+        <result property="receiverCode" column="recipient_code"/>
+        <result property="message" column="message"/>
+        <result property="timestamp" column="created_date"/>
+        <association property="employeeJoinListDTO" javaType="com.ohgiraffers.semiproject.employee.model.dto.EmployeeJoinListDTO">
+            <id property="empCode" column="emp_code"/>
+            <result property="empPass" column="emp_pass"/>
+            <result property="empName" column="emp_name"/>
+            <result property="empEmail" column="emp_email"/>
+            <result property="empPhone" column="emp_phone"/>
+            <result property="hireDate" column="hire_date"/>
+            <result property="entDate" column="ent_date"/>
+            <result property="empGender" column="emp_gender"/>
+            <result property="empAddress" column="emp_address"/>
+            <result property="jobCode" column="job_code"/>
+            <result property="deptCode" column="dept_code"/>
+            <result property="authority" column="authority"/>
+            <result property="profile_image" column="profile_image"/>
+            <association property="deptDTO" javaType="com.ohgiraffers.semiproject.employee.model.dto.DeptDTO">
+                <id property="deptCode" column="dept_code"/>
+                <result property="deptName" column="dept_name"/>
+            </association>
+            <association property="jobDTO" javaType="com.ohgiraffers.semiproject.employee.model.dto.JobDTO">
+                <id property="jobCode" column="job_code"/>
+                <result property="jobName" column="job_name"/>
+            </association>
+        </association>
+    </resultMap>
+
+    <insert id="save">
+        insert into tbl_chat
+        (sender_code, recipient_code, message, created_date)
+        values
+        (#{senderCode}, #{chat.receiverCode}, #{chat.message}, #{chat.timestamp} )
+    </insert>
+
+
+    <select id="findChatHistory" resultMap="chatResultMap">
+        SELECT
+        a.chat_id,
+        a.sender_code,
+        a.recipient_code,
+        a.message,
+        a.created_date,
+        b1.emp_name,
+        c1.dept_name,
+        d1.job_name,
+        b2.emp_name,
+        c2.dept_name,
+        d2.job_name
+        FROM
+        tbl_chat a
+        JOIN tbl_emp b1 ON (a.sender_code = b1.emp_code)
+        JOIN tbl_dept c1 ON (b1.dept_code = c1.dept_code)
+        JOIN tbl_job d1 ON (b1.job_code = d1.job_code)
+        JOIN tbl_emp b2 ON (a.recipient_code = b2.emp_code)
+        JOIN tbl_dept c2 ON (b2.dept_code = c2.dept_code)
+        JOIN tbl_job d2 ON (b2.job_code = d2.job_code)
+        WHERE (a.sender_code = #{senderCode} AND a.recipient_code = #{receiverCode})
+        OR (a.sender_code = #{receiverCode} AND a.recipient_code = #{senderCode})
+        ORDER BY a.created_date ASC
+    </select>
+
+
+</mapper>

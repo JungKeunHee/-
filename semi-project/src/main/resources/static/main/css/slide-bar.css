@@ -1,0 +1,61 @@
+.slide-board {
+    width: 1800px; /* 슬라이드 보드의 너비 */
+    height: 50px; /* 슬라이드 보드의 높이 */
+    background-color: #ffffff; /* 배경색 (선택 사항) */
+    margin-top: 15px;
+    border-radius: 5px;
+    margin-bottom: 15px; /* 슬라이드 보드와 메인 폼 간의 간격 */
+    box-shadow: 0 4px 5px rgba(0, 0, 0, 0.2); /* 그림자 추가 */
+    position: relative;
+}
+
+.slide-list {
+    position: relative;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+}
+
+
+.slide-list li {
+    position: absolute;
+    width: 1840px;
+    height: 100%;
+    opacity: 0; /* 처음에는 보이지 않도록 설정 */
+    transform: translateX(100%); /* 오른쪽에서 시작 */
+    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out; /* 부드러운 전환 효과 */
+    display: flex; /* Flexbox 사용 */
+    align-items: center; /* 수직 가운데 정렬 */
+    justify-content: center; /* 수평 가운데 정렬 */
+    text-align: center;
+}
+
+.slide-list li.active {
+    opacity: 1; /* 현재 항목은 보이도록 설정 */
+    transform: translateX(0); /* 현재 항목은 원래 위치로 이동 */
+}
+
+.slide-list li a {
+    text-decoration: none; /* 밑줄 제거 */
+    font-family: 'Arial', sans-serif; /* 폰트 패밀리 설정 */
+    font-size: 18px; /* 폰트 크기 설정 */
+    color: #333; /* 글자 색상 설정 */
+    width: 100%; /* 슬라이드 보드에 맞게 너비 설정 */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
+    transition: color 0.3s ease; /* 글자 색상에 대한 부드러운 전환 효과 */
+    text-align: center;
+    display: flex; /* Flexbox 사용 */
+    align-items: center; /* 수직 가운데 정렬 */
+    justify-content: center; /* 수평 가운데 정렬 */
+    padding-right: 8%;
+    height: 50px;
+    font-weight: bold;
+}
+
+.slide-list li a:hover {
+    color: #ff4141; /* 호버 시 글자 색상 변경 */
+}
+

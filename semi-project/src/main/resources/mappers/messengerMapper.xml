@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ohgiraffers.semiproject.messenger.model.dao.MessengerMapper">
+
+    <resultMap id="test" type="com.ohgiraffers.semiproject.messenger.model.dto.MessengerDTO">
+        <id property="empCode" column="emp_code"/>
+        <result property="empName" column="emp_name"/>
+    </resultMap>
+
+    <resultMap id="employeeScheduleListMap" type="com.ohgiraffers.semiproject.employee.model.dto.EmployeeScheduleInfoDTO">
+        <id property="empCode" column="emp_code"/>
+        <result property="empPass" column="emp_pass"/>
+        <result property="empName" column="emp_name"/>
+        <result property="empEmail" column="emp_email"/>
+        <result property="empPhone" column="emp_phone"/>
+        <result property="hireDate" column="hire_date"/>
+        <result property="entDate" column="ent_date"/>
+        <result property="empGender" column="emp_gender"/>
+        <result property="empAddress" column="emp_address"/>
+        <result property="jobCode" column="job_code"/>
+        <result property="deptCode" column="dept_code"/>
+        <result property="authority" column="authority"/>
+        <result property="profile_image" column="profile_image"/>
+        <association property="deptDTO" javaType="com.ohgiraffers.semiproject.employee.model.dto.DeptDTO">
+            <id property="deptCode" column="dept_code"/>
+            <result property="deptName" column="dept_name"/>
+        </association>
+        <association property="jobDTO" javaType="com.ohgiraffers.semiproject.employee.model.dto.JobDTO">
+            <id property="jobCode" column="job_code"/>
+            <result property="jobName" column="job_name"/>
+        </association>
+        <association property="scheduleDTO" javaType="com.ohgiraffers.semiproject.schedule.model.dto.ScheduleDTO">
+            <id property="workCode" column="work_code"/>
+            <result property="empCode" column="emp_code"/>
+            <result property="workType" column="work_type"/>
+            <result property="workStartTime" column="workstart_time"/>
+            <result property="workEndTime" column="workend_time"/>
+            <result property="workDate" column="work_date"/>
+            <result property="modifyTime" column="modify_time"/>
+            <result property="division" column="division"/>
+            <result property="workModifyReason" column="workmodify_reason"/>
+            <result property="managerIdea" column="manager_idea"/>
+            <result property="progressCode" column="progress_code"/>
+            <result property="adminCode" column="admin_code"/>
+        </association>
+    </resultMap>
+
+    <select id="findEmployees" resultMap="employeeScheduleListMap">
+        select
+        a.emp_code,
+        a.emp_name,
+        a.profile_image,
+        b.dept_name,
+        c.job_name,
+        d.workstart_time,
+        d.workend_time,
+        d.work_type
+        from
+        tbl_emp a
+        join tbl_dept b on (a.dept_code = b.dept_code)
+        join tbl_job c on (a.job_code = c.job_code)
+        left join tbl_work d on (a.emp_code = d.emp_code and d.work_date = CURRENT_DATE)
+        order by
+         b.dept_name
+    </select>
+</mapper>

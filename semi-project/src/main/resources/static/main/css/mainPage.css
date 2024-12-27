@@ -1,0 +1,89 @@
+.change-screen {
+    display: flex;
+    flex-direction: column; /* 세로 방향으로 정렬 */
+    align-items: center; /* 수평 가운데 정렬 */
+}
+
+.main-form1 {
+    display: flex; /* Flexbox를 사용하여 가로 정렬 */
+    justify-content: space-between; /* 자식 요소 간의 간격을 균등하게 배분 */
+    gap: 20px; /* 각 요소 간의 간격을 설정 (20px) */
+    width: 1800px; /* 슬라이드 보드와 동일한 너비 */
+    height: 700px; /* 높이 설정 */
+}
+
+.main-form2, .main-form3, .main-form4 {
+    flex: 1; /* 각 요소가 동일한 너비를 가지도록 설정 */
+    padding: 10px; /* 내부 여백 추가 */
+    background-color: #ffffff; /* 배경색 추가 (선택 사항) */
+    border-radius: 5px; /* 모서리 둥글게 (선택 사항) */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* 그림자 추가 */
+    text-align: center;
+}
+
+.main-form3 {
+    display: flex; /* Flexbox를 사용하여 가로 정렬 */
+    flex-direction: column; /* 세로 방향으로 정렬 */
+    align-items: center; /* 수평 가운데 정렬 */
+    gap: 20px; /* 어댑트 컨테이너 간의 간격 설정 */
+}
+
+.adapt-container1, .adapt-container2 {
+    display: flex; /* Flexbox를 사용하여 자식 요소를 정렬 */
+    flex-direction: row; /* 세로 방향으로 정렬 */
+    align-items: center; /* 수평 가운데 정렬 */
+    justify-content: center; /* 수직 가운데 정렬 */
+    flex: 1; /* 각 어댑트 컨테이너가 동일한 너비를 가지도록 설정 */
+    padding: 10px; /* 내부 여백 추가 */
+    border-radius: 5px; /* 모서리 둥글게 (선택 사항) */
+    gap: 30px;
+    margin-top: -30px;
+}
+
+.adapt-sub-box {
+    display: flex; /* Flexbox를 사용하여 자식 요소를 정렬 */
+    flex-direction: column; /* 세로 방향으로 정렬 */
+    justify-content: center;
+    align-items: center; /* 수평 가운데 정렬 */
+    text-align: center; /* 텍스트 가운데 정렬 */
+    width: 270px;
+    height: 280px;
+    border-radius: 10px;
+    box-shadow: 0 5px 5px 4px rgba(0, 0, 0, 0.1); /* 그림자 아래로 연하게 조정 */
+}
+
+.adapt-sub-box h1 {
+    margin: 0; /* 기본 margin 제거 */
+    margin-top: 20px;
+}
+
+.adapt-sub-box p {
+    margin: 5px 0 0; /* 위쪽 margin을 줄이고 아래쪽 margin을 추가 */
+    font-size: 16px; /* 글꼴 크기 */
+    color: #555; /* 글꼴 색상 */
+    font-family: 'Arial', sans-serif; /* 글꼴 패밀리 */
+    background-color: #f9f9f9; /* 배경 색상 */
+    padding: 10px; /* 패딩 추가 */
+    border-radius: 5px; /* 모서리 둥글게 */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+    text-align: center; /* 텍스트 중앙 정렬 */
+}
+
+.chart {
+    margin-top: 10px;
+}
+
+.chart-title {
+    color: #5a5a5a;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgb(255, 255, 255);
+}
+
+.form3-title {
+    width: 100%; /* 전체 너비 사용 */
+    text-align: center; /* 텍스트 가운데 정렬 */
+    color: #5a5a5a;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgb(255, 255, 255);
+    margin-bottom: 20px; /* 아래 요소와의 간격 */
+}

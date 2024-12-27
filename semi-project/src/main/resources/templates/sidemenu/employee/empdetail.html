@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>직원정보</title>
+    <link rel="stylesheet" href="/main/css/main-style.css"> <!-- 메인 스타일 연결 -->
+    <script src="/main/js/main.js"></script> <!-- 메인 자바스크립트 연결 -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=keyboard_arrow_down" />
+    <link rel="stylesheet" href="/sidemenu/employee/css/empdetail.css">
+</head>
+<body>
+<header>
+    <div class="side-menu-bar">
+        <ul>
+            <li><a href="/main">🐶PetHarmony🐶</a></li>
+            <li><a href="http://localhost:9595/sidemenu/schedule">근태관리</a></li>
+            <li><a href="http://localhost:9595/sidemenu/messenger">메신저(채팅)</a></li>
+            <li><a href="http://localhost:9595/sidemenu/mail">이메일</a></li>
+            <li><a href="http://localhost:9595/sidemenu/adoption">입양</a></li>
+            <li class="animal-menu">
+                <div class="menu-wrapper">
+                    <a href="http://localhost:9595/sidemenu/animals">동물
+                        <span class="material-symbols-outlined">keyboard_arrow_down</span>
+                    </a>
+                </div>
+                <ul class="sub-menu">
+                    <li><a href="http://localhost:9595/sidemenu/animals">구조동물</a></li>
+                    <li><a href="http://localhost:9595/sidemenu/adoptionComplete">입양완료</a></li>
+                    <li><a href="http://localhost:9595/sidemenu/stock">재고관리</a></li>
+                </ul>
+            </li>
+            <li><a href="http://localhost:9595/sidemenu/facilities">시설관리</a></li>
+            <li><a href="http://localhost:9595/sidemenu/board">전사게시판</a></li>
+            <li><a href="http://localhost:9595/sidemenu/employee">직원정보</a></li>
+            <li><a href="http://localhost:9595/sidemenu/mypage">마이페이지</a></li>
+            <li><a href="http://localhost:9595/sidemenu/approval">결재</a></li>
+            <li class="admin-menu">
+                <div class="admin-menu-wrapper">
+                    <a href="http://localhost:9595/sidemenu/manager">관리자전용
+                        <span class="material-symbols-outlined">keyboard_arrow_down</span>
+                    </a>
+                </div>
+                <ul class="sub-menu">
+                    <li><a href="http://localhost:9595/sidemenu/manager">관리자페이지</a></li>
+                    <li><a href="http://localhost:9595/sidemenu/employeeRegister">사원등록</a></li>
+                    <li><a href="http://localhost:9595/sidemenu/employeeManagement">직원관리</a></li>
+                    <li><a href="http://localhost:9595/sidemenu/approvalBox">결재함</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</header>
+<div class="change-screen-employee">
+    <div id="change-screen-content">
+        <table border="1px" style="width: 1500px;">
+            <tr>
+                <td rowspan="4" class="header-cell">
+                    <div class="image-container">
+                        <img th:src="${emp.profileImage == null || emp.profileImage.isEmpty() ? '/img/default.png' : (emp.profileImage.startsWith('img/profile/') ? '/' + emp.profileImage : '/img/profile/' + emp.profileImage)}"
+                             alt="profile Image" />
+                    </div>
+                </td>
+                <td class="type-cell"><b>이름</b></td>
+                <td th:text="${emp.empName}"></td> <!-- 직원 이름 출력 -->
+                <td class="type-cell"><b>부서</b></td>
+                <td th:text="${emp.jobDTO.jobName}"></td> <!-- 직무 이름 출력 -->
+            </tr>
+            <tr>
+                <td class="type-cell"><b>사번</b></td>
+                <td th:text="${emp.empCode}"></td> <!-- 직원 사번 출력 -->
+                <td class="type-cell"><b>입사일</b></td>
+                <td th:text="${#dates.format(emp.hireDate, 'yyyy-MM-dd')}"></td> <!-- 입사일 출력 -->
+            </tr>
+            <tr>
+                <td class="type-cell"><b>이메일</b></td>
+                <td th:text="${emp.empEmail}"></td> <!-- 이메일 출력 -->
+                <td class="type-cell"><b>휴대폰</b></td>
+                <td th:text="${emp.empPhone}"></td> <!-- 휴대폰 번호 출력 -->
+            </tr>
+            <tr>
+                <td class="type-cell"><b>직급</b></td>
+                <td th:text="${emp.jobDTO.jobName}"></td> <!-- 직급 정보 출력 -->
+                <td class="type-cell"><b>주소</b></td>
+                <td th:text="${emp.empAddress}"></td> <!-- 주소 출력 -->
+            </tr>
+        </table>
+
+        <!-- 댓글 작성 폼 -->
+        <div class="comment-section">
+            <h3>댓글</h3>
+            <form action="/comments/add" method="POST">
+                <textarea name="text" class="comment-box" rows="4" placeholder="기분좋은 소식이나 덕담 한마디씩 건네주세요.." required></textarea>
+                <input type="hidden" name="empCode" th:value="${emp.empCode}" /> <!-- empCode 전달 -->
+                <button type="submit" class="submit-button">댓글 작성</button>
+            </form>
+
+            <!-- 댓글 목록 -->
+            <div class="comment-list">
+                <div th:if="${#lists.isEmpty(comment)}">
+                    <p class="no-comment">댓글이 없어요... 도움의손길을 주세요..</p> <!-- 댓글이 없을 때 출력 -->
+                </div>
+                <div th:unless="${#lists.isEmpty(comment)}" th:each="comment : ${comment}">
+                    <div class="comment-item">
+                        <p th:text="${comment.text}"></p>
+                        <small th:text="'작성자 : ' + ${name}"></small>
+                        <br>
+                        <small th:text="'날짜 : ' + ${#temporals.format(comment.createdDate, 'yyyy-MM-dd HH:mm:ss')}"></small>
+                        <small style="margin-left: auto">
+                            <a th:href="@{/sidemenu/employee/{empCode}/comment/{id}/delete(empCode=${emp.empCode}, id=${comment.id})}" class="delete">📃 삭제</a>
+                        </small>
+                    </div>
+                </div>
+            </div>
+            <div align="center" class="view-footer">
+                <a class="view-page" th:href="@{/sidemenu/employee}">목록</a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

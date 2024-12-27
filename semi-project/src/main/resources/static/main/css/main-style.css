@@ -1,0 +1,193 @@
+body {
+    background-color: #ff3e2d;
+    height: 1080px; /* 전체 화면 높이 */
+    margin: 0; /* 기본 여백 제거 */
+    display: flex;
+    justify-content: center; /* 수평 가운데 정렬 */
+    align-items: center; /* 수직 가운데 정렬 */
+}
+
+header {
+    margin: 0; /* 기본 여백 제거 */
+}
+
+.container1 {
+    /*position: absolute;*/
+}
+
+.side-menu-bar a {
+    color: black; /* 기본 링크 색상 */
+    font-weight: bold;
+    text-decoration: none; /* 밑줄 없애기 */
+    transition: color 0.3s ease; /* 색상 변화에 0.3초의 부드러운 전환 효과 추가 */
+}
+
+/* 방문한 링크 색상 설정 */
+.side-menu-bar a:visited {
+    color: black; /* 방문한 링크 색상 */
+}
+
+/* 마우스 오버 시 색상 설정 */
+.side-menu-bar a:hover {
+    color: #ff4141; /* 마우스 오버 시 색상 */
+}
+
+.side-menu-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin: 0;
+    width: 100%;
+    height: 80px;
+    background-color: white;
+    display: flex;
+    align-items: center; /* 모든 항목을 수직 중앙 정렬 */
+    justify-content: flex-start;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+}
+
+.side-menu-bar ul {
+    list-style-type: none;
+    padding: 0;
+    margin-left: 30px;
+    display: flex;
+    align-items: center; /* 리스트 항목을 수직 중앙 정렬 */
+}
+
+.side-menu-bar ul li {
+    margin-right: 40px;
+    font-size: 17px;
+    display: flex; /* li 요소를 flex로 설정하여 내부 요소를 중앙 정렬 */
+    align-items: center; /* li 내부의 요소를 수직 중앙 정렬 */
+}
+
+.side-menu-bar {
+    overflow: visible; /* 부모 요소의 overflow 속성을 visible로 설정 */
+}
+
+.animal-menu {
+    position: relative; /* 서브 메뉴의 절대 위치를 위한 기준 설정 */
+}
+
+.menu-wrapper {
+    padding: 7px; /* 클릭 가능한 영역을 넓히기 위한 패딩 */
+    cursor: pointer; /* 마우스 커서를 포인터로 변경 */
+    width: 60px;
+    height: 48px;
+    top: 50%;
+    left: 50%;
+    padding-top: 33px;
+}
+
+.animal-menu .sub-menu {
+    display: flex; /* flexbox로 표시 */
+    flex-direction: row; /* 가로 방향으로 정렬 */
+    position: absolute; /* 절대 위치 설정 */
+    background-color: white; /* 배경색 */
+    width: auto; /* 너비 자동 조정 */
+    height: 50px; /* 높이 설정 (필요에 따라 조정) */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* 그림자 효과 */
+    z-index: 2; /* 다른 요소 위에 표시되도록 높임 */
+    margin-top: 0; /* 상단 여백을 0으로 설정 */
+    left: calc(50% - 180px); /* 부모 요소의 50% 위치에서 120px 왼쪽으로 이동 (값 조정) */
+    top: calc(100% - 8px); /* 부모 요소의 아래쪽에 위치 */
+    visibility: hidden; /* 기본적으로 숨김 */
+    opacity: 0; /* 투명도 0으로 설정 */
+    transition: visibility 0s linear 0.5s, opacity 0.5s ease; /* 부드러운 전환 효과 */
+    border-radius: 5px;
+    padding: 0; /* 상하 여백 제거, 좌우 여백은 항목에 추가 */
+}
+
+/* 마우스를 올렸을 때 서브 메뉴 보이기 */
+.animal-menu:hover .sub-menu {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+    overflow: visible; /* 자식 요소가 부모의 경계를 넘어갈 수 있도록 설정 */
+}
+
+/* 각 항목에 대한 스타일 */
+.animal-menu .sub-menu li {
+    display: flex; /* flexbox로 표시 */
+    padding: 10px 15px; /* 좌우 여백 추가 */
+    margin: 0; /* 여백 제거 */
+    white-space: nowrap; /* 텍스트가 줄 바꿈되지 않도록 설정 */
+}
+
+/* 서브 메뉴에 마우스가 올라갔을 때도 보이도록 설정 */
+.animal-menu .sub-menu:hover {
+    visibility: visible; /* 보이도록 설정 */
+    opacity: 1; /* 완전히 보이도록 설정 */
+}
+
+.admin-menu-wrapper {
+    padding: 7px; /* 클릭 가능한 영역을 넓히기 위한 패딩 */
+    cursor: pointer; /* 마우스 커서를 포인터로 변경 */
+    width: 150px;
+    height: 48px;
+    top: 50%;
+    left: 50%;
+    padding-top: 33px;
+}
+
+
+/* 관리자전용 메뉴에 마우스를 올리면 하위 메뉴 보이기 */
+.admin-menu {
+    position: relative; /* 서브 메뉴의 절대 위치를 위한 기준 설정 */
+}
+
+.admin-menu .sub-menu {
+    display: flex; /* flexbox로 표시 */
+    flex-direction: row; /* 가로 방향으로 정렬 */
+    position: absolute; /* 절대 위치 설정 */
+    background-color: white; /* 배경색 */
+    width: auto; /* 너비 자동 조정 */
+    height: auto; /* 높이 자동 조정 */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* 그림자 효과 */
+    z-index: 10; /* 다른 요소 위에 표시되도록 높임 */
+    margin-top: 0; /* 상단 여백을 0으로 설정 */
+    left: calc(50% - 270px); /* 부모 요소의 50% 위치에서 130px 왼쪽으로 이동 */
+    top: calc(100% - 8px); /* 부모 요소의 아래쪽에 위치 */
+    visibility: hidden; /* 기본적으로 숨김 */
+    opacity: 0; /* 투명도 0으로 설정 */
+    transition: visibility 0s linear 0.5s, opacity 0.5s ease; /* 부드러운 전환 효과 */
+    border-radius: 5px;
+    padding: 0; /* 상하 여백 제거, 좌우 여백은 항목에 추가 */
+}
+
+/* 마우스를 올렸을 때 서브 메뉴 보이기 */
+.admin-menu:hover .sub-menu {
+    visibility: visible; /* 마우스 오버 시 보이도록 설정 */
+    opacity: 1; /* 완전히 보이도록 설정 */
+    transition: opacity 0.5s ease; /* opacity 전환 효과 */
+}
+
+/* 각 항목에 대한 스타일 */
+.admin-menu .sub-menu li {
+    display: flex; /* flexbox로 표시 */
+    padding: 10px 15px; /* 좌우 여백 추가 */
+    margin: 0; /* 여백 제거 */
+    white-space: nowrap; /* 텍스트가 줄 바꿈되지 않도록 설정 */
+}
+
+/* 서브 메뉴에 마우스가 올라갔을 때도 보이도록 설정 */
+.admin-menu .sub-menu:hover {
+    visibility: visible; /* 보이도록 설정 */
+    opacity: 1; /* 완전히 보이도록 설정 */
+}
+
+.change-screen {
+    width: 1850px;
+    height: 800px;
+    background-color: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    margin-bottom: 3%;
+}
+
+.material-symbols-outlined {
+    vertical-align: middle; /* 텍스트와 아이콘의 정렬을 맞추기 위해 추가 */
+    margin-bottom: 4px;
+    margin-left: -4px;
+    color: inherit; /* 부모 요소의 색상을 상속받도록 설정 */
+}

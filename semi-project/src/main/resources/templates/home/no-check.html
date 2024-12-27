@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>사원번호 찾기</title>
+  <link rel="stylesheet" href="/home/css/no-check.css">
+
+</head>
+<body>
+<div class="login">
+  <div class="title">
+    <h2>🐶사원번호 찾기🐶</h2>
+  </div>
+
+  <div class="noCheck">
+    <h3 th:text="${noCheck.name} + '님의 '"></h3>
+    <h3 th:text="'사원번호는 ' + ${noCheck.code} + ' 입니다.'"></h3>
+  </div>
+  <div class="button-container">
+    <form action="" method="get" onsubmit="showAlertAndRedirect(event)">
+      <button class="success">로그인 하러가기</button>
+    </form>
+  </div>
+</div>
+<div class="dogImg">
+  <img src="/img/dog/dog.png" style="width: 900px; height: auto;">
+</div>
+<script>
+  function showAlertAndRedirect(event) {
+    event.preventDefault(); // 기본 폼 제출 방지
+    alert("홈 화면으로 이동합니다."); // 알림창 표시
+    window.location.href = '/home';
+  }
+</script>
+</body>
+</html>

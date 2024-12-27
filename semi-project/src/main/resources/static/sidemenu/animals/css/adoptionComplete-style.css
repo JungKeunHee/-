@@ -1,0 +1,126 @@
+.change-screen-adoptionComplete{
+    margin-top: 45px;
+    width: 1850px;
+    height: auto;
+    background-color: white;
+    border-radius: 10px;
+    margin-bottom: 3%;
+    color: black;
+}
+
+body, table {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+.image {
+    object-fit: cover;
+}
+.animals {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Post List styles */
+.animals-list {
+    border-collapse: collapse;
+    width: 100%;
+    border: 1px solid #ddd;
+    margin-bottom: 30px;
+    bottom: 50px;
+}
+
+.animals-list th, .animals-list td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+.animals-list th {
+    background: #fd9494;
+}
+
+.sendAdoption-delete {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-left: auto;
+    margin-bottom: 5px;
+}
+
+.sendAdoption, .delete {
+    margin-left: 10px;
+}
+
+.sendAdoption a, .delete a {
+    display: inline-block;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-family: 'Arial', sans-serif;
+    font-size: 14px;
+    text-decoration: none;
+    color: white;
+    transition: background-color 0.3s;
+}
+
+.sendAdoption a {
+    background-color: #05b1fa;
+}
+
+.sendAdoption a:hover {
+    background-color: #0c749f;
+}
+
+.delete a {
+    background-color: #ff7043;
+    color: white;
+}
+
+.delete a:hover {
+    background-color: #f4511e;
+}
+
+.page-btn-group{
+    text-align: center;
+    display: flex; /* 가로 정렬 */
+    justify-content: center; /* 중앙 정렬 */
+    list-style: none; /* 점 제거 */
+    padding: 0;
+    margin-top: 20px; /* 테이블과의 간격 조정 */
+    margin-bottom: 5px; /* 하단 여백 추가 */
+    position: static; /* 기본 위치 설정으로 변경 */
+
+}
+
+.page-btn {
+    width: 30px;
+    height: 30px;
+    background: #fd9494;
+    color: white;
+    border-radius: 4px;
+    border: 1px #fd9494;
+    margin: 0 3px; /* 각 페이지 아이템 간의 여백 */
+}
+
+.page-btn:hover {
+    background: #f83b3b;
+    color: white;
+    border: 1px #f83b3b;
+}
+
+.animal-code-cell {
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.animal-code-cell:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #f0f0f0;
+}
+

@@ -1,0 +1,118 @@
+body, table {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+.change-screen-board{
+    width: 1850px;
+    height: 800px;
+    background-color: white;
+    border-radius: 10px;
+    margin-bottom: 3%;
+    color: #000000;
+}
+
+.view-title {
+    display: flex;
+    padding-top: 20px;
+    margin-left: 29px;
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.view-info-sub {
+    margin-left: 25px;
+    display: flex;
+    justify-content: flex-start;
+    font-size: 14px;
+    margin-top: 10px;
+    color: #cccccc;
+}
+
+.view-date, .view-count {
+    margin-right: 10px;
+    padding: 5px 8px;
+    color: black;
+}
+
+.view-ud {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-left: auto;
+    margin-right: 75px;
+}
+
+.view-update, .view-delete {
+    margin-left: 10px;
+}
+
+.view-update a, .view-delete a {
+    display: inline-block;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-family: 'Arial', sans-serif;
+    font-size: 14px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.view-update a {
+    background-color: #006a38;
+    color: white;
+    font-weight: bold;
+}
+
+.view-update a:hover {
+    background-color: #00532d;
+}
+
+.view-delete a {
+    background-color: #b31200;
+    font-weight: bold;
+    color: white;
+}
+
+.view-delete a:hover {
+    background-color: #830e00;
+}
+
+.view-content {
+    width: 1750px;
+    height: 600px;
+    padding: 10px;
+    border: 1px solid #f0f0f0;
+    border-radius: 10px;
+    box-sizing: border-box;
+    font-size: 16px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 25px;
+    resize: vertical;
+    background-color: #fbfbfb;
+}
+
+.view-footer {
+    margin-top: 30px;
+}
+
+.view-page {
+    display: inline-block;
+    padding: 8px 12px;
+    background-color: rgba(194, 194, 194, 0.69);
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+}
+
+.view-page:hover {
+    background-color: rgba(177, 177, 177, 0.69);
+}

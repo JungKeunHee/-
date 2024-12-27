@@ -1,0 +1,22 @@
+server:
+  port: 9595
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/petharmonydb
+    username: petharmony
+    password: petharmony
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: keunhee0920
+    password: lfgwtpaoyatlpqrv
+    properties:
+      mail.smtp.auth: true
+      mail.smtp.starttls.enable: true
+      mail.smtp.timeout: 5000
+
+mybatis:
+  mapper-locations: mappers/**/*.xml
+
